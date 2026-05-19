@@ -11,6 +11,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.painterResource
 import com.choque.authcares2.ui.screens.auth.CrearCuentaAuthCaresScreen
 import com.choque.authcares2.ui.screens.auth.IniciarSesionAuthCaresScreen
+import com.choque.authcares2.ui.screens.home.InicioAuthCaresScreen
 import com.choque.authcares2.ui.screens.onboarding.BienvenidaAuthCaresScreen
 import com.choque.authcares2.ui.theme.AuthCares2Theme
 
@@ -41,6 +42,7 @@ class MainActivity : ComponentActivity() {
                             password = loginPassword,
                             onEmailChange = { loginEmail = it },
                             onPasswordChange = { loginPassword = it },
+                            onLoginClick = { currentScreen = AuthCaresScreen.Home },
                             onCreateAccountClick = { currentScreen = AuthCaresScreen.Register }
                         )
                     }
@@ -56,6 +58,10 @@ class MainActivity : ComponentActivity() {
                             onAlreadyHaveAccountClick = { currentScreen = AuthCaresScreen.Login }
                         )
                     }
+
+                    AuthCaresScreen.Home -> {
+                        InicioAuthCaresScreen()
+                    }
                 }
             }
         }
@@ -65,5 +71,6 @@ class MainActivity : ComponentActivity() {
 private enum class AuthCaresScreen {
     Welcome,
     Login,
-    Register
+    Register,
+    Home
 }
