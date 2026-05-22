@@ -44,6 +44,7 @@ import com.choque.authcares2.ui.theme.AuthCaresOnSurfaceVariant
 import com.choque.authcares2.ui.theme.AuthCaresOutlineVariant
 import com.choque.authcares2.ui.theme.AuthCaresPrimary
 import com.choque.authcares2.ui.theme.AuthCaresPrimaryContainer
+import com.choque.authcares2.ui.theme.AuthCaresPrimaryFixed
 import com.choque.authcares2.ui.theme.AuthCaresSecondary
 import com.choque.authcares2.ui.theme.AuthCaresSurface
 import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainer
@@ -87,7 +88,7 @@ fun IniciarSesionAuthCaresScreen(
                     onLoginClick = onLoginClick
                 )
 
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(24.dp))
 
                 OutlinedButton(
                     onClick = onCreateAccountClick,
@@ -96,11 +97,11 @@ fun IniciarSesionAuthCaresScreen(
                         .height(56.dp),
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = AuthCaresPrimary
+                        contentColor = AuthCaresSecondary
                     ),
                     border = androidx.compose.foundation.BorderStroke(
                         width = 1.dp,
-                        color = AuthCaresPrimary
+                        color = AuthCaresSecondary
                     )
                 ) {
                     Text(
@@ -116,29 +117,46 @@ fun IniciarSesionAuthCaresScreen(
 }
 
 @Composable
-private fun LoginHeader(
-    modifier: Modifier = Modifier
-) {
+private fun LoginHeader(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Box(
+            modifier = Modifier
+                .size(64.dp)
+                .clip(RoundedCornerShape(16.dp))
+                .background(AuthCaresPrimaryFixed),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                painter = painterResource(R.drawable.ic_authcares_family),
+                contentDescription = null,
+                tint = AuthCaresPrimary,
+                modifier = Modifier.size(32.dp)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         Text(
-            text = "Iniciar sesión",
-            color = AuthCaresOnSurface,
-            fontSize = 32.sp,
-            lineHeight = 40.sp,
+            text = "AuthCares",
+            color = AuthCaresPrimary,
+            fontSize = 28.sp,
+            lineHeight = 36.sp,
             fontWeight = FontWeight.ExtraBold,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
+            letterSpacing = (-0.02).sp
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(4.dp))
 
         Text(
-            text = "Ingresa a tu espacio de cuidado y apoyo diario.",
+            text = "Iniciar sesión",
             color = AuthCaresOnSurfaceVariant,
-            fontSize = 16.sp,
-            lineHeight = 24.sp,
+            fontSize = 18.sp,
+            lineHeight = 26.sp,
+            fontWeight = FontWeight.Normal,
             textAlign = TextAlign.Center
         )
     }
@@ -206,7 +224,7 @@ private fun LoginFormCard(
                 .height(56.dp),
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = AuthCaresPrimaryContainer,
+                containerColor = AuthCaresPrimary,
                 contentColor = AuthCaresOnPrimary
             )
         ) {

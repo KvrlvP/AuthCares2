@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -38,7 +39,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.choque.authcares2.R
-import com.choque.authcares2.ui.components.OnboardingDots
 import com.choque.authcares2.ui.theme.AuthCares2Theme
 import com.choque.authcares2.ui.theme.AuthCaresOnPrimary
 import com.choque.authcares2.ui.theme.AuthCaresOnSurface
@@ -78,10 +78,7 @@ fun CrearCuentaAuthCaresScreen(
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            OnboardingDots(
-                currentPage = 2,
-                pageCount = 3
-            )
+            // OnboardingDots(currentPage = 2, pageCount = 3)
 
             Spacer(modifier = Modifier.height(32.dp))
 
@@ -179,9 +176,7 @@ fun CrearCuentaAuthCaresScreen(
 }
 
 @Composable
-private fun RegisterHeader(
-    modifier: Modifier = Modifier
-) {
+private fun RegisterHeader(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -264,9 +259,7 @@ private fun RegisterTextField(
 }
 
 @Composable
-private fun SecurityMessage(
-    modifier: Modifier = Modifier
-) {
+private fun SecurityMessage(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .fillMaxWidth()

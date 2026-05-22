@@ -1,7 +1,8 @@
-package com.choque.authcares2.ui.screens.onboarding
+package com.choque.authcares2.ui.screens.auth
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,7 +14,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,8 +22,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -32,15 +33,19 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.choque.authcares2.ui.components.OnboardingDots
+import com.choque.authcares2.R
 import com.choque.authcares2.ui.theme.AuthCares2Theme
 import com.choque.authcares2.ui.theme.AuthCaresOnPrimary
+import com.choque.authcares2.ui.theme.AuthCaresOnSurface
 import com.choque.authcares2.ui.theme.AuthCaresOnSurfaceVariant
 import com.choque.authcares2.ui.theme.AuthCaresPrimary
 import com.choque.authcares2.ui.theme.AuthCaresPrimaryContainer
 import com.choque.authcares2.ui.theme.AuthCaresSecondaryContainer
 import com.choque.authcares2.ui.theme.AuthCaresSurface
 import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainerLow
+import com.choque.authcares2.ui.components.OnboardingDots
+
+
 
 @Composable
 fun BienvenidaAuthCaresScreen(
@@ -178,10 +183,13 @@ private fun WelcomeContent(
 
         OnboardingDots(
             currentPage = currentPage,
-            pageCount = pageCount
+            pageCount = pageCount,
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
         )
 
         Spacer(modifier = Modifier.height(32.dp))
+
 
         Button(
             onClick = onStartClick,
@@ -190,7 +198,7 @@ private fun WelcomeContent(
                 .height(56.dp),
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = AuthCaresPrimaryContainer,
+                containerColor = AuthCaresPrimary,
                 contentColor = AuthCaresOnPrimary
             )
         ) {
@@ -198,8 +206,7 @@ private fun WelcomeContent(
                 text = buttonText,
                 fontSize = 14.sp,
                 lineHeight = 20.sp,
-                fontWeight = FontWeight.SemiBold,
-                style = MaterialTheme.typography.labelLarge
+                fontWeight = FontWeight.SemiBold
             )
         }
     }
@@ -207,12 +214,11 @@ private fun WelcomeContent(
 
 @Preview(showBackground = true)
 @Composable
-private fun BienvenidaAuthCaresScreenPreview() {
+fun BienvenidaAuthCaresScreenPreview() {
     AuthCares2Theme {
         BienvenidaAuthCaresScreen(
-            heroPainter = androidx.compose.ui.res.painterResource(
-                id = com.choque.authcares2.R.drawable.hero_bienvenida_authcares
-            )
+            heroPainter = painterResource(id = R.drawable.hero_bienvenida_authcares)
         )
     }
 }
+
