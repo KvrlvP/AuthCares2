@@ -104,7 +104,7 @@ private fun ChatTopBar(onBackClick: () -> Unit, modifier: Modifier = Modifier) {
                 .padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            IconButton(onClick = onBackClick) { // <--- CONECTADO
+            IconButton(onClick = onBackClick) {
                 Icon(
                     painter = painterResource(R.drawable.ic_authcares_menu),
                     contentDescription = "Volver",

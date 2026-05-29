@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "807283246971",
+    "firebase_url": "https://authcares-d4d37-default-rtdb.firebaseio.com",
+    "project_id": "authcares-d4d37",
+    "storage_bucket": "authcares-d4d37.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807283246971:android:f757cf72cb3610c1e99fde",
+        "android_client_info": {
+          "package_name": "com.choque.authcares2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807283246971-mmnv2unoolmdpaldbjhmi0dsmjh1llln.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQB1_EfM0Omgo5l9gWRFiMXrdoB_9VPEM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807283246971-mmnv2unoolmdpaldbjhmi0dsmjh1llln.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

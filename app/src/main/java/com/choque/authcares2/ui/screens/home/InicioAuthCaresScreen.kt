@@ -3,7 +3,7 @@ package com.choque.authcares2.ui.screens.home
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable // <--- IMPORTANTE
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -84,7 +84,6 @@ fun InicioAuthCaresScreen(
                     GreetingSection()
                     StatusGrid()
 
-                    // <--- IMPORTANTE: Pasamos la función para abrir el detalle al tocar el avatar --->
                     RegisteredKidsSection(
                         onChildClick = { onNavigateTo(AuthCaresScreen.ChildProfile) }
                     )
@@ -95,11 +94,10 @@ fun InicioAuthCaresScreen(
                 selectedTab = selectedTab,
                 onTabClick = { tab ->
                     selectedTab = tab
-                    // Lógica de navegación desde la lista
                     when (tab) {
-                        HomeTab.Inicio -> onNavigateTo(AuthCaresScreen.Home) // Refresca o se queda
+                        HomeTab.Inicio -> onNavigateTo(AuthCaresScreen.Home)
                         HomeTab.Horarios -> onNavigateTo(AuthCaresScreen.Stats)
-                        HomeTab.Ninos -> onNavigateTo(AuthCaresScreen.Kids) // Va al Dashboard Centralizado
+                        HomeTab.Ninos -> onNavigateTo(AuthCaresScreen.Kids)
                         HomeTab.Ajustes -> onNavigateTo(AuthCaresScreen.Settings)
                     }
                 },
@@ -288,7 +286,7 @@ private fun KidAvatar(
     name: String,
     avatarRes: Int?,
     onClick: () -> Unit = {},
-    modifier: Modifier = Modifier // Solo una vez
+    modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier
@@ -297,7 +295,7 @@ private fun KidAvatar(
             .background(AuthCaresWhiteSurface)
             .border(1.dp, AuthCaresOutlineVariant.copy(alpha=0.5f), RoundedCornerShape(16.dp))
             .padding(16.dp)
-            .clickable(onClick = onClick) // <--- CORREGIDO AQUÍ: onClick = onClick
+            .clickable(onClick = onClick)
         ,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center

@@ -71,7 +71,7 @@ fun InicioCentralizadoScreen(
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             Column(modifier = Modifier.fillMaxSize()) {
-                CentralizedTopBar()
+                CentralizedTopBar(onNavigateTo = onNavigateTo)
 
                 Column(
                     modifier = Modifier
@@ -83,11 +83,9 @@ fun InicioCentralizadoScreen(
                 ) {
                     GreetingSectionCentralized()
                     MainBentoGrid()
-                    QuickAccessSectionCentralized()
                 }
             }
 
-            // FAB del Asistente IA CONECTADO
             Surface(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
@@ -98,7 +96,7 @@ fun InicioCentralizadoScreen(
                 border = BorderStroke(1.dp, AuthCaresOutlineVariant.copy(alpha = 0.3f))
             ) {
                 IconButton(
-                    onClick = { onNavigateTo(AuthCaresScreen.AI) }, // <--- CONEXIÓN AL ASISTENTE
+                    onClick = { onNavigateTo(AuthCaresScreen.AI) },
                     modifier = Modifier.size(56.dp)
                 ) {
                     Image(
@@ -127,7 +125,10 @@ fun InicioCentralizadoScreen(
 }
 
 @Composable
-private fun CentralizedTopBar(modifier: Modifier = Modifier) {
+private fun CentralizedTopBar(
+    onNavigateTo: (AuthCaresScreen) -> Unit,
+    modifier: Modifier = Modifier
+) {
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -155,7 +156,7 @@ private fun CentralizedTopBar(modifier: Modifier = Modifier) {
 
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Box {
-                IconButton(onClick = {}) {
+                IconButton(onClick = { onNavigateTo(AuthCaresScreen.Alerts) }) {
                     Icon(
                         painter = painterResource(R.drawable.ic_authcares_bell),
                         contentDescription = null,

@@ -5,13 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.choque.authcares2.ui.screens.assistant.AsistenteIAScreen
 import com.choque.authcares2.ui.screens.auth.BienvenidaAuthCaresScreen
 import com.choque.authcares2.ui.screens.auth.CrearCuentaAuthCaresScreen
@@ -19,7 +19,6 @@ import com.choque.authcares2.ui.screens.auth.InformacionAuthCaresScreen
 import com.choque.authcares2.ui.screens.auth.IniciarSesionAuthCaresScreen
 import com.choque.authcares2.ui.screens.home.InicioAuthCaresScreen
 import com.choque.authcares2.ui.screens.home.InicioCentralizadoScreen
-import com.choque.authcares2.ui.screens.home.NinosRegistradosScreen
 import com.choque.authcares2.ui.screens.profile.PerfilAuthCaresScreen
 import com.choque.authcares2.ui.screens.profile.PerfilDetalladoScreen
 import com.choque.authcares2.ui.screens.alerts.AlertasInteligentesScreen
@@ -29,6 +28,7 @@ import com.choque.authcares2.ui.screens.settings.ConfiguracionRelojScreen
 import com.choque.authcares2.ui.screens.share.CompartirAuthCaresScreen
 import com.choque.authcares2.ui.screens.stats.EstadisticasAuthCaresScreen
 import com.choque.authcares2.ui.theme.AuthCares2Theme
+import com.choque.authcares2.viewmodels.AuthViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,54 +36,44 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AuthCares2Theme {
-                // Estado de navegación principal
-                var currentScreen by remember { mutableStateOf(AuthCaresScreen.Welcome) }
+                val authViewModel: AuthViewModel = viewModel()
 
-                // Simulación de estados simples para Auth
-                var loginEmail by remember { mutableStateOf("") }
-                var loginPassword by remember { mutableStateOf("") }
-                var registerFullName by remember { mutableStateOf("") }
-                var registerEmail by remember { mutableStateOf("") }
-                var registerPassword by remember { mutableStateOf("") }
+                val startDestination = if (authViewModel.isUserLoggedIn()) {
+                    AuthCaresScreen.Home
+                } else {
+                    AuthCaresScreen.Welcome
+                }
 
-                // Función auxiliar para navegar
+                var currentScreen by remember { mutableStateOf(startDestination) }
+
                 val navigateTo: (AuthCaresScreen) -> Unit = { screen ->
                     currentScreen = screen
                 }
 
-                // Función auxiliar para "Atrás" simple
                 val onBack: () -> Unit = {
                     currentScreen = when (currentScreen) {
-                        // Auth Flow
                         AuthCaresScreen.Register -> AuthCaresScreen.Login
                         AuthCaresScreen.Info -> AuthCaresScreen.Welcome
                         AuthCaresScreen.Login -> AuthCaresScreen.Welcome
-
-                        // Sub-pantallas que vuelven al Home
                         AuthCaresScreen.Alerts,
                         AuthCaresScreen.Kids,
                         AuthCaresScreen.Stats,
                         AuthCaresScreen.Settings,
                         AuthCaresScreen.HomeCentralized -> AuthCaresScreen.Home
-
-                        // Sub-pantallas profundas
                         AuthCaresScreen.AlertDetail -> AuthCaresScreen.Alerts
                         AuthCaresScreen.ChildProfile -> AuthCaresScreen.Kids
                         AuthCaresScreen.SettingsAlerts,
                         AuthCaresScreen.SettingsWatch,
                         AuthCaresScreen.Share -> AuthCaresScreen.Settings
-
-                        else -> AuthCaresScreen.Home // Fallback
+                        else -> AuthCaresScreen.Home
                     }
                 }
 
-                // Manejo del botón físico de atrás
                 BackHandler(enabled = currentScreen != AuthCaresScreen.Home) {
                     onBack()
                 }
 
                 when (currentScreen) {
-                    // --- ONBOARDING & AUTH ---
                     AuthCaresScreen.Welcome -> {
                         BienvenidaAuthCaresScreen(
                             heroPainter = painterResource(R.drawable.hero_bienvenida_authcares),
@@ -99,29 +89,37 @@ class MainActivity : ComponentActivity() {
 
                     AuthCaresScreen.Login -> {
                         IniciarSesionAuthCaresScreen(
-                            email = loginEmail,
-                            password = loginPassword,
-                            onEmailChange = { loginEmail = it },
-                            onPasswordChange = { loginPassword = it },
-                            onLoginClick = { navigateTo(AuthCaresScreen.Home) },
+                            email = authViewModel.loginEmail,
+                            password = authViewModel.loginPassword,
+                            onEmailChange = { authViewModel.loginEmail = it },
+                            onPasswordChange = { authViewModel.loginPassword = it },
+                            onLoginClick = {
+                                authViewModel.login(
+                                    onSuccess = { navigateTo(AuthCaresScreen.Home) },
+                                    onError = { error -> println(error) }
+                                )
+                            },
                             onCreateAccountClick = { navigateTo(AuthCaresScreen.Register) }
                         )
                     }
 
                     AuthCaresScreen.Register -> {
                         CrearCuentaAuthCaresScreen(
-                            fullName = registerFullName,
-                            email = registerEmail,
-                            password = registerPassword,
-                            onFullNameChange = { registerFullName = it },
-                            onEmailChange = { registerEmail = it },
-                            onPasswordChange = { registerPassword = it },
+                            fullName = authViewModel.registerFullName,
+                            email = authViewModel.registerEmail,
+                            password = authViewModel.registerPassword,
+                            onFullNameChange = { authViewModel.registerFullName = it },
+                            onEmailChange = { authViewModel.registerEmail = it },
+                            onPasswordChange = { authViewModel.registerPassword = it },
                             onAlreadyHaveAccountClick = { navigateTo(AuthCaresScreen.Login) },
-                            onRegisterClick = { navigateTo(AuthCaresScreen.Home) }
+                            onRegisterClick = {
+                                authViewModel.register(
+                                    onSuccess = { navigateTo(AuthCaresScreen.Home) },
+                                    onError = { error -> println(error) }
+                                )
+                            }
                         )
                     }
-
-                    // --- MAIN APP SCREENS (CON NAVEGACIÓN ACTIVA) ---
 
                     AuthCaresScreen.Home -> {
                         InicioAuthCaresScreen(
@@ -145,16 +143,14 @@ class MainActivity : ComponentActivity() {
                     AuthCaresScreen.AlertDetail -> {
                         DetalleAlertaScreen(
                             onBackClick = onBack,
-                            onMarkRevisedClick = { /* TODO Lógica */ },
+                            onMarkRevisedClick = { },
                             onSharePsychologistClick = { navigateTo(AuthCaresScreen.Share) },
-                            onCallSchoolClick = { /* TODO Lógica */ }
+                            onCallSchoolClick = { }
                         )
                     }
 
                     AuthCaresScreen.AI -> {
-                        AsistenteIAScreen(
-                            onBackClick = onBack
-                        )
+                        AsistenteIAScreen(onBackClick = onBack)
                     }
 
                     AuthCaresScreen.Kids -> {
@@ -165,9 +161,7 @@ class MainActivity : ComponentActivity() {
                     }
 
                     AuthCaresScreen.ChildProfile -> {
-                        PerfilDetalladoScreen(
-                            onBackClick = onBack
-                        )
+                        PerfilDetalladoScreen(onBackClick = onBack)
                     }
 
                     AuthCaresScreen.Stats -> {
@@ -183,48 +177,18 @@ class MainActivity : ComponentActivity() {
                     }
 
                     AuthCaresScreen.SettingsAlerts -> {
-                        ConfiguracionAlertasScreen(
-                            onBackClick = onBack
-                        )
+                        ConfiguracionAlertasScreen(onBackClick = onBack)
                     }
 
                     AuthCaresScreen.SettingsWatch -> {
-                        ConfiguracionRelojScreen(
-                            onBackClick = onBack
-                        )
+                        ConfiguracionRelojScreen(onBackClick = onBack)
                     }
 
                     AuthCaresScreen.Share -> {
-                        CompartirAuthCaresScreen(
-                            onBackClick = onBack
-                        )
+                        CompartirAuthCaresScreen(onBackClick = onBack)
                     }
                 }
             }
         }
     }
-}
-
-// Enumerado actualizado con todas tus pantallas
-enum class AuthCaresScreen {
-    Welcome,      // BienvenidaAuthCaresScreen
-    Info,         // InformacionAuthCaresScreen
-    Login,        // IniciarSesionAuthCaresScreen
-    Register,     // CrearCuentaAuthCaresScreen
-
-    // Main Tabs
-    Home,         // InicioAuthCaresScreen
-    HomeCentralized, // InicioCentralizadoScreen (Alternativa)
-    Alerts,       // AlertasInteligentesScreen
-    AI,           // AsistenteIAScreen
-    Kids,         // NinosRegistradosScreen
-    Stats,        // EstadisticasAuthCaresScreen
-    Settings,     // PerfilAuthCaresScreen
-
-    // Sub Screens
-    AlertDetail,  // DetalleAlertaScreen
-    ChildProfile, // PerfilDetalladoScreen
-    SettingsAlerts, // ConfiguracionAlertasScreen
-    SettingsWatch,   // ConfiguracionRelojScreen
-    Share        // CompartirAuthCaresScreen
 }

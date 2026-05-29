@@ -82,7 +82,7 @@ fun EstadisticasAuthCaresScreen(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    IconButton(onClick = { onNavigateTo(AuthCaresScreen.Home) }) { // <--- Volver al Home
+                    IconButton(onClick = { onNavigateTo(AuthCaresScreen.Home) }) {
                         Icon(
                             painter = painterResource(R.drawable.ic_authcares_menu),
                             contentDescription = null,
@@ -283,14 +283,14 @@ private fun MetricsGrid(modifier: Modifier = Modifier) {
             title = "Ritmo cardíaco estable",
             value = "98 bpm",
             icon = R.drawable.ic_authcares_heart,
-            bgColor = MetricHeartBg, // <--- Importado del tema
+            bgColor = MetricHeartBg,
             modifier = Modifier.weight(1f)
         )
         MetricCard(
             title = "Temperatura",
             value = "36.5° C",
             icon = R.drawable.ic_authcares_thermostat,
-            bgColor = MetricTempBg, // <--- Importado del tema
+            bgColor = MetricTempBg,
             modifier = Modifier.weight(1f)
         )
     }
