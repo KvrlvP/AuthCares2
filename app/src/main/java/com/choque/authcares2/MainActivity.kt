@@ -2,16 +2,24 @@ package com.choque.authcares2
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.choque.authcares2.ui.components.HomeBottomBar
+import com.choque.authcares2.ui.components.HomeTab
+import com.choque.authcares2.ui.components.HomeTopBar
 import com.choque.authcares2.ui.screens.assistant.AsistenteIAScreen
 import com.choque.authcares2.ui.screens.auth.BienvenidaAuthCaresScreen
 import com.choque.authcares2.ui.screens.auth.CrearCuentaAuthCaresScreen
@@ -36,158 +44,193 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AuthCares2Theme {
-                val authViewModel: AuthViewModel = viewModel()
+                MainApp()
+            }
+        }
+    }
+}
 
-                val startDestination = if (authViewModel.isUserLoggedIn()) {
-                    AuthCaresScreen.Home
-                } else {
-                    AuthCaresScreen.Welcome
+@Composable
+fun MainApp() {
+    val authViewModel: AuthViewModel = viewModel()
+    val navController = rememberNavController()
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
+    val loginState by authViewModel.loginState.collectAsState()
+    val registerState by authViewModel.registerState.collectAsState()
+
+    LaunchedEffect(loginState.isSuccess) {
+        if (loginState.isSuccess) {
+            navController.navigate(AuthCaresScreen.Home.name) {
+                popUpTo(AuthCaresScreen.Welcome.name) { inclusive = true }
+            }
+        }
+    }
+
+    LaunchedEffect(registerState.isSuccess) {
+        if (registerState.isSuccess) {
+            navController.navigate(AuthCaresScreen.Home.name) {
+                popUpTo(AuthCaresScreen.Welcome.name) { inclusive = true }
+            }
+        }
+    }
+
+    val startDestination = if (authViewModel.isUserLoggedIn()) {
+        AuthCaresScreen.Home.name
+    } else {
+        AuthCaresScreen.Welcome.name
+    }
+
+    // Pestañas principales que comparten el TopBar y BottomBar GLOBAL
+    val mainTabs = listOf(
+        AuthCaresScreen.Home.name,
+        AuthCaresScreen.Stats.name,
+        AuthCaresScreen.Kids.name,
+        AuthCaresScreen.Settings.name
+    )
+
+    Scaffold(
+        topBar = {
+            // Solo mostramos el TopBar global en las pestañas principales
+            if (currentRoute in mainTabs) {
+                HomeTopBar(
+                    onNavigateTo = { screen -> navController.navigate(screen.name) },
+                    onBackClick = null // No hay botón atrás en las pestañas principales
+                )
+            }
+        },
+        bottomBar = {
+            // Solo mostramos el BottomBar global en las pestañas principales
+            if (currentRoute in mainTabs) {
+                val selectedTab = when (currentRoute) {
+                    AuthCaresScreen.Home.name -> HomeTab.Inicio
+                    AuthCaresScreen.Stats.name -> HomeTab.Horarios
+                    AuthCaresScreen.Kids.name -> HomeTab.Ninos
+                    AuthCaresScreen.Settings.name -> HomeTab.Ajustes
+                    else -> HomeTab.Inicio
                 }
-
-                var currentScreen by remember { mutableStateOf(startDestination) }
-
-                val navigateTo: (AuthCaresScreen) -> Unit = { screen ->
-                    currentScreen = screen
-                }
-
-                val onBack: () -> Unit = {
-                    currentScreen = when (currentScreen) {
-                        AuthCaresScreen.Register -> AuthCaresScreen.Login
-                        AuthCaresScreen.Info -> AuthCaresScreen.Welcome
-                        AuthCaresScreen.Login -> AuthCaresScreen.Welcome
-                        AuthCaresScreen.Alerts,
-                        AuthCaresScreen.Kids,
-                        AuthCaresScreen.Stats,
-                        AuthCaresScreen.Settings,
-                        AuthCaresScreen.HomeCentralized -> AuthCaresScreen.Home
-                        AuthCaresScreen.AlertDetail -> AuthCaresScreen.Alerts
-                        AuthCaresScreen.ChildProfile -> AuthCaresScreen.Kids
-                        AuthCaresScreen.SettingsAlerts,
-                        AuthCaresScreen.SettingsWatch,
-                        AuthCaresScreen.Share -> AuthCaresScreen.Settings
-                        else -> AuthCaresScreen.Home
-                    }
-                }
-
-                BackHandler(enabled = currentScreen != AuthCaresScreen.Home) {
-                    onBack()
-                }
-
-                when (currentScreen) {
-                    AuthCaresScreen.Welcome -> {
-                        BienvenidaAuthCaresScreen(
-                            heroPainter = painterResource(R.drawable.hero_bienvenida_authcares),
-                            onStartClick = { navigateTo(AuthCaresScreen.Info) }
-                        )
-                    }
-
-                    AuthCaresScreen.Info -> {
-                        InformacionAuthCaresScreen(
-                            onContinueClick = { navigateTo(AuthCaresScreen.Login) }
-                        )
-                    }
-
-                    AuthCaresScreen.Login -> {
-                        IniciarSesionAuthCaresScreen(
-                            email = authViewModel.loginEmail,
-                            password = authViewModel.loginPassword,
-                            onEmailChange = { authViewModel.loginEmail = it },
-                            onPasswordChange = { authViewModel.loginPassword = it },
-                            onLoginClick = {
-                                authViewModel.login(
-                                    onSuccess = { navigateTo(AuthCaresScreen.Home) },
-                                    onError = { error -> println(error) }
-                                )
-                            },
-                            onCreateAccountClick = { navigateTo(AuthCaresScreen.Register) }
-                        )
-                    }
-
-                    AuthCaresScreen.Register -> {
-                        CrearCuentaAuthCaresScreen(
-                            fullName = authViewModel.registerFullName,
-                            email = authViewModel.registerEmail,
-                            password = authViewModel.registerPassword,
-                            onFullNameChange = { authViewModel.registerFullName = it },
-                            onEmailChange = { authViewModel.registerEmail = it },
-                            onPasswordChange = { authViewModel.registerPassword = it },
-                            onAlreadyHaveAccountClick = { navigateTo(AuthCaresScreen.Login) },
-                            onRegisterClick = {
-                                authViewModel.register(
-                                    onSuccess = { navigateTo(AuthCaresScreen.Home) },
-                                    onError = { error -> println(error) }
-                                )
+                HomeBottomBar(
+                    selectedTab = selectedTab,
+                    onTabClick = { tab ->
+                        val route = when (tab) {
+                            HomeTab.Inicio -> AuthCaresScreen.Home.name
+                            HomeTab.Horarios -> AuthCaresScreen.Stats.name
+                            HomeTab.Ninos -> AuthCaresScreen.Kids.name
+                            HomeTab.Ajustes -> AuthCaresScreen.Settings.name
+                        }
+                        if (currentRoute != route) {
+                            navController.navigate(route) {
+                                popUpTo(AuthCaresScreen.Home.name) { saveState = true }
+                                launchSingleTop = true
+                                restoreState = true
                             }
-                        )
+                        }
                     }
-
-                    AuthCaresScreen.Home -> {
-                        InicioAuthCaresScreen(
-                            onNavigateTo = { screen -> navigateTo(screen) }
-                        )
+                )
+            }
+        }
+    ) { innerPadding ->
+        NavHost(
+            navController = navController,
+            startDestination = startDestination,
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            composable(AuthCaresScreen.Welcome.name) {
+                BienvenidaAuthCaresScreen(
+                    heroPainter = painterResource(R.drawable.hero_bienvenida_authcares),
+                    onStartClick = { navController.navigate(AuthCaresScreen.Info.name) }
+                )
+            }
+            composable(AuthCaresScreen.Info.name) {
+                InformacionAuthCaresScreen(
+                    onContinueClick = { navController.navigate(AuthCaresScreen.Login.name) }
+                )
+            }
+            composable(AuthCaresScreen.Login.name) {
+                IniciarSesionAuthCaresScreen(
+                    email = loginState.email,
+                    password = loginState.password,
+                    errorMessage = loginState.errorMessage,
+                    isLoading = loginState.isLoading,
+                    onEmailChange = { authViewModel.onLoginEmailChange(it) },
+                    onPasswordChange = { authViewModel.onLoginPasswordChange(it) },
+                    onLoginClick = { authViewModel.login() },
+                    onCreateAccountClick = { navController.navigate(AuthCaresScreen.Register.name) }
+                )
+            }
+            composable(AuthCaresScreen.Register.name) {
+                CrearCuentaAuthCaresScreen(
+                    fullName = registerState.fullName,
+                    email = registerState.email,
+                    password = registerState.password,
+                    errorMessage = registerState.errorMessage,
+                    isLoading = registerState.isLoading,
+                    onFullNameChange = { authViewModel.onRegisterFullNameChange(it) },
+                    onEmailChange = { authViewModel.onRegisterEmailChange(it) },
+                    onPasswordChange = { authViewModel.onRegisterPasswordChange(it) },
+                    onAlreadyHaveAccountClick = { navController.popBackStack() },
+                    onRegisterClick = { authViewModel.register() }
+                )
+            }
+            composable(AuthCaresScreen.Home.name) {
+                InicioAuthCaresScreen(
+                    onNavigateTo = { screen -> navController.navigate(screen.name) }
+                )
+            }
+            composable(AuthCaresScreen.Stats.name) {
+                EstadisticasAuthCaresScreen(
+                    onNavigateTo = { screen -> navController.navigate(screen.name) }
+                )
+            }
+            composable(AuthCaresScreen.Kids.name) {
+                InicioCentralizadoScreen(
+                    onNavigateTo = { screen -> navController.navigate(screen.name) }
+                )
+            }
+            composable(AuthCaresScreen.Settings.name) {
+                PerfilAuthCaresScreen(
+                    onNavigateTo = { screen -> navController.navigate(screen.name) },
+                    onLogout = {
+                        authViewModel.logout()
+                        navController.navigate(AuthCaresScreen.Welcome.name) {
+                            popUpTo(0) { inclusive = true }
+                        }
                     }
-
-                    AuthCaresScreen.HomeCentralized -> {
-                        InicioCentralizadoScreen(
-                            modifier = Modifier,
-                            onNavigateTo = { screen -> navigateTo(screen) }
-                        )
-                    }
-
-                    AuthCaresScreen.Alerts -> {
-                        AlertasInteligentesScreen(
-                            onNavigateTo = { screen -> navigateTo(screen) }
-                        )
-                    }
-
-                    AuthCaresScreen.AlertDetail -> {
-                        DetalleAlertaScreen(
-                            onBackClick = onBack,
-                            onMarkRevisedClick = { },
-                            onSharePsychologistClick = { navigateTo(AuthCaresScreen.Share) },
-                            onCallSchoolClick = { }
-                        )
-                    }
-
-                    AuthCaresScreen.AI -> {
-                        AsistenteIAScreen(onBackClick = onBack)
-                    }
-
-                    AuthCaresScreen.Kids -> {
-                        InicioCentralizadoScreen(
-                            modifier = Modifier,
-                            onNavigateTo = { screen -> navigateTo(screen) }
-                        )
-                    }
-
-                    AuthCaresScreen.ChildProfile -> {
-                        PerfilDetalladoScreen(onBackClick = onBack)
-                    }
-
-                    AuthCaresScreen.Stats -> {
-                        EstadisticasAuthCaresScreen(
-                            onNavigateTo = { screen -> navigateTo(screen) }
-                        )
-                    }
-
-                    AuthCaresScreen.Settings -> {
-                        PerfilAuthCaresScreen(
-                            onNavigateTo = { screen -> navigateTo(screen) }
-                        )
-                    }
-
-                    AuthCaresScreen.SettingsAlerts -> {
-                        ConfiguracionAlertasScreen(onBackClick = onBack)
-                    }
-
-                    AuthCaresScreen.SettingsWatch -> {
-                        ConfiguracionRelojScreen(onBackClick = onBack)
-                    }
-
-                    AuthCaresScreen.Share -> {
-                        CompartirAuthCaresScreen(onBackClick = onBack)
-                    }
-                }
+                )
+            }
+            composable(AuthCaresScreen.Alerts.name) {
+                AlertasInteligentesScreen(
+                    onNavigateTo = { screen -> navController.navigate(screen.name) }
+                )
+            }
+            composable(AuthCaresScreen.AlertDetail.name) {
+                DetalleAlertaScreen(
+                    onBackClick = { navController.popBackStack() },
+                    onMarkRevisedClick = { },
+                    onSharePsychologistClick = { navController.navigate(AuthCaresScreen.Share.name) },
+                    onCallSchoolClick = { }
+                )
+            }
+            composable(AuthCaresScreen.AI.name) {
+                AsistenteIAScreen(onBackClick = { navController.popBackStack() })
+            }
+            composable(AuthCaresScreen.ChildProfile.name) {
+                PerfilDetalladoScreen(onBackClick = { navController.popBackStack() })
+            }
+            composable(AuthCaresScreen.SettingsAlerts.name) {
+                ConfiguracionAlertasScreen(onBackClick = { navController.popBackStack() })
+            }
+            composable(AuthCaresScreen.SettingsWatch.name) {
+                ConfiguracionRelojScreen(onBackClick = { navController.popBackStack() })
+            }
+            composable(AuthCaresScreen.Share.name) {
+                CompartirAuthCaresScreen(onBackClick = { navController.popBackStack() })
+            }
+            composable(AuthCaresScreen.HomeCentralized.name) {
+                InicioCentralizadoScreen(
+                    onNavigateTo = { screen -> navController.navigate(screen.name) }
+                )
             }
         }
     }

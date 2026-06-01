@@ -13,8 +13,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -45,6 +47,7 @@ import com.choque.authcares2.ui.theme.AuthCaresPrimaryFixedDim
 import com.choque.authcares2.ui.theme.AuthCaresSecondaryFixedDim
 import com.choque.authcares2.ui.theme.AuthCaresSurface
 import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
+import com.choque.authcares2.ui.components.OnboardingDots
 
 
 @Composable
@@ -82,6 +85,7 @@ fun InformacionAuthCaresScreen(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
                     .padding(horizontal = 24.dp, vertical = 32.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -97,7 +101,6 @@ fun InformacionAuthCaresScreen(
 
                 Column(
                     modifier = Modifier
-                        .weight(1f)
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(32.dp))
                         .background(AuthCaresWhiteSurface)
@@ -140,7 +143,7 @@ fun InformacionAuthCaresScreen(
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                // OnboardingDots(pageCount = 3, currentPage = 1)
+                OnboardingDots(pageCount = 3, currentPage = 1)
 
                 Spacer(modifier = Modifier.height(32.dp))
 

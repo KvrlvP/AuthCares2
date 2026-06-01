@@ -94,8 +94,8 @@ fun AsistenteIAScreen(
 private fun ChatTopBar(onBackClick: () -> Unit, modifier: Modifier = Modifier) {
     Surface(
         modifier = modifier.fillMaxWidth(),
-        color = AuthCaresSurfaceContainerLow,
-        shadowElevation = 4.dp
+        color = AuthCaresSurface,
+        shadowElevation = 2.dp
     ) {
         Row(
             modifier = Modifier
@@ -106,7 +106,7 @@ private fun ChatTopBar(onBackClick: () -> Unit, modifier: Modifier = Modifier) {
         ) {
             IconButton(onClick = onBackClick) {
                 Icon(
-                    painter = painterResource(R.drawable.ic_authcares_menu),
+                    painter = painterResource(R.drawable.ic_authcares_arrow_back),
                     contentDescription = "Volver",
                     tint = AuthCaresPrimary,
                     modifier = Modifier.size(28.dp)
@@ -126,7 +126,7 @@ private fun ChatTopBar(onBackClick: () -> Unit, modifier: Modifier = Modifier) {
             }
             Spacer(modifier = Modifier.width(12.dp))
             Column {
-                Text(text = "Asistente AuthCares", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = AuthCaresPrimary)
+                Text(text = "Asistente AuthCares", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = AuthCaresPrimary)
                 Text(text = "En línea", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = AuthCaresSecondary)
             }
         }

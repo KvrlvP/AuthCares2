@@ -21,14 +21,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -41,109 +36,45 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.choque.authcares2.AuthCaresScreen
 import com.choque.authcares2.R
-import com.choque.authcares2.ui.components.HomeBottomBar
-import com.choque.authcares2.ui.components.HomeTab
 import com.choque.authcares2.ui.theme.AuthCares2Theme
 import com.choque.authcares2.ui.theme.AuthCaresErrorContainer
 import com.choque.authcares2.ui.theme.AuthCaresOnErrorContainer
 import com.choque.authcares2.ui.theme.AuthCaresOnPrimary
 import com.choque.authcares2.ui.theme.AuthCaresOnSurface
 import com.choque.authcares2.ui.theme.AuthCaresOnSurfaceVariant
-import com.choque.authcares2.ui.theme.AuthCaresOutlineVariant
 import com.choque.authcares2.ui.theme.AuthCaresPrimary
 import com.choque.authcares2.ui.theme.AuthCaresPrimaryFixed
-import com.choque.authcares2.ui.theme.AuthCaresSecondary
 import com.choque.authcares2.ui.theme.AuthCaresSecondaryContainer
 import com.choque.authcares2.ui.theme.AuthCaresSurface
-import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainer
 import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainerHigh
 import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
 
 @Composable
 fun PerfilAuthCaresScreen(
     modifier: Modifier = Modifier,
-    onNavigateTo: (AuthCaresScreen) -> Unit = {}
+    onNavigateTo: (AuthCaresScreen) -> Unit = {},
+    onLogout: () -> Unit = {}
 ) {
-    var selectedTab by remember { mutableStateOf(HomeTab.Ajustes) }
-
     Surface(
         modifier = modifier.fillMaxSize(),
         color = AuthCaresSurface
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            Column(modifier = Modifier.fillMaxSize()) {
-                ProfileTopBar()
-
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .verticalScroll(rememberScrollState())
-                        .padding(horizontal = 24.dp)
-                        .padding(top = 16.dp, bottom = 120.dp),
-                    verticalArrangement = Arrangement.spacedBy(20.dp)
-                ) {
-                    ProfileCard()
-                    PrivacyAlertCard()
-                    SettingsGrid()
-                    LogoutButton()
-                }
-            }
-
-            HomeBottomBar(
-                selectedTab = selectedTab,
-                onTabClick = { tab ->
-                    selectedTab = tab
-                    when (tab) {
-                        HomeTab.Inicio -> onNavigateTo(AuthCaresScreen.Home)
-                        HomeTab.Horarios -> onNavigateTo(AuthCaresScreen.Stats)
-                        HomeTab.Ninos -> onNavigateTo(AuthCaresScreen.Kids)
-                        HomeTab.Ajustes -> onNavigateTo(AuthCaresScreen.Settings)
-                    }
-                },
-                modifier = Modifier.align(Alignment.BottomCenter)
-            )
-        }
-    }
-}
-
-@Composable
-private fun ProfileTopBar(modifier: Modifier = Modifier) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(72.dp)
-            .background(AuthCaresSurface)
-            .padding(horizontal = 24.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        IconButton(onClick = {}) {
-            Icon(
-                painter = painterResource(R.drawable.ic_authcares_menu),
-                contentDescription = null,
-                tint = AuthCaresOnSurfaceVariant,
-                modifier = Modifier.size(28.dp)
-            )
-        }
-
-        Text(
-            text = "AuthCares",
-            color = AuthCaresPrimary,
-            fontSize = 28.sp,
-            fontWeight = FontWeight.ExtraBold,
-            letterSpacing = (-0.02).sp
-        )
-
-        Image(
-            painter = painterResource(R.drawable.avatar_elena),
-            contentDescription = null,
+        Column(
             modifier = Modifier
-                .size(42.dp)
-                .clip(CircleShape)
-                .border(1.dp, AuthCaresOutlineVariant, CircleShape)
-        )
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 24.dp)
+                .padding(top = 16.dp, bottom = 24.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
+        ) {
+            ProfileCard()
+            PrivacyAlertCard()
+            SettingsGrid()
+            LogoutButton(onClick = onLogout)
+        }
     }
 }
+
 
 @Composable
 private fun ProfileCard(modifier: Modifier = Modifier) {
@@ -304,9 +235,12 @@ private fun SettingsCard(
 }
 
 @Composable
-private fun LogoutButton(modifier: Modifier = Modifier) {
+private fun LogoutButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Button(
-        onClick = { },
+        onClick = onClick,
         modifier = modifier
             .fillMaxWidth()
             .height(58.dp),

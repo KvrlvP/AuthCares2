@@ -13,17 +13,24 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -49,11 +56,14 @@ import com.choque.authcares2.ui.theme.AuthCaresSecondary
 import com.choque.authcares2.ui.theme.AuthCaresSurface
 import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainer
 import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
+import com.choque.authcares2.ui.components.OnboardingDots
 
 @Composable
 fun IniciarSesionAuthCaresScreen(
     email: String = "",
     password: String = "",
+    errorMessage: String? = null,
+    isLoading: Boolean = false,
     modifier: Modifier = Modifier,
     onEmailChange: (String) -> Unit = {},
     onPasswordChange: (String) -> Unit = {},
@@ -64,53 +74,54 @@ fun IniciarSesionAuthCaresScreen(
         modifier = modifier.fillMaxSize(),
         color = AuthCaresSurface
     ) {
-        Box(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 24.dp),
-            contentAlignment = Alignment.Center
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 24.dp, vertical = 48.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            Column(
+            LoginHeader()
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            OnboardingDots(currentPage = 2, pageCount = 3)
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            LoginFormCard(
+                email = email,
+                password = password,
+                errorMessage = errorMessage,
+                isLoading = isLoading,
+                onEmailChange = onEmailChange,
+                onPasswordChange = onPasswordChange,
+                onLoginClick = onLoginClick
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            OutlinedButton(
+                onClick = onCreateAccountClick,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .widthIn(max = 400.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                LoginHeader()
-
-                Spacer(modifier = Modifier.height(32.dp))
-
-                LoginFormCard(
-                    email = email,
-                    password = password,
-                    onEmailChange = onEmailChange,
-                    onPasswordChange = onPasswordChange,
-                    onLoginClick = onLoginClick
+                    .height(56.dp),
+                shape = RoundedCornerShape(8.dp),
+                colors = ButtonDefaults.outlinedButtonColors(
+                    contentColor = AuthCaresSecondary
+                ),
+                border = androidx.compose.foundation.BorderStroke(
+                    width = 1.dp,
+                    color = AuthCaresSecondary
                 )
-
-                Spacer(modifier = Modifier.height(24.dp))
-
-                OutlinedButton(
-                    onClick = onCreateAccountClick,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(56.dp),
-                    shape = RoundedCornerShape(8.dp),
-                    colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = AuthCaresSecondary
-                    ),
-                    border = androidx.compose.foundation.BorderStroke(
-                        width = 1.dp,
-                        color = AuthCaresSecondary
-                    )
-                ) {
-                    Text(
-                        text = "Crear cuenta",
-                        fontSize = 14.sp,
-                        lineHeight = 20.sp,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                }
+            ) {
+                Text(
+                    text = "Crear cuenta",
+                    fontSize = 14.sp,
+                    lineHeight = 20.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
             }
         }
     }
@@ -166,11 +177,15 @@ private fun LoginHeader(modifier: Modifier = Modifier) {
 private fun LoginFormCard(
     email: String,
     password: String,
+    errorMessage: String?,
+    isLoading: Boolean,
     onEmailChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
     onLoginClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    var passwordVisible by remember { mutableStateOf(false) }
+
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -210,15 +225,36 @@ private fun LoginFormCard(
                     tint = AuthCaresOnSurfaceVariant
                 )
             },
+            trailingIcon = {
+                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_authcares_visibility),
+                        contentDescription = if (passwordVisible) "Ocultar contraseña" else "Mostrar contraseña",
+                        tint = if (passwordVisible) AuthCaresPrimary else AuthCaresOnSurfaceVariant,
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
+            },
             keyboardType = KeyboardType.Password,
-            visualTransformation = PasswordVisualTransformation(),
+            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             onValueChange = onPasswordChange
         )
+
+        if (errorMessage != null) {
+            Text(
+                text = errorMessage,
+                color = androidx.compose.material3.MaterialTheme.colorScheme.error,
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Medium,
+                modifier = Modifier.padding(start = 4.dp)
+            )
+        }
 
         Spacer(modifier = Modifier.height(8.dp))
 
         Button(
             onClick = onLoginClick,
+            enabled = !isLoading,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp),
@@ -233,17 +269,19 @@ private fun LoginFormCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Iniciar sesión",
+                    text = if (isLoading) "Iniciando..." else "Iniciar sesión",
                     fontSize = 14.sp,
                     lineHeight = 20.sp,
                     fontWeight = FontWeight.SemiBold
                 )
 
-                Icon(
-                    painter = painterResource(R.drawable.ic_authcares_arrow_forward),
-                    contentDescription = null,
-                    modifier = Modifier.size(20.dp)
-                )
+                if (!isLoading) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_authcares_arrow_forward),
+                        contentDescription = null,
+                        modifier = Modifier.size(20.dp)
+                    )
+                }
             }
         }
     }
@@ -258,6 +296,7 @@ private fun LoginTextField(
     keyboardType: KeyboardType,
     modifier: Modifier = Modifier,
     visualTransformation: VisualTransformation = VisualTransformation.None,
+    trailingIcon: @Composable (() -> Unit)? = null,
     onValueChange: (String) -> Unit
 ) {
     Column(
@@ -287,6 +326,7 @@ private fun LoginTextField(
                 )
             },
             leadingIcon = leadingIcon,
+            trailingIcon = trailingIcon,
             singleLine = true,
             shape = RoundedCornerShape(8.dp),
             keyboardOptions = KeyboardOptions(keyboardType = keyboardType),

@@ -2,7 +2,6 @@ package com.choque.authcares2.ui.screens.stats
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,7 +21,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,13 +40,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.choque.authcares2.AuthCaresScreen
 import com.choque.authcares2.R
-import com.choque.authcares2.ui.components.HomeBottomBar
-import com.choque.authcares2.ui.components.HomeTab
 import com.choque.authcares2.ui.theme.AuthCares2Theme
 import com.choque.authcares2.ui.theme.AuthCaresOnPrimary
 import com.choque.authcares2.ui.theme.AuthCaresOnSurface
 import com.choque.authcares2.ui.theme.AuthCaresOnSurfaceVariant
-import com.choque.authcares2.ui.theme.AuthCaresOutlineVariant
 import com.choque.authcares2.ui.theme.AuthCaresPrimary
 import com.choque.authcares2.ui.theme.AuthCaresPrimaryFixed
 import com.choque.authcares2.ui.theme.AuthCaresSecondary
@@ -63,80 +58,25 @@ fun EstadisticasAuthCaresScreen(
     modifier: Modifier = Modifier,
     onNavigateTo: (AuthCaresScreen) -> Unit = {}
 ) {
-    var selectedTab by remember { mutableStateOf(HomeTab.Horarios) } // Corregido a Horarios
     var selectedFilter by remember { mutableStateOf(TimeFilter.Hoy) }
 
     Surface(
         modifier = modifier.fillMaxSize(),
         color = AuthCaresSurface
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            Column(modifier = Modifier.fillMaxSize()) {
-                // TopBar Estadísticas
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(72.dp)
-                        .background(AuthCaresSurface)
-                        .padding(horizontal = 24.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    IconButton(onClick = { onNavigateTo(AuthCaresScreen.Home) }) {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_authcares_menu),
-                            contentDescription = null,
-                            tint = AuthCaresOnSurfaceVariant,
-                            modifier = Modifier.size(28.dp)
-                        )
-                    }
-                    Text(
-                        text = "AuthCares",
-                        color = AuthCaresPrimary,
-                        fontSize = 26.sp,
-                        fontWeight = FontWeight.ExtraBold
-                    )
-                    Image(
-                        painter = painterResource(R.drawable.avatar_elena),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(42.dp)
-                            .clip(CircleShape)
-                            .border(1.dp, AuthCaresOutlineVariant, CircleShape),
-                        contentScale = ContentScale.Crop
-                    )
-                }
-
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .verticalScroll(rememberScrollState())
-                        .padding(horizontal = 24.dp)
-                        .padding(top = 16.dp, bottom = 120.dp),
-                    verticalArrangement = Arrangement.spacedBy(20.dp)
-                ) {
-                    ChildSelector()
-                    TimeFilters(selectedFilter = selectedFilter, onFilterClick = { selectedFilter = it })
-                    ActivityChart()
-                    MetricsGrid()
-                    ShareableSummary()
-                }
-            }
-
-            HomeBottomBar(
-                selectedTab = selectedTab,
-                onTabClick = { tab ->
-                    selectedTab = tab
-                    // --- CONEXIÓN DE NAVEGACIÓN ---
-                    when (tab) {
-                        HomeTab.Inicio -> onNavigateTo(AuthCaresScreen.Home)
-                        HomeTab.Horarios -> onNavigateTo(AuthCaresScreen.Stats)
-                        HomeTab.Ninos -> onNavigateTo(AuthCaresScreen.Kids)
-                        HomeTab.Ajustes -> onNavigateTo(AuthCaresScreen.Settings)
-                    }
-                },
-                modifier = Modifier.align(Alignment.BottomCenter)
-            )
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 24.dp)
+                .padding(top = 16.dp, bottom = 24.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
+        ) {
+            ChildSelector()
+            TimeFilters(selectedFilter = selectedFilter, onFilterClick = { selectedFilter = it })
+            ActivityChart()
+            MetricsGrid()
+            ShareableSummary()
         }
     }
 }

@@ -1,8 +1,6 @@
 package com.choque.authcares2.ui.screens.alerts
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,10 +25,6 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -42,8 +36,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.choque.authcares2.AuthCaresScreen
 import com.choque.authcares2.R
-import com.choque.authcares2.ui.components.HomeBottomBar
-import com.choque.authcares2.ui.components.HomeTab
 import com.choque.authcares2.ui.model.AlertItem
 import com.choque.authcares2.ui.theme.AlertBlue
 import com.choque.authcares2.ui.theme.AlertOrange
@@ -60,16 +52,11 @@ import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainer
 import com.choque.authcares2.ui.theme.AuthCaresTertiaryFixed
 import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
 
-// ✅ EL CÓDIGO ESTÁ LIMPIO: NO HAY DEFINICIONES LOCALES DE COLORES NI CLASES AQUÍ.
-
 @Composable
 fun AlertasInteligentesScreen(
     modifier: Modifier = Modifier,
     onNavigateTo: (AuthCaresScreen) -> Unit = {}
 ) {
-    var selectedTab by remember { mutableStateOf(HomeTab.Inicio) }
-
-    // Usamos la clase AlertItem que importamos del paquete model
     val alerts = listOf(
         AlertItem(
             childName = "Lucas",
@@ -77,7 +64,7 @@ fun AlertasInteligentesScreen(
             description = "El ritmo cardíaco se ha mantenido elevado por más de 5 minutos durante el periodo de descanso.",
             time = "10:30 AM",
             iconRes = R.drawable.ic_authcares_heart,
-            iconTint = AlertRed, // Viene del tema
+            iconTint = AlertRed,
             iconBg = AuthCaresErrorContainer,
             priorityColor = AlertRed,
             borderColor = AuthCaresErrorContainer
@@ -89,7 +76,7 @@ fun AlertasInteligentesScreen(
             time = "08:15 AM",
             iconRes = R.drawable.ic_authcares_thermostat,
             iconTint = AlertOrange,
-            iconBg = AuthCaresTertiaryFixed, // Viene del tema
+            iconBg = AuthCaresTertiaryFixed,
             priorityColor = AlertOrange,
             borderColor = AuthCaresTertiaryFixed
         ),
@@ -100,7 +87,7 @@ fun AlertasInteligentesScreen(
             time = "Ayer, 4:45 PM",
             iconRes = R.drawable.ic_authcares_running,
             iconTint = AlertBlue,
-            iconBg = AuthCaresSecondaryFixed, // Viene del tema
+            iconBg = AuthCaresSecondaryFixed,
             priorityColor = AlertBlue,
             borderColor = AuthCaresSurfaceContainer
         )
@@ -110,87 +97,60 @@ fun AlertasInteligentesScreen(
         modifier = modifier.fillMaxSize(),
         color = AuthCaresSurface
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            Column(modifier = Modifier.fillMaxSize()) {
-                AlertsTopBar()
+        Column(modifier = Modifier.fillMaxSize()) {
+            // TopBar específico de Alertas con botón atrás
+            AlertsTopBar(onBackClick = { onNavigateTo(AuthCaresScreen.Home) })
 
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = 24.dp)
-                        .padding(top = 16.dp, bottom = 120.dp),
-                    verticalArrangement = Arrangement.spacedBy(24.dp)
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 24.dp)
+                    .padding(top = 16.dp, bottom = 24.dp),
+                verticalArrangement = Arrangement.spacedBy(24.dp)
+            ) {
+                AlertsHeader()
+
+                LazyColumn(
+                    modifier = Modifier.weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    AlertsHeader()
-
-                    LazyColumn(
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
-                    ) {
-                        items(alerts) { alert ->
-                            AlertCard(
-                                alert = alert,
-                                onClick = { onNavigateTo(AuthCaresScreen.AlertDetail) }
-                            )
-                        }
+                    items(alerts) { alert ->
+                        AlertCard(
+                            alert = alert,
+                            onClick = { onNavigateTo(AuthCaresScreen.AlertDetail) }
+                        )
                     }
                 }
             }
-
-            HomeBottomBar(
-                selectedTab = selectedTab,
-                onTabClick = { tab ->
-                    selectedTab = tab
-                    when (tab) {
-                        HomeTab.Inicio -> onNavigateTo(AuthCaresScreen.Home)
-                        HomeTab.Horarios -> onNavigateTo(AuthCaresScreen.Stats)
-                        HomeTab.Ninos -> onNavigateTo(AuthCaresScreen.Kids)
-                        HomeTab.Ajustes -> onNavigateTo(AuthCaresScreen.Settings)
-                    }
-                },
-                modifier = Modifier.align(Alignment.BottomCenter)
-            )
         }
     }
 }
 
 @Composable
-private fun AlertsTopBar() {
+private fun AlertsTopBar(onBackClick: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(72.dp)
-            .background(AuthCaresSurfaceContainer)
-            .padding(horizontal = 24.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+            .background(AuthCaresSurface)
+            .padding(horizontal = 16.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        IconButton(onClick = {}) {
+        IconButton(onClick = onBackClick) {
             Icon(
-                painter = painterResource(R.drawable.ic_authcares_menu),
-                contentDescription = null,
+                painter = painterResource(R.drawable.ic_authcares_arrow_back),
+                contentDescription = "Volver",
                 tint = AuthCaresPrimary,
                 modifier = Modifier.size(28.dp)
             )
         }
-
+        Spacer(modifier = Modifier.width(8.dp))
         Text(
-            text = "AuthCares",
-            color = AuthCaresPrimary,
-            fontSize = 28.sp,
-            fontWeight = FontWeight.ExtraBold,
-            letterSpacing = (-0.02).sp
+            text = "Alertas Inteligentes",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = AuthCaresPrimary
         )
-
-        Surface(
-            modifier = Modifier.size(40.dp),
-            shape = CircleShape
-        ) {
-            Image(
-                painter = painterResource(R.drawable.avatar_elena),
-                contentDescription = null,
-                modifier = Modifier.fillMaxSize()
-            )
-        }
     }
 }
 
@@ -202,8 +162,8 @@ private fun AlertsHeader() {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "Alertas",
-            fontSize = 22.sp,
+            text = "Centro de Notificaciones",
+            fontSize = 18.sp,
             fontWeight = FontWeight.SemiBold,
             color = AuthCaresOnSurface
         )
@@ -211,7 +171,7 @@ private fun AlertsHeader() {
             painter = painterResource(R.drawable.ic_authcares_notifications_active),
             contentDescription = null,
             tint = AuthCaresPrimary,
-            modifier = Modifier.size(28.dp)
+            modifier = Modifier.size(24.dp)
         )
     }
 }
@@ -273,16 +233,6 @@ private fun AlertCard(alert: AlertItem, onClick: () -> Unit, modifier: Modifier 
                 }
             }
         }
-    }
-}
-
-@Composable
-private fun AlertIconCircle(alert: AlertItem) {
-    Box(
-        modifier = Modifier.size(48.dp).clip(CircleShape).background(alert.iconBg),
-        contentAlignment = Alignment.Center
-    ) {
-        Icon(painter = painterResource(alert.iconRes), contentDescription = null, tint = alert.iconTint, modifier = Modifier.size(24.dp))
     }
 }
 

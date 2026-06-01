@@ -14,8 +14,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -26,6 +28,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -50,12 +56,15 @@ import com.choque.authcares2.ui.theme.AuthCaresSurface
 import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainer
 import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainerLow
 import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
+import com.choque.authcares2.ui.components.OnboardingDots
 
 @Composable
 fun CrearCuentaAuthCaresScreen(
     fullName: String = "",
     email: String = "",
     password: String = "",
+    errorMessage: String? = null,
+    isLoading: Boolean = false,
     modifier: Modifier = Modifier,
     onFullNameChange: (String) -> Unit = {},
     onEmailChange: (String) -> Unit = {},
@@ -63,6 +72,8 @@ fun CrearCuentaAuthCaresScreen(
     onRegisterClick: () -> Unit = {},
     onAlreadyHaveAccountClick: () -> Unit = {}
 ) {
+    var passwordVisible by remember { mutableStateOf(false) }
+
     Surface(
         modifier = modifier.fillMaxSize(),
         color = AuthCaresSurface
@@ -70,6 +81,7 @@ fun CrearCuentaAuthCaresScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
                 .padding(horizontal = 24.dp)
                 .padding(top = 48.dp, bottom = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -78,7 +90,7 @@ fun CrearCuentaAuthCaresScreen(
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // OnboardingDots(currentPage = 2, pageCount = 3)
+            OnboardingDots(currentPage = 2, pageCount = 3)
 
             Spacer(modifier = Modifier.height(32.dp))
 
@@ -109,13 +121,13 @@ fun CrearCuentaAuthCaresScreen(
                     value = password,
                     placeholder = "Mínimo 8 caracteres",
                     keyboardType = KeyboardType.Password,
-                    visualTransformation = PasswordVisualTransformation(),
+                    visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                     trailingIcon = {
-                        IconButton(onClick = {}) {
+                        IconButton(onClick = { passwordVisible = !passwordVisible }) {
                             Icon(
                                 painter = painterResource(R.drawable.ic_authcares_visibility),
-                                contentDescription = null,
-                                tint = AuthCaresOutlineVariant,
+                                contentDescription = if (passwordVisible) "Ocultar contraseña" else "Mostrar contraseña",
+                                tint = if (passwordVisible) AuthCaresPrimary else AuthCaresOutlineVariant,
                                 modifier = Modifier.size(22.dp)
                             )
                         }
@@ -123,10 +135,20 @@ fun CrearCuentaAuthCaresScreen(
                     onValueChange = onPasswordChange
                 )
 
+                if (errorMessage != null) {
+                    Text(
+                        text = errorMessage,
+                        color = androidx.compose.material3.MaterialTheme.colorScheme.error,
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.Medium,
+                        modifier = Modifier.padding(start = 4.dp, top = 4.dp)
+                    )
+                }
+
                 SecurityMessage()
             }
 
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.height(32.dp))
 
             Column(
                 modifier = Modifier
@@ -136,6 +158,7 @@ fun CrearCuentaAuthCaresScreen(
             ) {
                 Button(
                     onClick = onRegisterClick,
+                    enabled = !isLoading,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(56.dp),
@@ -146,7 +169,7 @@ fun CrearCuentaAuthCaresScreen(
                     )
                 ) {
                     Text(
-                        text = "Registrarse",
+                        text = if (isLoading) "Registrando..." else "Registrarse",
                         fontSize = 14.sp,
                         lineHeight = 20.sp,
                         fontWeight = FontWeight.SemiBold

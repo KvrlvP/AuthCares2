@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
@@ -65,14 +67,16 @@ fun BienvenidaAuthCaresScreen(
         color = AuthCaresSurfaceContainerLow
     ) {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             HeroImage(
                 painter = heroPainter,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1.15f)
+                    .height(420.dp)
             )
 
             WelcomeContent(
@@ -86,7 +90,7 @@ fun BienvenidaAuthCaresScreen(
                 onStartClick = onStartClick,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(0.85f)
+                    .padding(bottom = 24.dp)
             )
         }
     }
@@ -179,7 +183,7 @@ private fun WelcomeContent(
             modifier = Modifier.width(280.dp)
         )
 
-        Spacer(modifier = Modifier.weight(1f))
+        Spacer(modifier = Modifier.height(48.dp))
 
         OnboardingDots(
             currentPage = currentPage,

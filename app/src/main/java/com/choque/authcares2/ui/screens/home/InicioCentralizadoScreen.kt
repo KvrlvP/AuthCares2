@@ -26,10 +26,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -41,20 +37,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.choque.authcares2.AuthCaresScreen
 import com.choque.authcares2.R
-import com.choque.authcares2.ui.components.HomeBottomBar
-import com.choque.authcares2.ui.components.HomeTab
 import com.choque.authcares2.ui.theme.AuthCares2Theme
 import com.choque.authcares2.ui.theme.AuthCaresOnPrimary
 import com.choque.authcares2.ui.theme.AuthCaresOnSurface
 import com.choque.authcares2.ui.theme.AuthCaresOnSurfaceVariant
 import com.choque.authcares2.ui.theme.AuthCaresOutlineVariant
 import com.choque.authcares2.ui.theme.AuthCaresPrimary
-import com.choque.authcares2.ui.theme.AuthCaresPrimaryContainer
 import com.choque.authcares2.ui.theme.AuthCaresPrimaryFixed
 import com.choque.authcares2.ui.theme.AuthCaresSecondary
 import com.choque.authcares2.ui.theme.AuthCaresSecondaryContainer
 import com.choque.authcares2.ui.theme.AuthCaresSurface
-import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainer
 import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainerHigh
 import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
 
@@ -63,33 +55,27 @@ fun InicioCentralizadoScreen(
     modifier: Modifier = Modifier,
     onNavigateTo: (AuthCaresScreen) -> Unit = {}
 ) {
-    var selectedTab by remember { mutableStateOf(HomeTab.Ninos) }
-
     Surface(
         modifier = modifier.fillMaxSize(),
         color = AuthCaresSurface
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
-            Column(modifier = Modifier.fillMaxSize()) {
-                CentralizedTopBar(onNavigateTo = onNavigateTo)
-
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .verticalScroll(rememberScrollState())
-                        .padding(horizontal = 24.dp)
-                        .padding(top = 24.dp, bottom = 120.dp),
-                    verticalArrangement = Arrangement.spacedBy(24.dp)
-                ) {
-                    GreetingSectionCentralized()
-                    MainBentoGrid()
-                }
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = 24.dp)
+                    .padding(top = 24.dp, bottom = 24.dp),
+                verticalArrangement = Arrangement.spacedBy(24.dp)
+            ) {
+                GreetingSectionCentralized()
+                MainBentoGrid()
             }
 
             Surface(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
-                    .padding(end = 24.dp, bottom = 96.dp),
+                    .padding(end = 24.dp, bottom = 24.dp),
                 shape = CircleShape,
                 color = Color.White,
                 shadowElevation = 12.dp,
@@ -106,79 +92,6 @@ fun InicioCentralizadoScreen(
                     )
                 }
             }
-
-            HomeBottomBar(
-                selectedTab = selectedTab,
-                onTabClick = { tab ->
-                    selectedTab = tab
-                    when (tab) {
-                        HomeTab.Inicio -> onNavigateTo(AuthCaresScreen.Home)
-                        HomeTab.Horarios -> onNavigateTo(AuthCaresScreen.Stats)
-                        HomeTab.Ninos -> onNavigateTo(AuthCaresScreen.Kids)
-                        HomeTab.Ajustes -> onNavigateTo(AuthCaresScreen.Settings)
-                    }
-                },
-                modifier = Modifier.align(Alignment.BottomCenter)
-            )
-        }
-    }
-}
-
-@Composable
-private fun CentralizedTopBar(
-    onNavigateTo: (AuthCaresScreen) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(72.dp)
-            .background(AuthCaresSurface)
-            .padding(horizontal = 24.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        IconButton(onClick = {}) {
-            Icon(
-                painter = painterResource(R.drawable.ic_authcares_menu),
-                contentDescription = null,
-                tint = AuthCaresOnSurfaceVariant,
-                modifier = Modifier.size(28.dp)
-            )
-        }
-
-        Text(
-            text = "AuthCares",
-            color = AuthCaresPrimary,
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold
-        )
-
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Box {
-                IconButton(onClick = { onNavigateTo(AuthCaresScreen.Alerts) }) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_authcares_bell),
-                        contentDescription = null,
-                        tint = AuthCaresOnSurfaceVariant,
-                        modifier = Modifier.size(26.dp)
-                    )
-                }
-                Box(
-                    modifier = Modifier
-                        .align(Alignment.TopEnd)
-                        .padding(top = 12.dp, end = 12.dp)
-                        .size(8.dp)
-                        .clip(CircleShape)
-                        .background(Color(0xFFBA1A1A))
-                )
-            }
-
-            Image(
-                painter = painterResource(R.drawable.avatar_elena),
-                contentDescription = null,
-                modifier = Modifier.size(32.dp).clip(CircleShape)
-            )
         }
     }
 }
@@ -307,8 +220,8 @@ private fun QuickAccessSectionCentralized() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            QuickButton(title = "Mis hijos", icon = R.drawable.ic_authcares_family, bgColor = AuthCaresPrimaryContainer.copy(alpha=0.1f), tint = AuthCaresPrimary, modifier = Modifier.weight(1f))
-            QuickButton(title = "Estadísticas", icon = R.drawable.ic_authcares_stats, bgColor = AuthCaresSecondaryContainer.copy(alpha=0.2f), tint = AuthCaresSecondary, modifier = Modifier.weight(1f))
+            QuickButton(title = "Mis hijos", icon = R.drawable.ic_authcares_family, bgColor = Color(0x1A6200EE), tint = AuthCaresPrimary, modifier = Modifier.weight(1f))
+            QuickButton(title = "Estadísticas", icon = R.drawable.ic_authcares_stats, bgColor = Color(0x3303DAC5), tint = AuthCaresSecondary, modifier = Modifier.weight(1f))
         }
         Row(
             modifier = Modifier.fillMaxWidth(),

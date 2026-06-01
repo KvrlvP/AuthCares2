@@ -55,6 +55,7 @@ import com.choque.authcares2.ui.theme.AuthCaresSecondaryContainer
 import com.choque.authcares2.ui.theme.AuthCaresSurface
 import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainer
 import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
+import com.choque.authcares2.ui.components.HomeTopBar
 
 @Composable
 fun NinosRegistradosScreen(
@@ -69,7 +70,7 @@ fun NinosRegistradosScreen(
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             Column(modifier = Modifier.fillMaxSize()) {
-                NinosTopBar()
+                HomeTopBar(onNavigateTo = onNavigateTo)
 
                 Column(
                     modifier = Modifier
@@ -122,47 +123,6 @@ fun NinosRegistradosScreen(
     }
 }
 
-@Composable
-private fun NinosTopBar(modifier: Modifier = Modifier) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(72.dp)
-            .background(AuthCaresSurface)
-            .padding(horizontal = 24.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        IconButton(onClick = {}) {
-            Icon(
-                painter = painterResource(R.drawable.ic_authcares_menu),
-                contentDescription = null,
-                tint = AuthCaresPrimary,
-                modifier = Modifier.size(28.dp)
-            )
-        }
-
-        Text(
-            text = "AuthCares",
-            color = AuthCaresPrimary,
-            fontSize = 28.sp,
-            fontWeight = FontWeight.ExtraBold,
-            letterSpacing = (-0.02).sp
-        )
-
-        Box(
-            modifier = Modifier.size(42.dp).clip(CircleShape).background(AuthCaresSurfaceContainer),
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(
-                painter = painterResource(R.drawable.ic_authcares_person),
-                contentDescription = null,
-                tint = AuthCaresOnSurfaceVariant,
-                modifier = Modifier.size(24.dp)
-            )
-        }
-    }
-}
 
 @Composable
 private fun AddChildCard(modifier: Modifier = Modifier) {
