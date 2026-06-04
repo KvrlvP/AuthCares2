@@ -37,6 +37,7 @@ import com.choque.authcares2.ui.screens.share.CompartirAuthCaresScreen
 import com.choque.authcares2.ui.screens.stats.EstadisticasAuthCaresScreen
 import com.choque.authcares2.ui.theme.AuthCares2Theme
 import com.choque.authcares2.viewmodels.AuthViewModel
+import com.choque.authcares2.viewmodels.SensorViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,12 +54,14 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainApp() {
     val authViewModel: AuthViewModel = viewModel()
+    val sensorViewModel: SensorViewModel = viewModel()
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
     val loginState by authViewModel.loginState.collectAsState()
     val registerState by authViewModel.registerState.collectAsState()
+    val sensorState by sensorViewModel.sensorState.collectAsState()
 
     LaunchedEffect(loginState.isSuccess) {
         if (loginState.isSuccess) {
@@ -175,6 +178,8 @@ fun MainApp() {
             }
             composable(AuthCaresScreen.Home.name) {
                 InicioAuthCaresScreen(
+                    userName = authViewModel.getCurrentUserName(),
+                    sensorState = sensorState,
                     onNavigateTo = { screen -> navController.navigate(screen.name) }
                 )
             }

@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.userProfileChangeRequest
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -46,6 +47,10 @@ class AuthViewModel : ViewModel() {
 
     fun isUserLoggedIn(): Boolean {
         return auth.currentUser != null
+    }
+
+    fun getCurrentUserName(): String {
+        return auth.currentUser?.displayName?.split(" ")?.firstOrNull() ?: "Usuario"
     }
 
     fun onLoginEmailChange(email: String) {
@@ -102,7 +107,14 @@ class AuthViewModel : ViewModel() {
         viewModelScope.launch {
             _registerState.update { it.copy(isLoading = true, errorMessage = null) }
             try {
-                auth.createUserWithEmailAndPassword(state.email, state.password).await()
+                val result = auth.createUserWithEmailAndPassword(state.email, state.password).await()
+                
+                // Guardar el nombre completo en el perfil de Firebase
+                val profileUpdates = userProfileChangeRequest {
+                    displayName = state.fullName
+                }
+                result.user?.updateProfile(profileUpdates)?.await()
+
                 _registerState.update { it.copy(isLoading = false, isSuccess = true) }
             } catch (e: FirebaseAuthUserCollisionException) {
                 _registerState.update { it.copy(isLoading = false, errorMessage = "Este correo ya se encuentra registrado.") }

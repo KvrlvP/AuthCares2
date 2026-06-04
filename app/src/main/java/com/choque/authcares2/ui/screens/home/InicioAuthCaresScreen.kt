@@ -48,9 +48,12 @@ import com.choque.authcares2.ui.theme.AuthCaresSecondaryFixed
 import com.choque.authcares2.ui.theme.AuthCaresSurface
 import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainerHigh
 import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
+import com.choque.authcares2.viewmodels.SensorUiState
 
 @Composable
 fun InicioAuthCaresScreen(
+    userName: String = "Usuario",
+    sensorState: SensorUiState = SensorUiState(),
     modifier: Modifier = Modifier,
     onNavigateTo: (AuthCaresScreen) -> Unit = {}
 ) {
@@ -66,7 +69,8 @@ fun InicioAuthCaresScreen(
                 .padding(top = 16.dp, bottom = 24.dp),
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
-            GreetingSection()
+            GreetingSection(userName = userName)
+            LiveSensorSection(sensorState = sensorState)
             StatusGrid()
 
             RegisteredKidsSection(
@@ -77,10 +81,10 @@ fun InicioAuthCaresScreen(
 }
 
 @Composable
-private fun GreetingSection(modifier: Modifier = Modifier) {
+private fun GreetingSection(userName: String, modifier: Modifier = Modifier) {
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
-            text = "¡Hola, María!",
+            text = "¡Hola, $userName!",
             color = AuthCaresOnSurface,
             fontSize = 28.sp,
             fontWeight = FontWeight.ExtraBold,
@@ -93,6 +97,110 @@ private fun GreetingSection(modifier: Modifier = Modifier) {
             fontSize = 18.sp,
             lineHeight = 26.sp
         )
+    }
+}
+
+@Composable
+private fun LiveSensorSection(sensorState: SensorUiState, modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+            .clip(RoundedCornerShape(24.dp))
+            .background(AuthCaresWhiteSurface)
+            .border(1.dp, AuthCaresOutlineVariant.copy(alpha = 0.5f), RoundedCornerShape(24.dp))
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(14.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column {
+                Text(
+                    text = if (sensorState.childName.isBlank()) "Sensores del reloj" else sensorState.childName,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = AuthCaresOnSurface
+                )
+                Text(
+                    text = sensorState.relojId?.let { "Reloj $it" } ?: "Sin reloj vinculado",
+                    fontSize = 12.sp,
+                    color = AuthCaresOnSurfaceVariant
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(50.dp))
+                    .background(statusColor(sensorState.status).copy(alpha = 0.14f))
+                    .padding(horizontal = 12.dp, vertical = 6.dp)
+            ) {
+                Text(
+                    text = sensorState.status,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = statusColor(sensorState.status)
+                )
+            }
+        }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            SensorValueCard(
+                title = "Ritmo",
+                value = sensorState.heartRate?.let { "$it bpm" } ?: "--",
+                modifier = Modifier.weight(1f)
+            )
+            SensorValueCard(
+                title = "Movimiento",
+                value = sensorState.movement,
+                modifier = Modifier.weight(1f)
+            )
+        }
+
+        val message = sensorState.errorMessage
+            ?: sensorState.lastSync.takeIf { it.isNotBlank() }
+            ?: if (sensorState.isLoading) "Conectando con Firebase..." else ""
+        if (message.isNotBlank()) {
+            Text(
+                text = message,
+                fontSize = 12.sp,
+                color = AuthCaresOnSurfaceVariant
+            )
+        }
+    }
+}
+
+@Composable
+private fun SensorValueCard(title: String, value: String, modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+            .clip(RoundedCornerShape(16.dp))
+            .background(AuthCaresSurfaceContainerHigh)
+            .padding(14.dp),
+        verticalArrangement = Arrangement.spacedBy(4.dp)
+    ) {
+        Text(
+            text = title,
+            fontSize = 12.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = AuthCaresOnSurfaceVariant
+        )
+        Text(
+            text = value,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = AuthCaresOnSurface
+        )
+    }
+}
+
+private fun statusColor(status: String): Color {
+    return when (status) {
+        "Todo bien" -> Color(0xFF10B981)
+        "Revisar" -> Color(0xFFDC2626)
+        else -> AuthCaresSecondary
     }
 }
 
