@@ -100,7 +100,7 @@ private fun ChildSelector(modifier: Modifier = Modifier) {
             contentScale = ContentScale.Crop
         )
         Column(modifier = Modifier.weight(1f).padding(start = 12.dp)) {
-            Text(text = "Leo", fontSize = 18.sp, fontWeight = FontWeight.SemiBold, color = AuthCaresOnSurface)
+            Text(text = "Bennet", fontSize = 18.sp, fontWeight = FontWeight.SemiBold, color = AuthCaresOnSurface)
             Text(text = "3 años", fontSize = 14.sp, color = AuthCaresOnSurfaceVariant)
         }
         Icon(

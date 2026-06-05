@@ -57,6 +57,7 @@ import com.choque.authcares2.ui.theme.AuthCaresSurface
 import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainer
 import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
 import com.choque.authcares2.ui.components.OnboardingDots
+import com.choque.authcares2.ui.components.GoogleSignInButton
 
 @Composable
 fun IniciarSesionAuthCaresScreen(
@@ -68,6 +69,7 @@ fun IniciarSesionAuthCaresScreen(
     onEmailChange: (String) -> Unit = {},
     onPasswordChange: (String) -> Unit = {},
     onLoginClick: () -> Unit = {},
+    onGoogleLoginClick: () -> Unit = {},
     onCreateAccountClick: () -> Unit = {}
 ) {
     Surface(
@@ -98,6 +100,13 @@ fun IniciarSesionAuthCaresScreen(
                 onEmailChange = onEmailChange,
                 onPasswordChange = onPasswordChange,
                 onLoginClick = onLoginClick
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            GoogleSignInButton(
+                onClick = onGoogleLoginClick,
+                text = "Iniciar sesión con Google"
             )
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -203,6 +212,7 @@ private fun LoginFormCard(
             label = "Correo electrónico",
             value = email,
             placeholder = "tu@correo.com",
+            enabled = !isLoading,
             leadingIcon = {
                 Icon(
                     painter = painterResource(R.drawable.ic_authcares_email),
@@ -218,6 +228,7 @@ private fun LoginFormCard(
             label = "Contraseña",
             value = password,
             placeholder = "••••••••",
+            enabled = !isLoading,
             leadingIcon = {
                 Icon(
                     painter = painterResource(R.drawable.ic_authcares_lock),
@@ -295,6 +306,7 @@ private fun LoginTextField(
     leadingIcon: @Composable () -> Unit,
     keyboardType: KeyboardType,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     trailingIcon: @Composable (() -> Unit)? = null,
     onValueChange: (String) -> Unit
@@ -318,6 +330,7 @@ private fun LoginTextField(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(70.dp),
+            enabled = enabled,
             placeholder = {
                 Text(
                     text = placeholder,

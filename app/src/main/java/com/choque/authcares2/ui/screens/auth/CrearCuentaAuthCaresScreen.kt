@@ -57,6 +57,7 @@ import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainer
 import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainerLow
 import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
 import com.choque.authcares2.ui.components.OnboardingDots
+import com.choque.authcares2.ui.components.GoogleSignInButton
 
 @Composable
 fun CrearCuentaAuthCaresScreen(
@@ -70,6 +71,7 @@ fun CrearCuentaAuthCaresScreen(
     onEmailChange: (String) -> Unit = {},
     onPasswordChange: (String) -> Unit = {},
     onRegisterClick: () -> Unit = {},
+    onGoogleRegisterClick: () -> Unit = {},
     onAlreadyHaveAccountClick: () -> Unit = {}
 ) {
     var passwordVisible by remember { mutableStateOf(false) }
@@ -104,6 +106,7 @@ fun CrearCuentaAuthCaresScreen(
                     label = "Nombre completo",
                     value = fullName,
                     placeholder = "Ej. María García",
+                    enabled = !isLoading,
                     keyboardType = KeyboardType.Text,
                     onValueChange = onFullNameChange
                 )
@@ -112,6 +115,7 @@ fun CrearCuentaAuthCaresScreen(
                     label = "Correo",
                     value = email,
                     placeholder = "ejemplo@correo.com",
+                    enabled = !isLoading,
                     keyboardType = KeyboardType.Email,
                     onValueChange = onEmailChange
                 )
@@ -120,6 +124,7 @@ fun CrearCuentaAuthCaresScreen(
                     label = "Contraseña",
                     value = password,
                     placeholder = "Mínimo 8 caracteres",
+                    enabled = !isLoading,
                     keyboardType = KeyboardType.Password,
                     visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                     trailingIcon = {
@@ -175,6 +180,11 @@ fun CrearCuentaAuthCaresScreen(
                         fontWeight = FontWeight.SemiBold
                     )
                 }
+
+                GoogleSignInButton(
+                    onClick = onGoogleRegisterClick,
+                    text = "Registrarse con Google"
+                )
 
                 TextButton(
                     onClick = onAlreadyHaveAccountClick,
@@ -233,6 +243,7 @@ private fun RegisterTextField(
     placeholder: String,
     keyboardType: KeyboardType,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     trailingIcon: (@Composable () -> Unit)? = null,
     onValueChange: (String) -> Unit
@@ -256,6 +267,7 @@ private fun RegisterTextField(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(72.dp),
+            enabled = enabled,
             placeholder = {
                 Text(
                     text = placeholder,

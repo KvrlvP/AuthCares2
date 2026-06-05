@@ -5,6 +5,7 @@ enum class AuthCaresScreen {
     Info,
     Login,
     Register,
+    Splash,
     Home,
     HomeCentralized,
     Alerts,
@@ -16,5 +17,6 @@ enum class AuthCaresScreen {
     ChildProfile,
     SettingsAlerts,
     SettingsWatch,
+    NoWatchConnected,
     Share
 }

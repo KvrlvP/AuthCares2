@@ -7,6 +7,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,6 +20,15 @@ import java.util.Date
 import java.util.Locale
 import kotlin.math.sqrt
 
+data class ChildInfo(
+    val id: String = "",
+    val name: String = "",
+    val relojId: String? = null,
+    val nivelTea: String? = null,
+    val fechaNacimiento: String? = null,
+    val avatarRes: Int? = null
+)
+
 data class SensorUiState(
     val childName: String = "",
     val relojId: String? = null,
@@ -27,7 +37,10 @@ data class SensorUiState(
     val status: String = "Cargando...",
     val lastSync: String = "",
     val isLoading: Boolean = true,
-    val errorMessage: String? = null
+    val errorMessage: String? = null,
+    val watchCodeInput: String = "",
+    val isConnecting: Boolean = false,
+    val registeredChildren: List<ChildInfo> = emptyList()
 )
 
 class SensorViewModel : ViewModel() {
@@ -62,9 +75,21 @@ class SensorViewModel : ViewModel() {
         viewModelScope.launch {
             _sensorState.update { it.copy(isLoading = true, errorMessage = null) }
             try {
-                val childDoc = findChildForUser(uid)
-                val childName = childDoc?.getString("nombre").orEmpty()
-                val watchId = childDoc?.getString("relojId")?.takeIf { it.isNotBlank() }
+                val childrenDocs = findAllChildrenForUser(uid)
+                val childrenList = childrenDocs.map { doc ->
+                    ChildInfo(
+                        id = doc.id,
+                        name = doc.getString("nombre").orEmpty(),
+                        relojId = doc.getString("relojId"),
+                        nivelTea = doc.getString("nivelTEA"),
+                        fechaNacimiento = doc.getString("fechaNacimiento")
+                    )
+                }
+
+                // El niño "activo" para los sensores es el primero con reloj vinculado
+                val activeChild = childrenList.firstOrNull { !it.relojId.isNullOrBlank() }
+                val childName = activeChild?.name.orEmpty()
+                val watchId = activeChild?.relojId
 
                 if (watchId == null) {
                     clearLatestListener()
@@ -77,7 +102,8 @@ class SensorViewModel : ViewModel() {
                             status = "Vincula el reloj",
                             lastSync = "",
                             isLoading = false,
-                            errorMessage = null
+                            errorMessage = null,
+                            registeredChildren = childrenList
                         )
                     }
                     return@launch
@@ -88,11 +114,12 @@ class SensorViewModel : ViewModel() {
                         childName = childName,
                         relojId = watchId,
                         isLoading = true,
-                        errorMessage = null
+                        errorMessage = null,
+                        registeredChildren = childrenList
                     )
                 }
                 listenToLatestSensors(watchId)
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 clearLatestListener()
                 _sensorState.update {
                     it.copy(
@@ -105,15 +132,14 @@ class SensorViewModel : ViewModel() {
         }
     }
 
-    private suspend fun findChildForUser(uid: String) =
-        firestore.collection("ninos")
+    private suspend fun findAllChildrenForUser(uid: String): List<DocumentSnapshot> {
+        val querySnapshot = firestore.collection("ninos")
             .whereEqualTo("padreId", uid)
-            .limit(1)
             .get()
             .await()
-            .documents
-            .firstOrNull()
-            ?: firestore.collection("ninos").document(uid).get().await().takeIf { it.exists() }
+        
+        return querySnapshot.documents
+    }
 
     private fun listenToLatestSensors(watchId: String) {
         if (currentWatchId == watchId && latestListener != null) return
@@ -197,6 +223,57 @@ class SensorViewModel : ViewModel() {
         }
         latestListener = null
         currentWatchId = null
+    }
+
+    fun onWatchCodeChange(code: String) {
+        _sensorState.update { it.copy(watchCodeInput = code, errorMessage = null) }
+    }
+
+    fun connectWatch() {
+        val uid = auth.currentUser?.uid ?: return
+        val code = _sensorState.value.watchCodeInput.trim()
+
+        if (code.isBlank()) {
+            _sensorState.update { it.copy(errorMessage = "Por favor, ingresa el código del reloj.") }
+            return
+        }
+
+        viewModelScope.launch {
+            _sensorState.update { it.copy(isConnecting = true, errorMessage = null) }
+            try {
+                val query = firestore.collection("ninos")
+                    .whereEqualTo("relojId", code)
+                    .limit(1)
+                    .get()
+                    .await()
+
+                val childDoc = query.documents.firstOrNull()
+
+                if (childDoc != null) {
+                    firestore.collection("ninos").document(childDoc.id)
+                        .update("padreId", uid)
+                        .await()
+
+                    _sensorState.update { it.copy(isConnecting = false, watchCodeInput = "") }
+                    loadChildAndWatch()
+                } else {
+                    _sensorState.update {
+                        it.copy(
+                            isConnecting = false,
+                            errorMessage = "No encontramos un reloj con ese código."
+                        )
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace() // Esto imprimirá el error real en el Logcat
+                _sensorState.update {
+                    it.copy(
+                        isConnecting = false,
+                        errorMessage = "Error al conectar: ${e.localizedMessage}. Inténtalo de nuevo."
+                    )
+                }
+            }
+        }
     }
 
     private fun formatTime(value: Long): String {

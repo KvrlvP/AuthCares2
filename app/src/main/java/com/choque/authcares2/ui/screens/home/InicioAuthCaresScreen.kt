@@ -71,9 +71,10 @@ fun InicioAuthCaresScreen(
         ) {
             GreetingSection(userName = userName)
             LiveSensorSection(sensorState = sensorState)
-            StatusGrid()
+            StatusGrid(sensorState = sensorState)
 
             RegisteredKidsSection(
+                children = sensorState.registeredChildren,
                 onChildClick = { onNavigateTo(AuthCaresScreen.ChildProfile) }
             )
         }
@@ -205,18 +206,21 @@ private fun statusColor(status: String): Color {
 }
 
 @Composable
-private fun StatusGrid(modifier: Modifier = Modifier) {
+private fun StatusGrid(sensorState: SensorUiState, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        StatusCardWatch(modifier = Modifier.fillMaxWidth())
+        StatusCardWatch(
+            isConnected = sensorState.relojId != null,
+            modifier = Modifier.fillMaxWidth()
+        )
         StatusCardSync(modifier = Modifier.fillMaxWidth())
     }
 }
 
 @Composable
-private fun StatusCardWatch(modifier: Modifier = Modifier) {
+private fun StatusCardWatch(isConnected: Boolean, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .clip(RoundedCornerShape(24.dp))
@@ -236,10 +240,20 @@ private fun StatusCardWatch(modifier: Modifier = Modifier) {
                 Icon(painter = painterResource(R.drawable.ic_authcares_watch), contentDescription = null, tint = AuthCaresPrimary, modifier = Modifier.size(24.dp))
             }
             Column {
-                Text(text = "Reloj conectado", fontSize = 16.sp, fontWeight = FontWeight.SemiBold, color = AuthCaresOnSurface)
+                Text(
+                    text = if (isConnected) "Reloj conectado" else "Sin reloj",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = AuthCaresOnSurface
+                )
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(Color(0xFF10B981)))
-                    Text(text = "Batería 85%", fontSize = 12.sp, color = AuthCaresOnSurfaceVariant)
+                    val batteryColor = if (isConnected) Color(0xFF10B981) else Color.Gray
+                    Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(batteryColor))
+                    Text(
+                        text = if (isConnected) "Batería --%" else "Sin datos",
+                        fontSize = 12.sp,
+                        color = AuthCaresOnSurfaceVariant
+                    )
                 }
             }
         }
@@ -287,6 +301,7 @@ private fun StatusCardSync(modifier: Modifier = Modifier) {
 
 @Composable
 private fun RegisteredKidsSection(
+    children: List<com.choque.authcares2.viewmodels.ChildInfo>,
     onChildClick: () -> Unit = {}
 ) {
     Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -302,8 +317,22 @@ private fun RegisteredKidsSection(
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            KidAvatar(name = "Lucas", avatarRes = R.drawable.avatar_lucas, onClick = onChildClick)
-            KidAvatar(name = "Sofía", avatarRes = null, onClick = onChildClick)
+            if (children.isEmpty()) {
+                Text(
+                    text = "No hay niños registrados aún.",
+                    fontSize = 14.sp,
+                    color = AuthCaresOnSurfaceVariant,
+                    modifier = Modifier.padding(vertical = 8.dp)
+                )
+            } else {
+                children.forEach { child ->
+                    KidAvatar(
+                        name = child.name,
+                        avatarRes = child.avatarRes,
+                        onClick = onChildClick
+                    )
+                }
+            }
         }
 
         Button(

@@ -52,6 +52,8 @@ import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
 
 @Composable
 fun InicioCentralizadoScreen(
+    userName: String = "Usuario",
+    childName: String = "tu niño",
     modifier: Modifier = Modifier,
     onNavigateTo: (AuthCaresScreen) -> Unit = {}
 ) {
@@ -68,8 +70,8 @@ fun InicioCentralizadoScreen(
                     .padding(top = 24.dp, bottom = 24.dp),
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
-                GreetingSectionCentralized()
-                MainBentoGrid()
+                GreetingSectionCentralized(userName = userName, childName = childName)
+                MainBentoGrid(childName = childName)
             }
 
             Surface(
@@ -97,10 +99,10 @@ fun InicioCentralizadoScreen(
 }
 
 @Composable
-private fun GreetingSectionCentralized() {
+private fun GreetingSectionCentralized(userName: String, childName: String) {
     Column {
         Text(
-            text = "¡Hola, Elena!",
+            text = "¡Hola, $userName!",
             fontSize = 32.sp,
             fontWeight = FontWeight.ExtraBold,
             letterSpacing = (-0.02).sp,
@@ -108,7 +110,7 @@ private fun GreetingSectionCentralized() {
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = "Aquí está el resumen del día para Lucas.",
+            text = "Aquí está el resumen del día para $childName.",
             fontSize = 16.sp,
             color = AuthCaresOnSurfaceVariant
         )
@@ -116,9 +118,9 @@ private fun GreetingSectionCentralized() {
 }
 
 @Composable
-private fun MainBentoGrid(modifier: Modifier = Modifier) {
+private fun MainBentoGrid(childName: String, modifier: Modifier = Modifier) {
     Column(modifier = modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(16.dp)) {
-        LucasMainCard()
+        LucasMainCard(childName = childName)
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
             StatusMiniCard(
                 title = "RELOJ",
@@ -145,7 +147,7 @@ private fun MainBentoGrid(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun LucasMainCard(modifier: Modifier = Modifier) {
+private fun LucasMainCard(childName: String, modifier: Modifier = Modifier) {
     Surface(
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(24.dp),
@@ -157,15 +159,21 @@ private fun LucasMainCard(modifier: Modifier = Modifier) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            Image(
-                painter = painterResource(R.drawable.avatar_lucas),
-                contentDescription = null,
-                modifier = Modifier.size(96.dp).clip(CircleShape).border(4.dp, AuthCaresSurface, CircleShape)
-            )
+            Box(
+                modifier = Modifier.size(96.dp).clip(CircleShape).background(AuthCaresSecondaryContainer),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = childName.take(1).uppercase(),
+                    fontSize = 32.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = AuthCaresOnPrimary
+                )
+            }
             Column {
-                Text(text = "Lucas", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = AuthCaresOnSurface)
+                Text(text = childName, fontSize = 20.sp, fontWeight = FontWeight.Bold, color = AuthCaresOnSurface)
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(text = "8 años • Colegio San Martín", fontSize = 14.sp, color = AuthCaresOnSurfaceVariant)
+                Text(text = "Seguimiento activo", fontSize = 14.sp, color = AuthCaresOnSurfaceVariant)
                 Spacer(modifier = Modifier.height(12.dp))
                 Button(
                     onClick = {},

@@ -1,6 +1,5 @@
 package com.choque.authcares2.ui.screens.home
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -41,8 +40,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.choque.authcares2.AuthCaresScreen
 import com.choque.authcares2.R
-import com.choque.authcares2.ui.components.HomeBottomBar
-import com.choque.authcares2.ui.components.HomeTab
 import com.choque.authcares2.ui.theme.AuthCares2Theme
 import com.choque.authcares2.ui.theme.AuthCaresErrorContainer
 import com.choque.authcares2.ui.theme.AuthCaresOnPrimary
@@ -55,70 +52,59 @@ import com.choque.authcares2.ui.theme.AuthCaresSecondaryContainer
 import com.choque.authcares2.ui.theme.AuthCaresSurface
 import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainer
 import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
-import com.choque.authcares2.ui.components.HomeTopBar
+import com.choque.authcares2.viewmodels.ChildInfo
 
 @Composable
 fun NinosRegistradosScreen(
+    children: List<ChildInfo> = emptyList(),
     modifier: Modifier = Modifier,
     onNavigateTo: (AuthCaresScreen) -> Unit = {}
 ) {
-    var selectedTab by remember { mutableStateOf(HomeTab.Ninos) }
-
     Surface(
         modifier = modifier.fillMaxSize(),
         color = AuthCaresSurface
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            Column(modifier = Modifier.fillMaxSize()) {
-                HomeTopBar(onNavigateTo = onNavigateTo)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 24.dp)
+                .padding(top = 24.dp, bottom = 120.dp),
+            verticalArrangement = Arrangement.spacedBy(24.dp)
+        ) {
+            Column {
+                Text(
+                    text = "Niños registrados",
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = AuthCaresOnSurface
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = "Gestiona los perfiles de los niños a tu cuidado.",
+                    fontSize = 16.sp,
+                    color = AuthCaresOnSurfaceVariant
+                )
+            }
 
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .verticalScroll(rememberScrollState())
-                        .padding(horizontal = 24.dp)
-                        .padding(top = 24.dp, bottom = 120.dp),
-                    verticalArrangement = Arrangement.spacedBy(24.dp)
-                ) {
-                    Column {
-                        Text(
-                            text = "Niños registrados",
-                            fontSize = 22.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            color = AuthCaresOnSurface
-                        )
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Text(
-                            text = "Gestiona los perfiles de los niños a tu cuidado.",
-                            fontSize = 16.sp,
-                            color = AuthCaresOnSurfaceVariant
-                        )
-                    }
+            AddChildCard()
 
-                    AddChildCard()
-
+            if (children.isEmpty()) {
+                Text(
+                    text = "No tienes niños registrados aún.",
+                    color = AuthCaresOnSurfaceVariant,
+                    modifier = Modifier.padding(vertical = 20.dp)
+                )
+            } else {
+                children.forEach { child ->
                     ChildCard(
-                        initialLetter = "L",
-                        name = "Lucas",
-                        details = "6 años • TEA Nivel 1",
-                        watchStatus = "Sin reloj asignado"
+                        initialLetter = child.name.take(1).uppercase(),
+                        name = child.name,
+                        details = "${child.fechaNacimiento ?: "Edad desconocida"} • TEA Nivel ${child.nivelTea ?: "-"}",
+                        watchStatus = if (child.relojId.isNullOrBlank()) "Sin reloj asignado" else "Reloj: ${child.relojId}"
                     )
                 }
             }
-
-            HomeBottomBar(
-                selectedTab = selectedTab,
-                onTabClick = { tab ->
-                    selectedTab = tab
-                    when (tab) {
-                        HomeTab.Inicio -> onNavigateTo(AuthCaresScreen.Home)
-                        HomeTab.Horarios -> onNavigateTo(AuthCaresScreen.Stats)
-                        HomeTab.Ninos -> onNavigateTo(AuthCaresScreen.Kids)
-                        HomeTab.Ajustes -> onNavigateTo(AuthCaresScreen.Settings)
-                    }
-                },
-                modifier = Modifier.align(Alignment.BottomCenter)
-            )
         }
     }
 }

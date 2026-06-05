@@ -2,15 +2,14 @@ package com.choque.authcares2.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.userProfileChangeRequest
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.Timestamp
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,7 +22,8 @@ data class LoginState(
     val password: String = "",
     val isLoading: Boolean = false,
     val errorMessage: String? = null,
-    val isSuccess: Boolean = false
+    val isSuccess: Boolean = false,
+    val userName: String = "Usuario"
 )
 
 data class RegisterState(
@@ -32,12 +32,14 @@ data class RegisterState(
     val password: String = "",
     val isLoading: Boolean = false,
     val errorMessage: String? = null,
-    val isSuccess: Boolean = false
+    val isSuccess: Boolean = false,
+    val userName: String = "Usuario"
 )
 
 class AuthViewModel : ViewModel() {
 
     private val auth = FirebaseAuth.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
 
     private val _loginState = MutableStateFlow(LoginState())
     val loginState: StateFlow<LoginState> = _loginState.asStateFlow()
@@ -49,8 +51,38 @@ class AuthViewModel : ViewModel() {
         return auth.currentUser != null
     }
 
-    fun getCurrentUserName(): String {
-        return auth.currentUser?.displayName?.split(" ")?.firstOrNull() ?: "Usuario"
+    private val _userName = MutableStateFlow("Usuario")
+    val userName: StateFlow<String> = _userName.asStateFlow()
+
+    init {
+        loadUserName()
+    }
+
+    fun loadUserName() {
+        val user = auth.currentUser
+        if (user == null) {
+            _userName.value = "Usuario"
+            return
+        }
+
+        // 1. Intentar desde el perfil de Auth (rápido)
+        val profileName = user.displayName?.split(" ")?.firstOrNull()
+        if (!profileName.isNullOrBlank()) {
+            _userName.value = profileName
+        }
+
+        // 2. Respaldo desde Firestore (infalible)
+        viewModelScope.launch {
+            try {
+                val doc = firestore.collection("usuarios").document(user.uid).get().await()
+                val firestoreName = doc.getString("nombre")?.split(" ")?.firstOrNull()
+                if (!firestoreName.isNullOrBlank()) {
+                    _userName.value = firestoreName
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 
     fun onLoginEmailChange(email: String) {
@@ -59,6 +91,11 @@ class AuthViewModel : ViewModel() {
 
     fun onLoginPasswordChange(password: String) {
         _loginState.update { it.copy(password = password) }
+    }
+
+    fun setLoading(isLoading: Boolean) {
+        _loginState.update { it.copy(isLoading = isLoading) }
+        _registerState.update { it.copy(isLoading = isLoading) }
     }
 
     fun onRegisterFullNameChange(fullName: String) {
@@ -83,21 +120,28 @@ class AuthViewModel : ViewModel() {
         viewModelScope.launch {
             _loginState.update { it.copy(isLoading = true, errorMessage = null) }
             try {
-                auth.signInWithEmailAndPassword(state.email, state.password).await()
+                val result = auth.signInWithEmailAndPassword(state.email, state.password).await()
+                result.user?.let { user ->
+                    saveUserToFirestore(
+                        uid = user.uid,
+                        email = user.email ?: "",
+                        name = user.displayName ?: "Usuario"
+                    )
+                    loadUserName()
+                }
                 _loginState.update { it.copy(isLoading = false, isSuccess = true) }
             } catch (e: FirebaseAuthInvalidUserException) {
                 _loginState.update { it.copy(isLoading = false, errorMessage = "Correo o contraseña incorrectos") }
             } catch (e: FirebaseAuthInvalidCredentialsException) {
                 _loginState.update { it.copy(isLoading = false, errorMessage = "Correo o contraseña incorrectos") }
             } catch (e: Exception) {
-                _loginState.update { it.copy(isLoading = false, errorMessage = "Error inesperado. Inténtalo de nuevo.") }
+                _loginState.update { it.copy(isLoading = false, errorMessage = "Error inesperado: ${e.localizedMessage}") }
             }
         }
     }
 
     fun register() {
         val state = _registerState.value
-        // Validaciones locales
         val error = validateRegister(state.email, state.password)
         if (error != null) {
             _registerState.update { it.copy(errorMessage = error) }
@@ -109,11 +153,19 @@ class AuthViewModel : ViewModel() {
             try {
                 val result = auth.createUserWithEmailAndPassword(state.email, state.password).await()
                 
-                // Guardar el nombre completo en el perfil de Firebase
                 val profileUpdates = userProfileChangeRequest {
                     displayName = state.fullName
                 }
                 result.user?.updateProfile(profileUpdates)?.await()
+
+                result.user?.let { user ->
+                    saveUserToFirestore(
+                        uid = user.uid,
+                        email = user.email ?: "",
+                        name = state.fullName
+                    )
+                    loadUserName()
+                }
 
                 _registerState.update { it.copy(isLoading = false, isSuccess = true) }
             } catch (e: FirebaseAuthUserCollisionException) {
@@ -121,8 +173,43 @@ class AuthViewModel : ViewModel() {
             } catch (e: FirebaseAuthInvalidCredentialsException) {
                 _registerState.update { it.copy(isLoading = false, errorMessage = "Por favor, ingresa un correo electrónico válido.") }
             } catch (e: Exception) {
-                _registerState.update { it.copy(isLoading = false, errorMessage = "Error al crear la cuenta. Inténtalo de nuevo.") }
+                _registerState.update { it.copy(isLoading = false, errorMessage = "Error: ${e.localizedMessage}") }
             }
+        }
+    }
+
+    fun signInWithGoogle(idToken: String) {
+        viewModelScope.launch {
+            _loginState.update { it.copy(isLoading = true, errorMessage = null) }
+            try {
+                val credential = GoogleAuthProvider.getCredential(idToken, null)
+                val result = auth.signInWithCredential(credential).await()
+                result.user?.let { user ->
+                    saveUserToFirestore(
+                        uid = user.uid,
+                        email = user.email ?: "",
+                        name = user.displayName ?: "Usuario de Google"
+                    )
+                    loadUserName()
+                }
+                _loginState.update { it.copy(isLoading = false, isSuccess = true) }
+            } catch (e: Exception) {
+                _loginState.update { it.copy(isLoading = false, errorMessage = "Error con Google: ${e.localizedMessage}") }
+            }
+        }
+    }
+
+    private suspend fun saveUserToFirestore(uid: String, email: String, name: String) {
+        try {
+            val userData = hashMapOf(
+                "uid" to uid,
+                "email" to email,
+                "nombre" to name,
+                "creadoEn" to Timestamp.now()
+            )
+            firestore.collection("usuarios").document(uid).set(userData).await()
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
