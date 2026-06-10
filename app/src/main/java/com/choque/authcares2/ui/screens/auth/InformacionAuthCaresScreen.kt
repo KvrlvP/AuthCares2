@@ -53,7 +53,8 @@ import com.choque.authcares2.ui.components.OnboardingDots
 @Composable
 fun InformacionAuthCaresScreen(
     onContinueClick: () -> Unit = {},
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    currentPage: Int = 1
 ) {
     Surface(
         modifier = modifier.fillMaxSize(),
@@ -143,7 +144,7 @@ fun InformacionAuthCaresScreen(
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                OnboardingDots(pageCount = 3, currentPage = 1)
+                OnboardingDots(pageCount = 3, currentPage = currentPage)
 
                 Spacer(modifier = Modifier.height(32.dp))
 

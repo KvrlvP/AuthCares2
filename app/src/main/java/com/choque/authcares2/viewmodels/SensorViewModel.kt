@@ -40,7 +40,8 @@ data class SensorUiState(
     val errorMessage: String? = null,
     val watchCodeInput: String = "",
     val isConnecting: Boolean = false,
-    val registeredChildren: List<ChildInfo> = emptyList()
+    val registeredChildren: List<ChildInfo> = emptyList(),
+    val selectedChild: ChildInfo? = null
 )
 
 class SensorViewModel : ViewModel() {
@@ -227,6 +228,10 @@ class SensorViewModel : ViewModel() {
 
     fun onWatchCodeChange(code: String) {
         _sensorState.update { it.copy(watchCodeInput = code, errorMessage = null) }
+    }
+
+    fun selectChild(child: ChildInfo) {
+        _sensorState.update { it.copy(selectedChild = child) }
     }
 
     fun connectWatch() {

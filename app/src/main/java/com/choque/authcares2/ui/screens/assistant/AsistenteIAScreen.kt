@@ -27,6 +27,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,7 +41,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.choque.authcares2.R
+import androidx.compose.ui.text.font.FontStyle
 import com.choque.authcares2.ui.theme.AuthCares2Theme
 import com.choque.authcares2.ui.theme.AuthCaresOnPrimary
 import com.choque.authcares2.ui.theme.AuthCaresOnSurface
@@ -56,13 +59,18 @@ import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
 import com.choque.authcares2.ui.theme.AlertRed
 import com.choque.authcares2.ui.theme.AuthCaresErrorContainer
 import com.choque.authcares2.ui.theme.AuthCaresOnErrorContainer
+import com.choque.authcares2.viewmodels.AsistenteViewModel
 
 @Composable
 fun AsistenteIAScreen(
     onBackClick: () -> Unit = {},
+    sensorState: com.choque.authcares2.viewmodels.SensorUiState = com.choque.authcares2.viewmodels.SensorUiState(),
+    viewModel: AsistenteViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
     var messageText by remember { mutableStateOf("") }
+    val messages by viewModel.messages.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
 
     Surface(
         modifier = modifier.fillMaxSize(),
@@ -71,6 +79,7 @@ fun AsistenteIAScreen(
         Column(modifier = Modifier.fillMaxSize()) {
             ChatTopBar(onBackClick = onBackClick)
 
+            // LISTADO DINÁMICO DE MENSAJES
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -81,11 +90,43 @@ fun AsistenteIAScreen(
             ) {
                 DisclaimerCard()
                 DateSeparator()
-                UserBubble(text = "¿Por qué Lucas estuvo inquieto ayer tarde?", time = "10:42 AM")
-                AIBubble()
+
+                messages.forEach { msg ->
+                    if (msg.isFromUser) {
+                        UserBubble(text = msg.text, time = "Ahora")
+                    } else {
+                        AIBubble(
+                            text = msg.text,
+                            showDataCard = msg.hasDataCard,
+                            heartRate = sensorState.heartRate,
+                            lastSync = sensorState.lastSync
+                        )
+                    }
+                }
+
+                if (isLoading) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        // Tu avatar de IA
+                        Box(modifier = Modifier.size(32.dp).clip(CircleShape).background(AuthCaresPrimaryContainer), contentAlignment = Alignment.Center) {
+                            Icon(painter = painterResource(R.drawable.ic_authcares_smile), contentDescription = null, tint = AuthCaresOnPrimary, modifier = Modifier.size(18.dp))
+                        }
+                        Surface(shape = RoundedCornerShape(16.dp), color = AuthCaresSurfaceContainerLow) {
+                            Text("Escribiendo...", modifier = Modifier.padding(16.dp), color = AuthCaresOnSurfaceVariant, fontStyle = FontStyle.Italic)
+                        }
+                    }
+                }
             }
 
-            ChatInputBar(messageText = messageText, onMessageChange = { messageText = it })
+            ChatInputBar(
+                messageText = messageText,
+                onMessageChange = { messageText = it },
+                onSendClick = {
+                    if (messageText.isNotBlank()) {
+                        viewModel.sendMessage(messageText, sensorState)
+                        messageText = "" // Limpiar caja de texto
+                    }
+                }
+            )
         }
     }
 }
@@ -202,16 +243,19 @@ private fun UserBubble(text: String, time: String, modifier: Modifier = Modifier
 }
 
 @Composable
-private fun AIBubble(modifier: Modifier = Modifier) {
+private fun AIBubble(
+    text: String,
+    showDataCard: Boolean = false,
+    heartRate: Int? = null,
+    lastSync: String = "",
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier.fillMaxWidth(0.9f),
         horizontalAlignment = Alignment.Start
     ) {
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Box(
-                modifier = Modifier.size(32.dp).clip(CircleShape).background(AuthCaresPrimaryContainer),
-                contentAlignment = Alignment.Center
-            ) {
+            Box(modifier = Modifier.size(32.dp).clip(CircleShape).background(AuthCaresPrimaryContainer), contentAlignment = Alignment.Center) {
                 Icon(painter = painterResource(R.drawable.ic_authcares_smile), contentDescription = null, tint = AuthCaresOnPrimary, modifier = Modifier.size(18.dp))
             }
 
@@ -223,33 +267,28 @@ private fun AIBubble(modifier: Modifier = Modifier) {
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
                         Text(
-                            text = "Hola. Noté un aumento en su ritmo cardíaco a las 4:00 PM, coincidiendo con el cambio de actividad en el colegio. Podría ser una respuesta a la sobreestimulación sensorial.",
+                            text = text, // <-- TEXTO DINÁMICO DE LA IA
                             fontSize = 14.sp,
                             lineHeight = 20.sp,
                             color = AuthCaresOnSurface
                         )
 
-                        Spacer(modifier = Modifier.height(12.dp))
-                        DataCard()
-                        Spacer(modifier = Modifier.height(12.dp))
-
-                        Text(
-                            text = "¿Te gustaría ver algunas estrategias de calma recomendadas para él?",
-                            fontSize = 14.sp,
-                            lineHeight = 20.sp,
-                            color = AuthCaresOnSurface
-                        )
+                        // Mostramos la tarjeta de datos solo si la IA habló del ritmo cardíaco
+                        if (showDataCard) {
+                            Spacer(modifier = Modifier.height(12.dp))
+                            DataCard(heartRate = heartRate, time = lastSync)
+                        }
                     }
                 }
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(text = "10:43 AM", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = AuthCaresOnSurfaceVariant)
+                Text(text = "Ahora", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = AuthCaresOnSurfaceVariant)
             }
         }
     }
 }
 
 @Composable
-private fun DataCard(modifier: Modifier = Modifier) {
+private fun DataCard(heartRate: Int?, time: String, modifier: Modifier = Modifier) {
     Surface(
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
@@ -273,10 +312,10 @@ private fun DataCard(modifier: Modifier = Modifier) {
                 )
             }
             Column {
-                Text(text = "PICO DE RITMO CARDÍACO", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = AuthCaresOnSurfaceVariant)
+                Text(text = "RITMO CARDÍACO ACTUAL", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = AuthCaresOnSurfaceVariant)
                 Row(verticalAlignment = Alignment.Bottom) {
-                    Text(text = "120 lpm ", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = AlertRed)
-                    Text(text = "@ 16:00", fontSize = 14.sp, color = AuthCaresOnSurfaceVariant)
+                    Text(text = "${heartRate ?: "--"} lpm ", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = AlertRed)
+                    Text(text = "@ ${time.replace("Actualizado: ", "")}", fontSize = 14.sp, color = AuthCaresOnSurfaceVariant)
                 }
             }
         }
@@ -287,6 +326,7 @@ private fun DataCard(modifier: Modifier = Modifier) {
 private fun ChatInputBar(
     messageText: String,
     onMessageChange: (String) -> Unit,
+    onSendClick: () -> Unit, // <-- NUEVO PARÁMETRO
     modifier: Modifier = Modifier
 ) {
     Surface(
@@ -296,20 +336,16 @@ private fun ChatInputBar(
     ) {
         Column {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 8.dp),
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                SuggestionChip(text = "Estrategias de calma", icon = R.drawable.ic_authcares_smile)
-                SuggestionChip(text = "Analizar sueño", icon = R.drawable.ic_authcares_moon)
-                SuggestionChip(text = "Preparar transición", icon = R.drawable.ic_authcares_calendar)
+                // Tus SuggestionChips pueden llamar a onSendClick también con texto predefinido
+                SuggestionChip(text = "Estrategias de calma", icon = R.drawable.ic_authcares_smile, onClick = { onMessageChange("Dame estrategias de calma") })
+                SuggestionChip(text = "Analizar sueño", icon = R.drawable.ic_authcares_moon, onClick = { onMessageChange("Analiza su sueño") })
             }
 
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 8.dp, end = 16.dp, bottom = 16.dp, top = 4.dp),
+                modifier = Modifier.fillMaxWidth().padding(start = 8.dp, end = 16.dp, bottom = 16.dp, top = 4.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
@@ -330,16 +366,11 @@ private fun ChatInputBar(
                         unfocusedIndicatorColor = Color.Transparent,
                         cursorColor = AuthCaresPrimary
                     ),
-                    trailingIcon = {
-                        IconButton(onClick = {}) {
-                            Icon(painter = painterResource(R.drawable.ic_authcares_mic), contentDescription = null, tint = AuthCaresPrimary)
-                        }
-                    },
                     maxLines = 3
                 )
 
                 Button(
-                    onClick = {},
+                    onClick = onSendClick, // <-- ACCIÓN DE ENVIAR
                     modifier = Modifier.size(48.dp),
                     shape = CircleShape,
                     colors = ButtonDefaults.buttonColors(containerColor = AuthCaresPrimary, contentColor = AuthCaresOnPrimary),
@@ -353,9 +384,9 @@ private fun ChatInputBar(
 }
 
 @Composable
-private fun SuggestionChip(text: String, icon: Int, modifier: Modifier = Modifier) {
+private fun SuggestionChip(text: String, icon: Int, onClick: () -> Unit, modifier: Modifier = Modifier) {
     OutlinedButton(
-        onClick = {},
+        onClick = onClick,
         modifier = modifier.height(40.dp),
         shape = RoundedCornerShape(20.dp),
         colors = ButtonDefaults.outlinedButtonColors(

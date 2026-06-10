@@ -48,6 +48,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import com.choque.authcares2.ui.screens.auth.AuthOnboardingPagerScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,7 +104,7 @@ fun MainApp() {
         if (loginState.isSuccess) {
             sensorViewModel.loadChildAndWatch()
             navController.navigate(AuthCaresScreen.Splash.name) {
-                popUpTo(AuthCaresScreen.Login.name) { inclusive = true }
+                popUpTo(AuthCaresScreen.Welcome.name) { inclusive = true }
             }
         }
     }
@@ -155,7 +156,6 @@ fun MainApp() {
         AuthCaresScreen.Welcome.name
     }
 
-    // Pestañas principales que comparten el TopBar y BottomBar GLOBAL
     val mainTabs = listOf(
         AuthCaresScreen.Home.name,
         AuthCaresScreen.Stats.name,
@@ -165,16 +165,14 @@ fun MainApp() {
 
     Scaffold(
         topBar = {
-            // Solo mostramos el TopBar global en las pestañas principales
             if (currentRoute in mainTabs) {
                 HomeTopBar(
                     onNavigateTo = { screen -> navController.navigate(screen.name) },
-                    onBackClick = null // No hay botón atrás en las pestañas principales
+                    onBackClick = null
                 )
             }
         },
         bottomBar = {
-            // Solo mostramos el BottomBar global en las pestañas principales
             if (currentRoute in mainTabs) {
                 val selectedTab = when (currentRoute) {
                     AuthCaresScreen.Home.name -> HomeTab.Inicio
@@ -210,18 +208,7 @@ fun MainApp() {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(AuthCaresScreen.Welcome.name) {
-                BienvenidaAuthCaresScreen(
-                    heroPainter = painterResource(R.drawable.hero_bienvenida_authcares),
-                    onStartClick = { navController.navigate(AuthCaresScreen.Info.name) }
-                )
-            }
-            composable(AuthCaresScreen.Info.name) {
-                InformacionAuthCaresScreen(
-                    onContinueClick = { navController.navigate(AuthCaresScreen.Login.name) }
-                )
-            }
-            composable(AuthCaresScreen.Login.name) {
-                IniciarSesionAuthCaresScreen(
+                AuthOnboardingPagerScreen(
                     email = loginState.email,
                     password = loginState.password,
                     errorMessage = loginState.errorMessage,
@@ -229,7 +216,7 @@ fun MainApp() {
                     onEmailChange = { authViewModel.onLoginEmailChange(it) },
                     onPasswordChange = { authViewModel.onLoginPasswordChange(it) },
                     onLoginClick = { authViewModel.login() },
-                    onGoogleLoginClick = { 
+                    onGoogleLoginClick = {
                         authViewModel.setLoading(true)
                         googleLauncher.launch(googleSignInClient.signInIntent)
                     },
@@ -261,7 +248,11 @@ fun MainApp() {
                 InicioAuthCaresScreen(
                     userName = userName,
                     sensorState = sensorState,
-                    onNavigateTo = { screen -> navController.navigate(screen.name) }
+                    onNavigateTo = { screen -> navController.navigate(screen.name) },
+                    onChildClick = { child ->
+                        sensorViewModel.selectChild(child)
+                        navController.navigate(AuthCaresScreen.ChildProfile.name)
+                    }
                 )
             }
             composable(AuthCaresScreen.Stats.name) {
@@ -272,7 +263,11 @@ fun MainApp() {
             composable(AuthCaresScreen.Kids.name) {
                 NinosRegistradosScreen(
                     children = sensorState.registeredChildren,
-                    onNavigateTo = { screen -> navController.navigate(screen.name) }
+                    onNavigateTo = { screen -> navController.navigate(screen.name) },
+                    onChildClick = { child ->
+                        sensorViewModel.selectChild(child)
+                        navController.navigate(AuthCaresScreen.ChildProfile.name)
+                    }
                 )
             }
             composable(AuthCaresScreen.Settings.name) {
@@ -300,10 +295,17 @@ fun MainApp() {
                 )
             }
             composable(AuthCaresScreen.AI.name) {
-                AsistenteIAScreen(onBackClick = { navController.popBackStack() })
+                AsistenteIAScreen(
+                    sensorState = sensorState,
+                    onBackClick = { navController.popBackStack() }
+                )
             }
             composable(AuthCaresScreen.ChildProfile.name) {
-                PerfilDetalladoScreen(onBackClick = { navController.popBackStack() })
+                PerfilDetalladoScreen(
+                    child = sensorState.selectedChild,
+                    onBackClick = { navController.popBackStack() },
+                    onNavigateTo = { screen -> navController.navigate(screen.name) }
+                )
             }
             composable(AuthCaresScreen.SettingsAlerts.name) {
                 ConfiguracionAlertasScreen(onBackClick = { navController.popBackStack() })

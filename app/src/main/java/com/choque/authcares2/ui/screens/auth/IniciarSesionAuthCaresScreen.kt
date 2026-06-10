@@ -66,6 +66,7 @@ fun IniciarSesionAuthCaresScreen(
     errorMessage: String? = null,
     isLoading: Boolean = false,
     modifier: Modifier = Modifier,
+    currentPage: Int = 2,
     onEmailChange: (String) -> Unit = {},
     onPasswordChange: (String) -> Unit = {},
     onLoginClick: () -> Unit = {},
@@ -88,7 +89,7 @@ fun IniciarSesionAuthCaresScreen(
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            OnboardingDots(currentPage = 2, pageCount = 3)
+            OnboardingDots(currentPage = currentPage, pageCount = 3)
 
             Spacer(modifier = Modifier.height(32.dp))
 

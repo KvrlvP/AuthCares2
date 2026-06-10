@@ -2,6 +2,7 @@ package com.choque.authcares2.ui.screens.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -58,7 +59,8 @@ import com.choque.authcares2.viewmodels.ChildInfo
 fun NinosRegistradosScreen(
     children: List<ChildInfo> = emptyList(),
     modifier: Modifier = Modifier,
-    onNavigateTo: (AuthCaresScreen) -> Unit = {}
+    onNavigateTo: (AuthCaresScreen) -> Unit = {},
+    onChildClick: (ChildInfo) -> Unit = {}
 ) {
     Surface(
         modifier = modifier.fillMaxSize(),
@@ -101,7 +103,8 @@ fun NinosRegistradosScreen(
                         initialLetter = child.name.take(1).uppercase(),
                         name = child.name,
                         details = "${child.fechaNacimiento ?: "Edad desconocida"} • TEA Nivel ${child.nivelTea ?: "-"}",
-                        watchStatus = if (child.relojId.isNullOrBlank()) "Sin reloj asignado" else "Reloj: ${child.relojId}"
+                        watchStatus = if (child.relojId.isNullOrBlank()) "Sin reloj asignado" else "Reloj: ${child.relojId}",
+                        onClick = { onChildClick(child) }
                     )
                 }
             }
@@ -201,7 +204,8 @@ private fun ChildCard(
     name: String,
     details: String,
     watchStatus: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
 ) {
     Box(
         modifier = modifier
@@ -209,6 +213,7 @@ private fun ChildCard(
             .clip(RoundedCornerShape(24.dp))
             .background(AuthCaresWhiteSurface)
             .border(1.dp, AuthCaresOutlineVariant, RoundedCornerShape(24.dp))
+            .clickable(onClick = onClick)
     ) {
         Box(
             modifier = Modifier

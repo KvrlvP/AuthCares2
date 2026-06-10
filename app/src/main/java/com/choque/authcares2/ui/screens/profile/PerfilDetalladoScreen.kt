@@ -51,11 +51,14 @@ import com.choque.authcares2.ui.theme.AuthCaresSecondaryContainer
 import com.choque.authcares2.ui.theme.AuthCaresSurface
 import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainer
 import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
+import com.choque.authcares2.viewmodels.ChildInfo
 
 @Composable
 fun PerfilDetalladoScreen(
-    onBackClick: () -> Unit = {}, // AGREGADO
-    modifier: Modifier = Modifier
+    child: ChildInfo?,
+    onBackClick: () -> Unit = {},
+    modifier: Modifier = Modifier,
+    onNavigateTo: (com.choque.authcares2.AuthCaresScreen) -> Unit = {}
 ) {
     Surface(
         modifier = modifier.fillMaxSize(),
@@ -66,7 +69,7 @@ fun PerfilDetalladoScreen(
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
         ) {
-            PerfilTopBar(onBackClick = onBackClick) // CONECTADO
+            PerfilTopBar(onBackClick = onBackClick)
 
             Column(
                 modifier = Modifier
@@ -74,9 +77,9 @@ fun PerfilDetalladoScreen(
                     .padding(horizontal = 20.dp, vertical = 24.dp),
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
-                ProfileHeaderCard()
+                ProfileHeaderCard(child = child)
                 QuickActionsSection()
-                WatchConnectionCard()
+                WatchConnectionCard(relojId = child?.relojId, onNavigateTo = onNavigateTo)
                 SupportNetworkSection()
                 EditInfoButton()
             }
@@ -114,7 +117,7 @@ private fun PerfilTopBar(onBackClick: () -> Unit) { // RECIBE PARAMETRO
 }
 
 @Composable
-private fun ProfileHeaderCard() {
+private fun ProfileHeaderCard(child: ChildInfo?) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(32.dp),
@@ -127,19 +130,26 @@ private fun ProfileHeaderCard() {
                 .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(
-                painter = painterResource(R.drawable.avatar_lucas),
-                contentDescription = null,
+            Box(
                 modifier = Modifier
                     .size(100.dp)
                     .clip(CircleShape)
-                    .border(4.dp, AuthCaresSurface, CircleShape)
-            )
+                    .background(AuthCaresSecondaryContainer)
+                    .border(4.dp, AuthCaresSurface, CircleShape),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = child?.name?.take(1)?.uppercase() ?: "?",
+                    fontSize = 40.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = AuthCaresOnPrimary
+                )
+            }
 
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "Lucas",
+                text = child?.name ?: "Sin nombre",
                 fontSize = 32.sp,
                 fontWeight = FontWeight.ExtraBold,
                 color = AuthCaresOnSurface
@@ -152,11 +162,11 @@ private fun ProfileHeaderCard() {
             ) {
                 PillInfo(
                     icon = R.drawable.ic_authcares_cake,
-                    text = "6 años"
+                    text = child?.fechaNacimiento ?: "Sin fecha"
                 )
                 PillInfo(
                     icon = R.drawable.ic_authcares_psychology,
-                    text = "TEA Grado 1",
+                    text = "TEA Nivel ${child?.nivelTea ?: "-"}",
                     bgColor = AuthCaresSecondaryContainer,
                     textColor = AuthCaresOnSurface
                 )
@@ -229,11 +239,15 @@ private fun ActionButton(title: String, icon: Int, modifier: Modifier = Modifier
 }
 
 @Composable
-private fun WatchConnectionCard() {
+private fun WatchConnectionCard(
+    relojId: String?,
+    onNavigateTo: (com.choque.authcares2.AuthCaresScreen) -> Unit
+) {
+    val isConnected = !relojId.isNullOrBlank()
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(28.dp),
-        color = AuthCaresPrimary,
+        color = if (isConnected) AuthCaresPrimary else AuthCaresOutlineVariant,
         shadowElevation = 12.dp
     ) {
         Column(modifier = Modifier.padding(24.dp), verticalArrangement = Arrangement.spacedBy(20.dp)) {
@@ -243,24 +257,26 @@ private fun WatchConnectionCard() {
                         Image(painter = painterResource(R.drawable.ic_authcares_watch), contentDescription = null, modifier = Modifier.size(30.dp))
                     }
                     Column {
-                        Text(text = "RELOJ VINCULADO", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                        Text(text = if (isConnected) "RELOJ VINCULADO" else "SIN RELOJ", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = Color.White)
                         Spacer(modifier = Modifier.height(4.dp))
-                        Text(text = "AC8821", fontSize = 24.sp, fontWeight = FontWeight.ExtraBold, color = Color.White)
+                        Text(text = relojId ?: "----", fontSize = 24.sp, fontWeight = FontWeight.ExtraBold, color = Color.White)
                     }
                 }
                 Row(modifier = Modifier.clip(RoundedCornerShape(50.dp)).background(Color.White.copy(alpha = 0.15f)).padding(horizontal = 12.dp, vertical = 6.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(Color(0xFF4ADE80)))
-                    Text(text = "Conectado", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                    Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(if (isConnected) Color(0xFF4ADE80) else Color.Gray))
+                    Text(text = if (isConnected) "Conectado" else "Desconectado", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold)
                 }
             }
-            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                Button(onClick = {}, modifier = Modifier.weight(1f), shape = RoundedCornerShape(50.dp), colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = AuthCaresPrimary)) {
-                    Icon(painter = painterResource(R.drawable.ic_authcares_stats), contentDescription = null, modifier = Modifier.size(18.dp))
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = "Ver estadísticas", fontWeight = FontWeight.Bold)
-                }
-                IconButton(onClick = {}, modifier = Modifier.size(54.dp).clip(CircleShape).background(Color.White.copy(alpha = 0.15f))) {
-                    Icon(painter = painterResource(R.drawable.ic_authcares_share), contentDescription = null, tint = Color.White)
+            if (isConnected) {
+                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Button(onClick = { onNavigateTo(com.choque.authcares2.AuthCaresScreen.Stats) }, modifier = Modifier.weight(1f), shape = RoundedCornerShape(50.dp), colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = AuthCaresPrimary)) {
+                        Icon(painter = painterResource(R.drawable.ic_authcares_stats), contentDescription = null, modifier = Modifier.size(18.dp))
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(text = "Ver estadísticas", fontWeight = FontWeight.Bold)
+                    }
+                    IconButton(onClick = { onNavigateTo(com.choque.authcares2.AuthCaresScreen.Share) }, modifier = Modifier.size(54.dp).clip(CircleShape).background(Color.White.copy(alpha = 0.15f))) {
+                        Icon(painter = painterResource(R.drawable.ic_authcares_share), contentDescription = null, tint = Color.White)
+                    }
                 }
             }
         }
@@ -304,14 +320,5 @@ private fun EditInfoButton() {
         Icon(painter = painterResource(R.drawable.ic_authcares_edit), contentDescription = null, modifier = Modifier.size(20.dp))
         Spacer(modifier = Modifier.width(8.dp))
         Text(text = "Editar información", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PerfilDetalladoScreenPreview() {
-
-    AuthCares2Theme {
-        PerfilDetalladoScreen()
     }
 }
