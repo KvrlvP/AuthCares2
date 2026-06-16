@@ -75,6 +75,8 @@ fun MainApp() {
     val registerState by authViewModel.registerState.collectAsState()
     val sensorState by sensorViewModel.sensorState.collectAsState()
     val userName by authViewModel.userName.collectAsState()
+    val userFullName by authViewModel.userFullName.collectAsState()
+    val userEmail by authViewModel.userEmail.collectAsState()
 
     // Configuración de Google Sign-In
     val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -257,6 +259,7 @@ fun MainApp() {
             }
             composable(AuthCaresScreen.Stats.name) {
                 EstadisticasAuthCaresScreen(
+                    childName = sensorState.childName.ifBlank { "tu niño" },
                     onNavigateTo = { screen -> navController.navigate(screen.name) }
                 )
             }
@@ -272,6 +275,9 @@ fun MainApp() {
             }
             composable(AuthCaresScreen.Settings.name) {
                 PerfilAuthCaresScreen(
+                    userName = userFullName,
+                    userEmail = userEmail,
+                    childName = sensorState.childName,
                     onNavigateTo = { screen -> navController.navigate(screen.name) },
                     onLogout = {
                         authViewModel.logout()

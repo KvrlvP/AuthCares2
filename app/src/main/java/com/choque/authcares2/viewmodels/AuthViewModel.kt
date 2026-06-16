@@ -54,6 +54,12 @@ class AuthViewModel : ViewModel() {
     private val _userName = MutableStateFlow("Usuario")
     val userName: StateFlow<String> = _userName.asStateFlow()
 
+    private val _userFullName = MutableStateFlow("Usuario")
+    val userFullName: StateFlow<String> = _userFullName.asStateFlow()
+
+    private val _userEmail = MutableStateFlow("")
+    val userEmail: StateFlow<String> = _userEmail.asStateFlow()
+
     init {
         loadUserName()
     }
@@ -62,22 +68,28 @@ class AuthViewModel : ViewModel() {
         val user = auth.currentUser
         if (user == null) {
             _userName.value = "Usuario"
+            _userFullName.value = "Usuario"
+            _userEmail.value = ""
             return
         }
 
+        _userEmail.value = user.email ?: ""
+
         // 1. Intentar desde el perfil de Auth (rápido)
-        val profileName = user.displayName?.split(" ")?.firstOrNull()
+        val profileName = user.displayName
         if (!profileName.isNullOrBlank()) {
-            _userName.value = profileName
+            _userFullName.value = profileName
+            _userName.value = profileName.split(" ").firstOrNull() ?: profileName
         }
 
         // 2. Respaldo desde Firestore (infalible)
         viewModelScope.launch {
             try {
                 val doc = firestore.collection("usuarios").document(user.uid).get().await()
-                val firestoreName = doc.getString("nombre")?.split(" ")?.firstOrNull()
+                val firestoreName = doc.getString("nombre")
                 if (!firestoreName.isNullOrBlank()) {
-                    _userName.value = firestoreName
+                    _userFullName.value = firestoreName
+                    _userName.value = firestoreName.split(" ").firstOrNull() ?: firestoreName
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

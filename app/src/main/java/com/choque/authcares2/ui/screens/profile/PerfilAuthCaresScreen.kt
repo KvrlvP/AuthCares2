@@ -1,6 +1,5 @@
 package com.choque.authcares2.ui.screens.profile
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -51,6 +50,9 @@ import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
 
 @Composable
 fun PerfilAuthCaresScreen(
+    userName: String = "Usuario",
+    userEmail: String = "",
+    childName: String = "",
     modifier: Modifier = Modifier,
     onNavigateTo: (AuthCaresScreen) -> Unit = {},
     onLogout: () -> Unit = {}
@@ -67,7 +69,7 @@ fun PerfilAuthCaresScreen(
                 .padding(top = 16.dp, bottom = 24.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            ProfileCard()
+            ProfileCard(userName = userName, userEmail = userEmail, childName = childName)
             PrivacyAlertCard()
             SettingsGrid()
             LogoutButton(onClick = onLogout)
@@ -77,7 +79,12 @@ fun PerfilAuthCaresScreen(
 
 
 @Composable
-private fun ProfileCard(modifier: Modifier = Modifier) {
+private fun ProfileCard(
+    modifier: Modifier = Modifier,
+    userName: String,
+    userEmail: String,
+    childName: String
+) {
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -105,19 +112,26 @@ private fun ProfileCard(modifier: Modifier = Modifier) {
                 .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(
-                painter = painterResource(R.drawable.avatar_elena),
-                contentDescription = null,
+            Box(
                 modifier = Modifier
                     .size(96.dp)
                     .clip(CircleShape)
-                    .border(4.dp, AuthCaresSurface, CircleShape)
-            )
+                    .background(AuthCaresSecondaryContainer)
+                    .border(4.dp, AuthCaresSurface, CircleShape),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = userName.take(1).uppercase(),
+                    fontSize = 36.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = AuthCaresOnPrimary
+                )
+            }
 
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "Elena Martínez",
+                text = userName,
                 color = AuthCaresOnSurface,
                 fontSize = 22.sp,
                 lineHeight = 28.sp,
@@ -127,7 +141,7 @@ private fun ProfileCard(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.height(4.dp))
 
             Text(
-                text = "elena.cuidadora@authcares.com",
+                text = userEmail.ifBlank { "Sin correo" },
                 color = AuthCaresOnSurfaceVariant,
                 fontSize = 16.sp
             )
@@ -137,13 +151,13 @@ private fun ProfileCard(modifier: Modifier = Modifier) {
             Row(
                 modifier = Modifier
                     .clip(RoundedCornerShape(24.dp))
-                    .background(AuthCaresSecondaryContainer)
+                    .background(AuthCaresPrimaryFixed.copy(alpha = 0.2f))
                     .padding(horizontal = 18.dp, vertical = 8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Cuidadora Principal",
-                    color = AuthCaresOnPrimary,
+                    text = if (childName.isNotBlank()) "Cuidador de $childName" else "Cuidador Responsable",
+                    color = AuthCaresPrimary,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold
                 )

@@ -20,17 +20,19 @@ data class ChatMessage(
 class AsistenteViewModel(application: Application) : AndroidViewModel(application) {
     private val apiKey = BuildConfig.GOOGLE_AI_API_KEY
 
-    private val generativeModel = GenerativeModel(
-        modelName = "gemini-1.5-flash",
-        apiKey = apiKey,
-        systemInstruction = content {
-            text("""
-                Eres el Asistente AuthCares. Tu propósito es ayudar a los padres y cuidadores a interpretar los datos de los relojes inteligentes de los niños a su cuidado, especialmente niños con tendencia a la ansiedad o neurodivergencia.
-                Sé empático, claro y ofrece recomendaciones prácticas basadas en los datos que se te proporcionen.
-                Si los datos indican estrés, adviértelo amablemente y sugiere estrategias de calma.
-            """.trimIndent())
-        }
-    )
+    private val generativeModel by lazy {
+        GenerativeModel(
+            modelName = "gemini-1.5-flash",
+            apiKey = apiKey,
+            systemInstruction = content {
+                text("""
+                    Eres el Asistente AuthCares. Tu propósito es ayudar a los padres y cuidadores a interpretar los datos de los relojes inteligentes de los niños a su cuidado, especialmente niños con tendencia a la ansiedad o neurodivergencia.
+                    Sé empático, claro y ofrece recomendaciones prácticas basadas en los datos que se te proporcionen.
+                    Si los datos indican estrés, adviértelo amablemente y sugiere estrategias de calma.
+                """.trimIndent())
+            }
+        )
+    }
 
     private val _messages = MutableStateFlow<List<ChatMessage>>(emptyList())
     val messages: StateFlow<List<ChatMessage>> = _messages.asStateFlow()
@@ -69,6 +71,11 @@ class AsistenteViewModel(application: Application) : AndroidViewModel(applicatio
 
         viewModelScope.launch {
             try {
+                if (apiKey.isBlank() || apiKey == "null") {
+                    addMessage("Error: No se ha configurado la API Key de Google AI. Por favor, revisa local.properties.", isFromUser = false)
+                    return@launch
+                }
+
                 val contextPrompt = "${getChildContext(sensorState)}\n\nPregunta del padre: $userText"
 
                 val response = generativeModel.generateContent(contextPrompt)
@@ -81,7 +88,17 @@ class AsistenteViewModel(application: Application) : AndroidViewModel(applicatio
 
             } catch (e: Exception) {
                 e.printStackTrace()
-                addMessage("Error de conexión con la IA. Por favor intenta de nuevo.", isFromUser = false)
+                val errorMsg = when {
+                    e.message?.contains("API_KEY_INVALID") == true -> 
+                        "La API Key de Google AI no es válida. Por favor verifica tu local.properties."
+                    e.message?.contains("PERMISSION_DENIED") == true ->
+                        "Permiso denegado. Revisa si tu API Key tiene acceso a Gemini API."
+                    e.message?.contains("USER_LOCATION_NOT_SUPPORTED") == true ->
+                        "Lo siento, Gemini no está disponible en tu ubicación actual."
+                    else -> 
+                        "Error: ${e.localizedMessage ?: "Conexión con la IA fallida. Intenta de nuevo."}"
+                }
+                addMessage(errorMsg, isFromUser = false)
             } finally {
                 _isLoading.value = false
             }

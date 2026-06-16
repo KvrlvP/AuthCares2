@@ -1,6 +1,5 @@
 package com.choque.authcares2.ui.screens.stats
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -55,6 +54,7 @@ import com.choque.authcares2.ui.theme.MetricTempBg
 
 @Composable
 fun EstadisticasAuthCaresScreen(
+    childName: String = "tu niño",
     modifier: Modifier = Modifier,
     onNavigateTo: (AuthCaresScreen) -> Unit = {}
 ) {
@@ -72,11 +72,11 @@ fun EstadisticasAuthCaresScreen(
                 .padding(top = 16.dp, bottom = 24.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            ChildSelector()
+            ChildSelector(childName = childName)
             TimeFilters(selectedFilter = selectedFilter, onFilterClick = { selectedFilter = it })
             ActivityChart()
             MetricsGrid()
-            ShareableSummary()
+            ShareableSummary(childName = childName)
         }
     }
 }
@@ -84,7 +84,10 @@ fun EstadisticasAuthCaresScreen(
 // --- COMPONENTES DE ESTADÍSTICAS ---
 
 @Composable
-private fun ChildSelector(modifier: Modifier = Modifier) {
+private fun ChildSelector(
+    modifier: Modifier = Modifier,
+    childName: String
+) {
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -93,15 +96,20 @@ private fun ChildSelector(modifier: Modifier = Modifier) {
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Image(
-            painter = painterResource(R.drawable.avatar_lucas),
-            contentDescription = null,
-            modifier = Modifier.size(48.dp).clip(CircleShape),
-            contentScale = ContentScale.Crop
-        )
+        Box(
+            modifier = Modifier.size(48.dp).clip(CircleShape).background(AuthCaresSecondaryContainer),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = childName.take(1).uppercase(),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = AuthCaresOnPrimary
+            )
+        }
         Column(modifier = Modifier.weight(1f).padding(start = 12.dp)) {
-            Text(text = "Bennet", fontSize = 18.sp, fontWeight = FontWeight.SemiBold, color = AuthCaresOnSurface)
-            Text(text = "3 años", fontSize = 14.sp, color = AuthCaresOnSurfaceVariant)
+            Text(text = childName, fontSize = 18.sp, fontWeight = FontWeight.SemiBold, color = AuthCaresOnSurface)
+            Text(text = "Seguimiento activo", fontSize = 14.sp, color = AuthCaresOnSurfaceVariant)
         }
         Icon(
             painter = painterResource(R.drawable.ic_authcares_menu),
@@ -271,7 +279,7 @@ private fun MetricCard(
 }
 
 @Composable
-private fun ShareableSummary(modifier: Modifier = Modifier) {
+private fun ShareableSummary(childName: String, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -289,7 +297,7 @@ private fun ShareableSummary(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = "Todo se ve muy bien hoy. Leo ha mantenido un ritmo cardíaco tranquilo y su nivel de actividad es el habitual para una tarde de juegos. Se nota descansado y feliz.",
+            text = "Todo se ve muy bien hoy. $childName ha mantenido un ritmo cardíaco tranquilo y su nivel de actividad es el habitual para una tarde de juegos. Se nota descansado y feliz.",
             fontSize = 16.sp,
             lineHeight = 24.sp,
             color = AuthCaresOnSurfaceVariant

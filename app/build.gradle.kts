@@ -1,16 +1,20 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.services)
 }
 
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
+}
+
 android {
     namespace = "com.choque.authcares2"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.choque.authcares2"
@@ -24,7 +28,7 @@ android {
         buildConfigField(
             "String",
             "GOOGLE_AI_API_KEY",
-            "\"${project.findProperty("GOOGLE_AI_API_KEY")}\""
+            "\"${localProperties.getProperty("GOOGLE_AI_API_KEY") ?: ""}\""
         )
     }
 
@@ -73,5 +77,5 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-    implementation("com.google.ai.client.generativeai:generativeai:0.7.0")
+    implementation(libs.google.ai.generativeai)
 }
