@@ -64,24 +64,48 @@ fun PerfilDetalladoScreen(
         modifier = modifier.fillMaxSize(),
         color = AuthCaresSurface
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-        ) {
-            PerfilTopBar(onBackClick = onBackClick)
-
+        Box(modifier = Modifier.fillMaxSize()) {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp, vertical = 24.dp),
-                verticalArrangement = Arrangement.spacedBy(24.dp)
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
             ) {
-                ProfileHeaderCard(child = child)
-                QuickActionsSection()
-                WatchConnectionCard(relojId = child?.relojId, onNavigateTo = onNavigateTo)
-                SupportNetworkSection()
-                EditInfoButton()
+                PerfilTopBar(onBackClick = onBackClick)
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp, vertical = 24.dp),
+                    verticalArrangement = Arrangement.spacedBy(24.dp)
+                ) {
+                    ProfileHeaderCard(child = child)
+                    QuickActionsSection()
+                    WatchConnectionCard(relojId = child?.relojId, onNavigateTo = onNavigateTo)
+                    SupportNetworkSection()
+                    EditInfoButton()
+                }
+            }
+
+            // BOTÓN FLOTANTE DE ASISTENTE IA
+            Surface(
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(end = 20.dp, bottom = 24.dp),
+                shape = CircleShape,
+                color = Color.White,
+                shadowElevation = 12.dp,
+                border = BorderStroke(1.dp, AuthCaresOutlineVariant.copy(alpha = 0.3f))
+            ) {
+                IconButton(
+                    onClick = { onNavigateTo(com.choque.authcares2.AuthCaresScreen.AI) },
+                    modifier = Modifier.size(64.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.fab_asistente_ia),
+                        contentDescription = "Asistente IA",
+                        modifier = Modifier.size(36.dp)
+                    )
+                }
             }
         }
     }

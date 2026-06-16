@@ -22,6 +22,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -62,22 +63,46 @@ fun InicioAuthCaresScreen(
         modifier = modifier.fillMaxSize(),
         color = AuthCaresSurface
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(horizontal = 24.dp)
-                .padding(top = 16.dp, bottom = 24.dp),
-            verticalArrangement = Arrangement.spacedBy(24.dp)
-        ) {
-            GreetingSection(userName = userName)
-            LiveSensorSection(sensorState = sensorState)
-            StatusGrid(sensorState = sensorState)
+        Box(modifier = Modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = 24.dp)
+                    .padding(top = 16.dp, bottom = 24.dp),
+                verticalArrangement = Arrangement.spacedBy(24.dp)
+            ) {
+                GreetingSection(userName = userName)
+                LiveSensorSection(sensorState = sensorState)
+                StatusGrid(sensorState = sensorState)
 
-            RegisteredKidsSection(
-                children = sensorState.registeredChildren,
-                onChildClick = onChildClick
-            )
+                RegisteredKidsSection(
+                    children = sensorState.registeredChildren,
+                    onChildClick = onChildClick
+                )
+            }
+
+            // BOTÓN FLOTANTE DE ASISTENTE IA
+            Surface(
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(end = 20.dp, bottom = 24.dp),
+                shape = CircleShape,
+                color = Color.White,
+                shadowElevation = 12.dp,
+                border = androidx.compose.foundation.BorderStroke(1.dp, AuthCaresOutlineVariant.copy(alpha = 0.3f))
+            ) {
+                IconButton(
+                    onClick = { onNavigateTo(AuthCaresScreen.AI) },
+                    modifier = Modifier.size(64.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.fab_asistente_ia),
+                        contentDescription = "Asistente IA",
+                        modifier = Modifier.size(36.dp)
+                    )
+                }
+            }
         }
     }
 }
