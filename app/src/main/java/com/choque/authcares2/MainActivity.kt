@@ -33,7 +33,7 @@ import androidx.navigation.compose.rememberNavController
 import com.choque.authcares2.ui.components.HomeBottomBar
 import com.choque.authcares2.ui.components.HomeTab
 import com.choque.authcares2.ui.components.HomeTopBar
-import com.choque.authcares2.ui.screens.assistant.AsistenteIAScreen
+import com.choque.authcares2.features.assistant.ui.AsistenteIAScreen
 import com.choque.authcares2.features.auth.ui.BienvenidaAuthCaresScreen
 import com.choque.authcares2.features.auth.ui.InformacionAuthCaresScreen
 import com.choque.authcares2.features.auth.ui.IniciarSesionAuthCaresScreen

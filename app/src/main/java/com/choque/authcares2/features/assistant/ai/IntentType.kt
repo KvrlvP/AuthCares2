@@ -1,4 +1,4 @@
-package com.choque.authcares2.ai
+package com.choque.authcares2.features.assistant.ai
 
 enum class IntentType {
     CALM,

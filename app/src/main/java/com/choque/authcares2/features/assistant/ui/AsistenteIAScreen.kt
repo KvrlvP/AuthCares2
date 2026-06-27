@@ -1,4 +1,4 @@
-package com.choque.authcares2.ui.screens.assistant
+package com.choque.authcares2.features.assistant.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -59,7 +59,7 @@ import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
 import com.choque.authcares2.ui.theme.AlertRed
 import com.choque.authcares2.ui.theme.AuthCaresErrorContainer
 import com.choque.authcares2.ui.theme.AuthCaresOnErrorContainer
-import com.choque.authcares2.viewmodels.AsistenteViewModel
+import com.choque.authcares2.features.assistant.AsistenteViewModel
 
 @Composable
 fun AsistenteIAScreen(

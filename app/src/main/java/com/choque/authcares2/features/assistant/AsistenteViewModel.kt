@@ -1,4 +1,4 @@
-package com.choque.authcares2.viewmodels
+package com.choque.authcares2.features.assistant
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
