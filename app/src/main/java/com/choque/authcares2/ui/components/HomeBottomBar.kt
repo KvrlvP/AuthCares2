@@ -1,6 +1,7 @@
 package com.choque.authcares2.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -27,10 +29,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.choque.authcares2.R
 import com.choque.authcares2.ui.theme.AuthCares2Theme
+import com.choque.authcares2.ui.theme.AuthCaresNavigationBorder
+import com.choque.authcares2.ui.theme.AuthCaresNavigationGlass
+import com.choque.authcares2.ui.theme.AuthCaresNavigationShadow
 import com.choque.authcares2.ui.theme.AuthCaresOnSurfaceVariant
 import com.choque.authcares2.ui.theme.AuthCaresPrimary
 import com.choque.authcares2.ui.theme.AuthCaresSecondaryContainer
-import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
 
 enum class HomeTab { Inicio, Horarios, Ninos, Ajustes }
 
@@ -45,15 +49,23 @@ fun HomeBottomBar(
             .fillMaxWidth()
             .background(Color.Transparent)
             .navigationBarsPadding()
-            .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
+            .padding(start = 18.dp, end = 18.dp, bottom = 12.dp)
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(72.dp)
-                .clip(RoundedCornerShape(24.dp))
-                .background(AuthCaresWhiteSurface)
-                .padding(horizontal = 8.dp),
+                .height(76.dp)
+                .shadow(
+                    elevation = 18.dp,
+                    shape = RoundedCornerShape(30.dp),
+                    clip = false,
+                    ambientColor = AuthCaresNavigationShadow,
+                    spotColor = AuthCaresNavigationShadow
+                )
+                .clip(RoundedCornerShape(30.dp))
+                .background(AuthCaresNavigationGlass)
+                .border(1.dp, AuthCaresNavigationBorder, RoundedCornerShape(30.dp))
+                .padding(horizontal = 10.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
