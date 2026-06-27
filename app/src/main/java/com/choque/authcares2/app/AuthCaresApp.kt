@@ -1,0 +1,294 @@
+package com.choque.authcares2.app
+
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.choque.authcares2.R
+import com.choque.authcares2.features.alerts.ui.AlertasInteligentesScreen
+import com.choque.authcares2.features.alerts.ui.DetalleAlertaScreen
+import com.choque.authcares2.features.assistant.ui.AsistenteIAScreen
+import com.choque.authcares2.features.auth.AuthViewModel
+import com.choque.authcares2.features.auth.ui.AuthOnboardingPagerScreen
+import com.choque.authcares2.features.auth.ui.SplashVerificacionScreen
+import com.choque.authcares2.features.home.ui.InicioAuthCaresScreen
+import com.choque.authcares2.features.home.ui.InicioCentralizadoScreen
+import com.choque.authcares2.features.home.ui.NinosRegistradosScreen
+import com.choque.authcares2.features.monitoring.SensorViewModel
+import com.choque.authcares2.features.profile.ui.PerfilAuthCaresScreen
+import com.choque.authcares2.features.profile.ui.PerfilDetalladoScreen
+import com.choque.authcares2.features.settings.ui.ConfiguracionAlertasScreen
+import com.choque.authcares2.features.settings.ui.ConfiguracionRelojScreen
+import com.choque.authcares2.features.settings.ui.NingunRelojConectadoScreen
+import com.choque.authcares2.features.share.ui.CompartirAuthCaresScreen
+import com.choque.authcares2.features.stats.ui.EstadisticasAuthCaresScreen
+import com.choque.authcares2.navigation.AuthCaresScreen
+import com.choque.authcares2.ui.components.HomeBottomBar
+import com.choque.authcares2.ui.components.HomeTab
+import com.choque.authcares2.ui.components.HomeTopBar
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+@Composable
+fun AuthCaresApp() {
+    val authViewModel: AuthViewModel = viewModel()
+    val sensorViewModel: SensorViewModel = viewModel()
+    val navController = rememberNavController()
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+    val context = LocalContext.current
+
+    val loginState by authViewModel.loginState.collectAsState()
+    val sensorState by sensorViewModel.sensorState.collectAsState()
+    val userName by authViewModel.userName.collectAsState()
+    val userFullName by authViewModel.userFullName.collectAsState()
+    val userEmail by authViewModel.userEmail.collectAsState()
+
+    // Configuración de Google Sign-In
+    val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        .requestIdToken(stringResource(id = R.string.default_web_client_id))
+        .requestEmail()
+        .build()
+    val googleSignInClient = GoogleSignIn.getClient(context, gso)
+
+    val googleLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+        try {
+            val account = task.getResult(ApiException::class.java)
+            account.idToken?.let { token ->
+                authViewModel.signInWithGoogle(token)
+            } ?: run {
+                authViewModel.setLoading(false)
+            }
+        } catch (e: ApiException) {
+            authViewModel.setLoading(false)
+            e.printStackTrace()
+        }
+    }
+
+    LaunchedEffect(loginState.isSuccess) {
+        if (loginState.isSuccess) {
+            sensorViewModel.loadChildAndWatch()
+            navController.navigate(AuthCaresScreen.Splash.name) {
+                popUpTo(AuthCaresScreen.Welcome.name) { inclusive = true }
+            }
+        }
+    }
+
+    LaunchedEffect(currentRoute, sensorState.isLoading) {
+        if (currentRoute == AuthCaresScreen.Splash.name && !sensorState.isLoading) {
+            val destination = if (sensorState.relojId == null) {
+                AuthCaresScreen.NoWatchConnected.name
+            } else {
+                AuthCaresScreen.Home.name
+            }
+            navController.navigate(destination) {
+                popUpTo(AuthCaresScreen.Splash.name) { inclusive = true }
+            }
+        }
+    }
+
+    LaunchedEffect(currentRoute, sensorState.isLoading, sensorState.relojId) {
+        if (
+            currentRoute == AuthCaresScreen.Home.name &&
+            !sensorState.isLoading &&
+            sensorState.relojId == null
+        ) {
+            navController.navigate(AuthCaresScreen.NoWatchConnected.name)
+        }
+        
+        if (
+            currentRoute == AuthCaresScreen.NoWatchConnected.name &&
+            sensorState.relojId != null
+        ) {
+            navController.navigate(AuthCaresScreen.Home.name) {
+                popUpTo(AuthCaresScreen.NoWatchConnected.name) { inclusive = true }
+            }
+        }
+    }
+
+    val startDestination = if (authViewModel.isUserLoggedIn()) {
+        AuthCaresScreen.Home.name
+    } else {
+        AuthCaresScreen.Welcome.name
+    }
+
+    val mainTabs = listOf(
+        AuthCaresScreen.Home.name,
+        AuthCaresScreen.Stats.name,
+        AuthCaresScreen.Kids.name,
+        AuthCaresScreen.Settings.name
+    )
+
+    Scaffold(
+        topBar = {
+            if (currentRoute in mainTabs) {
+                HomeTopBar(
+                    onNavigateTo = { screen -> navController.navigate(screen.name) },
+                    onBackClick = null
+                )
+            }
+        },
+        bottomBar = {
+            if (currentRoute in mainTabs) {
+                val selectedTab = when (currentRoute) {
+                    AuthCaresScreen.Home.name -> HomeTab.Inicio
+                    AuthCaresScreen.Stats.name -> HomeTab.Horarios
+                    AuthCaresScreen.Kids.name -> HomeTab.Ninos
+                    AuthCaresScreen.Settings.name -> HomeTab.Ajustes
+                    else -> HomeTab.Inicio
+                }
+                HomeBottomBar(
+                    selectedTab = selectedTab,
+                    onTabClick = { tab ->
+                        val route = when (tab) {
+                            HomeTab.Inicio -> AuthCaresScreen.Home.name
+                            HomeTab.Horarios -> AuthCaresScreen.Stats.name
+                            HomeTab.Ninos -> AuthCaresScreen.Kids.name
+                            HomeTab.Ajustes -> AuthCaresScreen.Settings.name
+                        }
+                        if (currentRoute != route) {
+                            navController.navigate(route) {
+                                popUpTo(AuthCaresScreen.Home.name) { saveState = true }
+                                launchSingleTop = true
+                                restoreState = true
+                            }
+                        }
+                    }
+                )
+            }
+        }
+    ) { innerPadding ->
+        NavHost(
+            navController = navController,
+            startDestination = startDestination,
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            composable(AuthCaresScreen.Welcome.name) {
+                AuthOnboardingPagerScreen(
+                    email = loginState.email,
+                    password = loginState.password,
+                    errorMessage = loginState.errorMessage,
+                    isLoading = loginState.isLoading,
+                    onEmailChange = { authViewModel.onLoginEmailChange(it) },
+                    onPasswordChange = { authViewModel.onLoginPasswordChange(it) },
+                    onLoginClick = { authViewModel.login() },
+                    onGoogleLoginClick = {
+                        authViewModel.setLoading(true)
+                        googleLauncher.launch(googleSignInClient.signInIntent)
+                    }
+                )
+            }
+            composable(AuthCaresScreen.Splash.name) {
+                SplashVerificacionScreen()
+            }
+            composable(AuthCaresScreen.Home.name) {
+                InicioAuthCaresScreen(
+                    userName = userName,
+                    sensorState = sensorState,
+                    onNavigateTo = { screen -> navController.navigate(screen.name) },
+                    onChildClick = { child ->
+                        sensorViewModel.selectChild(child)
+                        navController.navigate(AuthCaresScreen.ChildProfile.name)
+                    }
+                )
+            }
+            composable(AuthCaresScreen.Stats.name) {
+                EstadisticasAuthCaresScreen(
+                    childName = sensorState.childName.ifBlank { "tu niño" },
+                    onNavigateTo = { screen -> navController.navigate(screen.name) }
+                )
+            }
+            composable(AuthCaresScreen.Kids.name) {
+                NinosRegistradosScreen(
+                    children = sensorState.registeredChildren,
+                    onNavigateTo = { screen -> navController.navigate(screen.name) },
+                    onChildClick = { child ->
+                        sensorViewModel.selectChild(child)
+                        navController.navigate(AuthCaresScreen.ChildProfile.name)
+                    }
+                )
+            }
+            composable(AuthCaresScreen.Settings.name) {
+                PerfilAuthCaresScreen(
+                    userName = userFullName,
+                    userEmail = userEmail,
+                    childName = sensorState.childName,
+                    onNavigateTo = { screen -> navController.navigate(screen.name) },
+                    onLogout = {
+                        authViewModel.logout()
+                        navController.navigate(AuthCaresScreen.Welcome.name) {
+                            popUpTo(0) { inclusive = true }
+                        }
+                    }
+                )
+            }
+            composable(AuthCaresScreen.Alerts.name) {
+                AlertasInteligentesScreen(
+                    onNavigateTo = { screen -> navController.navigate(screen.name) }
+                )
+            }
+            composable(AuthCaresScreen.AlertDetail.name) {
+                DetalleAlertaScreen(
+                    onBackClick = { navController.popBackStack() },
+                    onMarkRevisedClick = { },
+                    onSharePsychologistClick = { navController.navigate(AuthCaresScreen.Share.name) },
+                    onCallSchoolClick = { }
+                )
+            }
+            composable(AuthCaresScreen.AI.name) {
+                AsistenteIAScreen(
+                    sensorState = sensorState,
+                    onBackClick = { navController.popBackStack() }
+                )
+            }
+            composable(AuthCaresScreen.ChildProfile.name) {
+                PerfilDetalladoScreen(
+                    child = sensorState.selectedChild,
+                    onBackClick = { navController.popBackStack() },
+                    onNavigateTo = { screen -> navController.navigate(screen.name) }
+                )
+            }
+            composable(AuthCaresScreen.SettingsAlerts.name) {
+                ConfiguracionAlertasScreen(onBackClick = { navController.popBackStack() })
+            }
+            composable(AuthCaresScreen.SettingsWatch.name) {
+                ConfiguracionRelojScreen(onBackClick = { navController.popBackStack() })
+            }
+            composable(AuthCaresScreen.NoWatchConnected.name) {
+                NingunRelojConectadoScreen(
+                    watchCode = sensorState.watchCodeInput,
+                    errorMessage = sensorState.errorMessage,
+                    isConnecting = sensorState.isConnecting,
+                    onWatchCodeChange = { sensorViewModel.onWatchCodeChange(it) },
+                    onConnectClick = { sensorViewModel.connectWatch() }
+                )
+            }
+            composable(AuthCaresScreen.Share.name) {
+                CompartirAuthCaresScreen(onBackClick = { navController.popBackStack() })
+            }
+            composable(AuthCaresScreen.HomeCentralized.name) {
+                InicioCentralizadoScreen(
+                    userName = userName,
+                    childName = sensorState.childName.ifBlank { "tu niño" },
+                    onNavigateTo = { screen -> navController.navigate(screen.name) }
+                )
+            }
+        }
+    }
+}
+
