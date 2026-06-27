@@ -4,7 +4,6 @@ enum class AuthCaresScreen {
     Welcome,
     Info,
     Login,
-    Register,
     Splash,
     Home,
     HomeCentralized,

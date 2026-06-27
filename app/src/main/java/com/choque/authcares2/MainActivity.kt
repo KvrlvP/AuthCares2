@@ -24,7 +24,6 @@ import com.choque.authcares2.ui.components.HomeTab
 import com.choque.authcares2.ui.components.HomeTopBar
 import com.choque.authcares2.ui.screens.assistant.AsistenteIAScreen
 import com.choque.authcares2.ui.screens.auth.BienvenidaAuthCaresScreen
-import com.choque.authcares2.ui.screens.auth.CrearCuentaAuthCaresScreen
 import com.choque.authcares2.ui.screens.auth.InformacionAuthCaresScreen
 import com.choque.authcares2.ui.screens.auth.IniciarSesionAuthCaresScreen
 import com.choque.authcares2.ui.screens.auth.SplashVerificacionScreen
@@ -72,7 +71,6 @@ fun MainApp() {
     val context = LocalContext.current
 
     val loginState by authViewModel.loginState.collectAsState()
-    val registerState by authViewModel.registerState.collectAsState()
     val sensorState by sensorViewModel.sensorState.collectAsState()
     val userName by authViewModel.userName.collectAsState()
     val userFullName by authViewModel.userFullName.collectAsState()
@@ -107,15 +105,6 @@ fun MainApp() {
             sensorViewModel.loadChildAndWatch()
             navController.navigate(AuthCaresScreen.Splash.name) {
                 popUpTo(AuthCaresScreen.Welcome.name) { inclusive = true }
-            }
-        }
-    }
-
-    LaunchedEffect(registerState.isSuccess) {
-        if (registerState.isSuccess) {
-            sensorViewModel.loadChildAndWatch()
-            navController.navigate(AuthCaresScreen.Splash.name) {
-                popUpTo(AuthCaresScreen.Register.name) { inclusive = true }
             }
         }
     }
@@ -219,25 +208,6 @@ fun MainApp() {
                     onPasswordChange = { authViewModel.onLoginPasswordChange(it) },
                     onLoginClick = { authViewModel.login() },
                     onGoogleLoginClick = {
-                        authViewModel.setLoading(true)
-                        googleLauncher.launch(googleSignInClient.signInIntent)
-                    },
-                    onCreateAccountClick = { navController.navigate(AuthCaresScreen.Register.name) }
-                )
-            }
-            composable(AuthCaresScreen.Register.name) {
-                CrearCuentaAuthCaresScreen(
-                    fullName = registerState.fullName,
-                    email = registerState.email,
-                    password = registerState.password,
-                    errorMessage = registerState.errorMessage,
-                    isLoading = registerState.isLoading,
-                    onFullNameChange = { authViewModel.onRegisterFullNameChange(it) },
-                    onEmailChange = { authViewModel.onRegisterEmailChange(it) },
-                    onPasswordChange = { authViewModel.onRegisterPasswordChange(it) },
-                    onAlreadyHaveAccountClick = { navController.popBackStack() },
-                    onRegisterClick = { authViewModel.register() },
-                    onGoogleRegisterClick = {
                         authViewModel.setLoading(true)
                         googleLauncher.launch(googleSignInClient.signInIntent)
                     }

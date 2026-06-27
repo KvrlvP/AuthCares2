@@ -20,7 +20,6 @@ fun AuthOnboardingPagerScreen(
     onPasswordChange: (String) -> Unit = {},
     onLoginClick: () -> Unit = {},
     onGoogleLoginClick: () -> Unit = {},
-    onCreateAccountClick: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val pagerState = rememberPagerState(pageCount = { 3 })
@@ -63,8 +62,7 @@ fun AuthOnboardingPagerScreen(
                     onEmailChange = onEmailChange,
                     onPasswordChange = onPasswordChange,
                     onLoginClick = onLoginClick,
-                    onGoogleLoginClick = onGoogleLoginClick,
-                    onCreateAccountClick = onCreateAccountClick
+                    onGoogleLoginClick = onGoogleLoginClick
                 )
             }
         }

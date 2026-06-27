@@ -143,7 +143,10 @@ class SensorViewModel : ViewModel() {
     }
 
     private fun listenToLatestSensors(watchId: String) {
-        if (currentWatchId == watchId && latestListener != null) return
+        if (currentWatchId == watchId && latestListener != null) {
+            _sensorState.update { it.copy(isLoading = false) }
+            return
+        }
 
         clearLatestListener()
         currentWatchId = watchId
