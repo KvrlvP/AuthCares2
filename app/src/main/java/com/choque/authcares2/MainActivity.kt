@@ -49,7 +49,7 @@ import com.choque.authcares2.features.settings.ui.ConfiguracionAlertasScreen
 import com.choque.authcares2.features.settings.ui.ConfiguracionRelojScreen
 import com.choque.authcares2.features.settings.ui.NingunRelojConectadoScreen
 import com.choque.authcares2.ui.screens.share.CompartirAuthCaresScreen
-import com.choque.authcares2.ui.screens.stats.EstadisticasAuthCaresScreen
+import com.choque.authcares2.features.stats.ui.EstadisticasAuthCaresScreen
 import com.choque.authcares2.ui.theme.AuthCares2Theme
 import com.choque.authcares2.features.alerts.service.CriticalAlertNotifier
 import androidx.core.content.ContextCompat

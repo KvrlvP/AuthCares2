@@ -1,4 +1,4 @@
-package com.choque.authcares2.ui.screens.stats
+package com.choque.authcares2.features.stats.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
