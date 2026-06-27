@@ -1,4 +1,4 @@
-package com.choque.authcares2.ui.screens.home
+package com.choque.authcares2.features.home.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

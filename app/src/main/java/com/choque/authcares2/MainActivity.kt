@@ -38,9 +38,9 @@ import com.choque.authcares2.features.auth.ui.BienvenidaAuthCaresScreen
 import com.choque.authcares2.features.auth.ui.InformacionAuthCaresScreen
 import com.choque.authcares2.features.auth.ui.IniciarSesionAuthCaresScreen
 import com.choque.authcares2.features.auth.ui.SplashVerificacionScreen
-import com.choque.authcares2.ui.screens.home.InicioAuthCaresScreen
-import com.choque.authcares2.ui.screens.home.InicioCentralizadoScreen
-import com.choque.authcares2.ui.screens.home.NinosRegistradosScreen
+import com.choque.authcares2.features.home.ui.InicioAuthCaresScreen
+import com.choque.authcares2.features.home.ui.InicioCentralizadoScreen
+import com.choque.authcares2.features.home.ui.NinosRegistradosScreen
 import com.choque.authcares2.ui.screens.profile.PerfilAuthCaresScreen
 import com.choque.authcares2.ui.screens.profile.PerfilDetalladoScreen
 import com.choque.authcares2.features.alerts.ui.AlertasInteligentesScreen
