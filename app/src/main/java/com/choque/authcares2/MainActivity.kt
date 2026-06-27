@@ -34,10 +34,10 @@ import com.choque.authcares2.ui.components.HomeBottomBar
 import com.choque.authcares2.ui.components.HomeTab
 import com.choque.authcares2.ui.components.HomeTopBar
 import com.choque.authcares2.ui.screens.assistant.AsistenteIAScreen
-import com.choque.authcares2.ui.screens.auth.BienvenidaAuthCaresScreen
-import com.choque.authcares2.ui.screens.auth.InformacionAuthCaresScreen
-import com.choque.authcares2.ui.screens.auth.IniciarSesionAuthCaresScreen
-import com.choque.authcares2.ui.screens.auth.SplashVerificacionScreen
+import com.choque.authcares2.features.auth.ui.BienvenidaAuthCaresScreen
+import com.choque.authcares2.features.auth.ui.InformacionAuthCaresScreen
+import com.choque.authcares2.features.auth.ui.IniciarSesionAuthCaresScreen
+import com.choque.authcares2.features.auth.ui.SplashVerificacionScreen
 import com.choque.authcares2.ui.screens.home.InicioAuthCaresScreen
 import com.choque.authcares2.ui.screens.home.InicioCentralizadoScreen
 import com.choque.authcares2.ui.screens.home.NinosRegistradosScreen
@@ -53,14 +53,14 @@ import com.choque.authcares2.ui.screens.stats.EstadisticasAuthCaresScreen
 import com.choque.authcares2.ui.theme.AuthCares2Theme
 import com.choque.authcares2.alerts.CriticalAlertNotifier
 import androidx.core.content.ContextCompat
-import com.choque.authcares2.viewmodels.AuthViewModel
+import com.choque.authcares2.features.auth.AuthViewModel
 import com.choque.authcares2.viewmodels.SensorViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import com.choque.authcares2.ui.screens.auth.AuthOnboardingPagerScreen
+import com.choque.authcares2.features.auth.ui.AuthOnboardingPagerScreen
 
 class MainActivity : ComponentActivity() {
     private val notificationPermissionLauncher = registerForActivityResult(
