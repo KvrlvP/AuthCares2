@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
@@ -51,7 +52,14 @@ fun HomeBottomBar(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .background(Color.Transparent)
+            .background(
+                Brush.verticalGradient(
+                    colors = listOf(
+                        Color.Transparent,
+                        AuthCaresNavigationGlass.copy(alpha = 0.72f)
+                    )
+                )
+            )
             .navigationBarsPadding()
             .padding(start = 18.dp, end = 18.dp, bottom = 12.dp)
     ) {
