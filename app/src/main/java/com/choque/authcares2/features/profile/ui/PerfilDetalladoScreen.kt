@@ -1,4 +1,4 @@
-package com.choque.authcares2.ui.screens.profile
+package com.choque.authcares2.features.profile.ui
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
