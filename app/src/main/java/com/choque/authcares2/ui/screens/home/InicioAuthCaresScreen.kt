@@ -49,7 +49,7 @@ import com.choque.authcares2.ui.theme.AuthCaresSecondaryFixed
 import com.choque.authcares2.ui.theme.AuthCaresSurface
 import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainerHigh
 import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
-import com.choque.authcares2.viewmodels.SensorUiState
+import com.choque.authcares2.core.model.SensorUiState
 
 @Composable
 fun InicioAuthCaresScreen(
@@ -57,7 +57,7 @@ fun InicioAuthCaresScreen(
     sensorState: SensorUiState = SensorUiState(),
     modifier: Modifier = Modifier,
     onNavigateTo: (AuthCaresScreen) -> Unit = {},
-    onChildClick: (com.choque.authcares2.viewmodels.ChildInfo) -> Unit = {}
+    onChildClick: (com.choque.authcares2.core.model.ChildInfo) -> Unit = {}
 ) {
     Surface(
         modifier = modifier.fillMaxSize(),
@@ -327,8 +327,8 @@ private fun StatusCardSync(modifier: Modifier = Modifier) {
 
 @Composable
 private fun RegisteredKidsSection(
-    children: List<com.choque.authcares2.viewmodels.ChildInfo>,
-    onChildClick: (com.choque.authcares2.viewmodels.ChildInfo) -> Unit = {}
+    children: List<com.choque.authcares2.core.model.ChildInfo>,
+    onChildClick: (com.choque.authcares2.core.model.ChildInfo) -> Unit = {}
 ) {
     Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
         Text(

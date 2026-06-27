@@ -53,7 +53,7 @@ import com.choque.authcares2.ui.theme.AuthCaresSecondaryContainer
 import com.choque.authcares2.ui.theme.AuthCaresSurface
 import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainer
 import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
-import com.choque.authcares2.viewmodels.ChildInfo
+import com.choque.authcares2.core.model.ChildInfo
 
 @Composable
 fun NinosRegistradosScreen(

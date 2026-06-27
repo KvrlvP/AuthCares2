@@ -64,7 +64,7 @@ import com.choque.authcares2.viewmodels.AsistenteViewModel
 @Composable
 fun AsistenteIAScreen(
     onBackClick: () -> Unit = {},
-    sensorState: com.choque.authcares2.viewmodels.SensorUiState = com.choque.authcares2.viewmodels.SensorUiState(),
+    sensorState: com.choque.authcares2.core.model.SensorUiState = com.choque.authcares2.core.model.SensorUiState(),
     viewModel: AsistenteViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {

@@ -2,6 +2,8 @@ package com.choque.authcares2.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.choque.authcares2.core.model.ChildInfo
+import com.choque.authcares2.core.model.SensorUiState
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -19,30 +21,6 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import kotlin.math.sqrt
-
-data class ChildInfo(
-    val id: String = "",
-    val name: String = "",
-    val relojId: String? = null,
-    val nivelTea: String? = null,
-    val fechaNacimiento: String? = null,
-    val avatarRes: Int? = null
-)
-
-data class SensorUiState(
-    val childName: String = "",
-    val relojId: String? = null,
-    val heartRate: Int? = null,
-    val movement: String = "Sin datos",
-    val status: String = "Cargando...",
-    val lastSync: String = "",
-    val isLoading: Boolean = true,
-    val errorMessage: String? = null,
-    val watchCodeInput: String = "",
-    val isConnecting: Boolean = false,
-    val registeredChildren: List<ChildInfo> = emptyList(),
-    val selectedChild: ChildInfo? = null
-)
 
 class SensorViewModel : ViewModel() {
 
