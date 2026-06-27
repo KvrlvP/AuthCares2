@@ -31,7 +31,7 @@
         </activity>
 
         <activity
-            android:name=".alerts.EmergencyAlertActivity"
+            android:name=".features.alerts.service.EmergencyAlertActivity"
             android:excludeFromRecents="true"
             android:exported="false"
             android:launchMode="singleTask"
@@ -40,7 +40,7 @@
             android:turnScreenOn="true" />
 
         <service
-            android:name=".alerts.EmergencyAlarmService"
+            android:name=".features.alerts.service.EmergencyAlarmService"
             android:exported="false"
             android:foregroundServiceType="specialUse">
             <property
@@ -49,7 +49,7 @@
         </service>
 
         <service
-            android:name=".alerts.CrisisFirebaseMessagingService"
+            android:name=".features.alerts.service.CrisisFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

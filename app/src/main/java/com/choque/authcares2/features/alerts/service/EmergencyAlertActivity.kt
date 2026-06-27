@@ -1,4 +1,4 @@
-﻿package com.choque.authcares2.alerts
+package com.choque.authcares2.features.alerts.service
 
 import android.content.Intent
 import android.graphics.Color

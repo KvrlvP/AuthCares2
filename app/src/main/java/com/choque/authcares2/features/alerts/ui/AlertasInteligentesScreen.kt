@@ -1,4 +1,4 @@
-package com.choque.authcares2.ui.screens.alerts
+package com.choque.authcares2.features.alerts.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.choque.authcares2.navigation.AuthCaresScreen
 import com.choque.authcares2.R
-import com.choque.authcares2.ui.model.AlertItem
+import com.choque.authcares2.features.alerts.model.AlertItem
 import com.choque.authcares2.ui.theme.AlertBlue
 import com.choque.authcares2.ui.theme.AlertOrange
 import com.choque.authcares2.ui.theme.AlertRed

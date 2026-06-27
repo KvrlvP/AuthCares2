@@ -1,4 +1,4 @@
-package com.choque.authcares2.ui.model
+package com.choque.authcares2.features.alerts.model
 
 import androidx.compose.ui.graphics.Color
 

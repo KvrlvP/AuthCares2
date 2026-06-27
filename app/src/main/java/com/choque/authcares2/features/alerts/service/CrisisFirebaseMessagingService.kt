@@ -1,4 +1,4 @@
-package com.choque.authcares2.alerts
+package com.choque.authcares2.features.alerts.service
 
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
