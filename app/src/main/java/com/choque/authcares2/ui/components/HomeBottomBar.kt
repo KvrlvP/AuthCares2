@@ -1,8 +1,12 @@
 package com.choque.authcares2.ui.components
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -12,15 +16,19 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.choque.authcares2.R
@@ -61,7 +69,8 @@ fun HomeBottomBar(
                 .clip(RoundedCornerShape(30.dp))
                 .background(AuthCaresNavigationGlass)
                 .border(1.dp, AuthCaresNavigationBorder, RoundedCornerShape(30.dp))
-                .padding(horizontal = 10.dp),
+                .padding(horizontal = 10.dp)
+                .selectableGroup(),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -82,8 +91,24 @@ private fun RowScope.BottomTabItem(
     onTabClick: (HomeTab) -> Unit
 ) {
     val selected = tab == selectedTab
-    val contentColor = if (selected) AuthCaresPrimary else AuthCaresOnSurfaceVariant
-    val containerColor = if (selected) AuthCaresNavigationSelected else Color.Transparent
+    val contentColor by animateColorAsState(
+        targetValue = if (selected) AuthCaresPrimary else AuthCaresOnSurfaceVariant,
+        animationSpec = tween(durationMillis = 180),
+        label = "Color de $label"
+    )
+    val containerColor by animateColorAsState(
+        targetValue = if (selected) AuthCaresNavigationSelected else Color.Transparent,
+        animationSpec = tween(durationMillis = 220),
+        label = "Fondo de $label"
+    )
+    val iconSize by animateDpAsState(
+        targetValue = if (selected) 30.dp else 27.dp,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessMediumLow
+        ),
+        label = "Tamaño de $label"
+    )
 
     Box(
         modifier = Modifier
@@ -92,14 +117,18 @@ private fun RowScope.BottomTabItem(
             .padding(horizontal = 3.dp)
             .clip(RoundedCornerShape(22.dp))
             .background(containerColor)
-            .clickable { onTabClick(tab) },
+            .selectable(
+                selected = selected,
+                onClick = { onTabClick(tab) },
+                role = Role.Tab
+            ),
         contentAlignment = Alignment.Center
     ) {
         Icon(
             painter = painterResource(icon),
             contentDescription = label,
             tint = contentColor,
-            modifier = Modifier.size(if (selected) 29.dp else 27.dp)
+            modifier = Modifier.size(iconSize)
         )
     }
 }
