@@ -5,7 +5,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,18 +21,16 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.choque.authcares2.R
 import com.choque.authcares2.ui.theme.AuthCares2Theme
 import com.choque.authcares2.ui.theme.AuthCaresNavigationBorder
 import com.choque.authcares2.ui.theme.AuthCaresNavigationGlass
+import com.choque.authcares2.ui.theme.AuthCaresNavigationSelected
 import com.choque.authcares2.ui.theme.AuthCaresNavigationShadow
 import com.choque.authcares2.ui.theme.AuthCaresOnSurfaceVariant
 import com.choque.authcares2.ui.theme.AuthCaresPrimary
-import com.choque.authcares2.ui.theme.AuthCaresSecondaryContainer
 
 enum class HomeTab { Inicio, Horarios, Ninos, Ajustes }
 
@@ -69,10 +65,10 @@ fun HomeBottomBar(
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            BottomTabItem(tab = HomeTab.Inicio, selectedTab = selectedTab, icon = R.drawable.ic_authcares_home, label = "Inicio", onTabClick = onTabClick)
-            BottomTabItem(tab = HomeTab.Horarios, selectedTab = selectedTab, icon = R.drawable.ic_authcares_calendar, label = "Horarios", onTabClick = onTabClick)
-            BottomTabItem(tab = HomeTab.Ninos, selectedTab = selectedTab, icon = R.drawable.ic_authcares_smile, label = "Niños", onTabClick = onTabClick)
-            BottomTabItem(tab = HomeTab.Ajustes, selectedTab = selectedTab, icon = R.drawable.ic_authcares_settings, label = "Ajustes", onTabClick = onTabClick)
+            BottomTabItem(HomeTab.Inicio, selectedTab, R.drawable.ic_authcares_home, "Inicio", onTabClick)
+            BottomTabItem(HomeTab.Horarios, selectedTab, R.drawable.ic_authcares_calendar, "Horarios", onTabClick)
+            BottomTabItem(HomeTab.Ninos, selectedTab, R.drawable.ic_authcares_smile, "Niños", onTabClick)
+            BottomTabItem(HomeTab.Ajustes, selectedTab, R.drawable.ic_authcares_settings, "Ajustes", onTabClick)
         }
     }
 }
@@ -87,36 +83,24 @@ private fun RowScope.BottomTabItem(
 ) {
     val selected = tab == selectedTab
     val contentColor = if (selected) AuthCaresPrimary else AuthCaresOnSurfaceVariant
-    val containerColor = if (selected) AuthCaresSecondaryContainer.copy(alpha = 0.7f) else Color.Transparent
+    val containerColor = if (selected) AuthCaresNavigationSelected else Color.Transparent
 
     Box(
         modifier = Modifier
             .weight(1f)
-            .height(56.dp)
-            .padding(horizontal = 2.dp)
-            .clip(RoundedCornerShape(16.dp))
+            .height(60.dp)
+            .padding(horizontal = 3.dp)
+            .clip(RoundedCornerShape(22.dp))
             .background(containerColor)
             .clickable { onTabClick(tab) },
         contentAlignment = Alignment.Center
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Icon(
-                painter = painterResource(icon),
-                contentDescription = null,
-                tint = contentColor,
-                modifier = Modifier.size(24.dp)
-            )
-            Text(
-                text = label,
-                color = contentColor,
-                fontSize = 11.sp,
-                fontWeight = if (selected) FontWeight.ExtraBold else FontWeight.Medium,
-                maxLines = 1
-            )
-        }
+        Icon(
+            painter = painterResource(icon),
+            contentDescription = label,
+            tint = contentColor,
+            modifier = Modifier.size(if (selected) 29.dp else 27.dp)
+        )
     }
 }
 
@@ -124,7 +108,7 @@ private fun RowScope.BottomTabItem(
 @Composable
 private fun HomeBottomBarPreview() {
     AuthCares2Theme {
-        Box(modifier = Modifier.background(Color.LightGray).padding(16.dp)) {
+        Box(modifier = Modifier.background(Color(0xFFE7EEF8)).padding(16.dp)) {
             HomeBottomBar(
                 selectedTab = HomeTab.Inicio,
                 onTabClick = {}
