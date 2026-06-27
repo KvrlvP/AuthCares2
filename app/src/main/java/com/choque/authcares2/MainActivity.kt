@@ -54,7 +54,7 @@ import com.choque.authcares2.ui.theme.AuthCares2Theme
 import com.choque.authcares2.features.alerts.service.CriticalAlertNotifier
 import androidx.core.content.ContextCompat
 import com.choque.authcares2.features.auth.AuthViewModel
-import com.choque.authcares2.viewmodels.SensorViewModel
+import com.choque.authcares2.features.monitoring.SensorViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
