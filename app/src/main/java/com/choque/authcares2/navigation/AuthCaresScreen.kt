@@ -1,4 +1,4 @@
-package com.choque.authcares2
+package com.choque.authcares2.navigation
 
 enum class AuthCaresScreen {
     Welcome,

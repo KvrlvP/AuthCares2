@@ -1,5 +1,7 @@
 package com.choque.authcares2
 
+import com.choque.authcares2.navigation.AuthCaresScreen
+
 import android.Manifest
 import android.app.AlertDialog
 import android.app.NotificationManager

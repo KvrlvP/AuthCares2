@@ -58,7 +58,7 @@ fun PerfilDetalladoScreen(
     child: ChildInfo?,
     onBackClick: () -> Unit = {},
     modifier: Modifier = Modifier,
-    onNavigateTo: (com.choque.authcares2.AuthCaresScreen) -> Unit = {}
+    onNavigateTo: (com.choque.authcares2.navigation.AuthCaresScreen) -> Unit = {}
 ) {
     Surface(
         modifier = modifier.fillMaxSize(),
@@ -97,7 +97,7 @@ fun PerfilDetalladoScreen(
                 border = BorderStroke(1.dp, AuthCaresOutlineVariant.copy(alpha = 0.3f))
             ) {
                 IconButton(
-                    onClick = { onNavigateTo(com.choque.authcares2.AuthCaresScreen.AI) },
+                    onClick = { onNavigateTo(com.choque.authcares2.navigation.AuthCaresScreen.AI) },
                     modifier = Modifier.size(64.dp)
                 ) {
                     Image(
@@ -265,7 +265,7 @@ private fun ActionButton(title: String, icon: Int, modifier: Modifier = Modifier
 @Composable
 private fun WatchConnectionCard(
     relojId: String?,
-    onNavigateTo: (com.choque.authcares2.AuthCaresScreen) -> Unit
+    onNavigateTo: (com.choque.authcares2.navigation.AuthCaresScreen) -> Unit
 ) {
     val isConnected = !relojId.isNullOrBlank()
     Surface(
@@ -293,12 +293,12 @@ private fun WatchConnectionCard(
             }
             if (isConnected) {
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    Button(onClick = { onNavigateTo(com.choque.authcares2.AuthCaresScreen.Stats) }, modifier = Modifier.weight(1f), shape = RoundedCornerShape(50.dp), colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = AuthCaresPrimary)) {
+                    Button(onClick = { onNavigateTo(com.choque.authcares2.navigation.AuthCaresScreen.Stats) }, modifier = Modifier.weight(1f), shape = RoundedCornerShape(50.dp), colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = AuthCaresPrimary)) {
                         Icon(painter = painterResource(R.drawable.ic_authcares_stats), contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(text = "Ver estadísticas", fontWeight = FontWeight.Bold)
                     }
-                    IconButton(onClick = { onNavigateTo(com.choque.authcares2.AuthCaresScreen.Share) }, modifier = Modifier.size(54.dp).clip(CircleShape).background(Color.White.copy(alpha = 0.15f))) {
+                    IconButton(onClick = { onNavigateTo(com.choque.authcares2.navigation.AuthCaresScreen.Share) }, modifier = Modifier.size(54.dp).clip(CircleShape).background(Color.White.copy(alpha = 0.15f))) {
                         Icon(painter = painterResource(R.drawable.ic_authcares_share), contentDescription = null, tint = Color.White)
                     }
                 }
