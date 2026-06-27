@@ -1,4 +1,4 @@
-package com.choque.authcares2.ui.screens.settings
+package com.choque.authcares2.features.settings.ui
 
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat

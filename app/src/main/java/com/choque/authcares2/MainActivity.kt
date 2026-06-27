@@ -45,9 +45,9 @@ import com.choque.authcares2.features.profile.ui.PerfilAuthCaresScreen
 import com.choque.authcares2.features.profile.ui.PerfilDetalladoScreen
 import com.choque.authcares2.features.alerts.ui.AlertasInteligentesScreen
 import com.choque.authcares2.features.alerts.ui.DetalleAlertaScreen
-import com.choque.authcares2.ui.screens.settings.ConfiguracionAlertasScreen
-import com.choque.authcares2.ui.screens.settings.ConfiguracionRelojScreen
-import com.choque.authcares2.ui.screens.settings.NingunRelojConectadoScreen
+import com.choque.authcares2.features.settings.ui.ConfiguracionAlertasScreen
+import com.choque.authcares2.features.settings.ui.ConfiguracionRelojScreen
+import com.choque.authcares2.features.settings.ui.NingunRelojConectadoScreen
 import com.choque.authcares2.ui.screens.share.CompartirAuthCaresScreen
 import com.choque.authcares2.ui.screens.stats.EstadisticasAuthCaresScreen
 import com.choque.authcares2.ui.theme.AuthCares2Theme
