@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.firebase.database.ktx)
 
     implementation("com.google.firebase:firebase-ai")
+    implementation("com.google.firebase:firebase-messaging")
 
     // Google Play
     implementation(libs.kotlinx.coroutines.play.services)
