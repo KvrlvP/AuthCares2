@@ -1,4 +1,4 @@
-package com.choque.authcares2.ui.screens.share
+package com.choque.authcares2.features.share.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
