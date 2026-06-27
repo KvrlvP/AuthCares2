@@ -3,13 +3,16 @@ package com.choque.authcares2.viewmodels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.ai.client.generativeai.GenerativeModel
-import com.google.ai.client.generativeai.type.content
+import com.google.firebase.Firebase
+import com.google.firebase.ai.ai
+import com.google.firebase.ai.type.GenerativeBackend
+import com.google.firebase.ai.type.content
+import com.google.firebase.ai.type.generationConfig
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import com.choque.authcares2.BuildConfig
+
 data class ChatMessage(
     val text: String,
     val isFromUser: Boolean,
@@ -18,18 +21,32 @@ data class ChatMessage(
 )
 
 class AsistenteViewModel(application: Application) : AndroidViewModel(application) {
-    private val apiKey = BuildConfig.GOOGLE_AI_API_KEY
 
     private val generativeModel by lazy {
-        GenerativeModel(
-            modelName = "gemini-1.5-flash",
-            apiKey = apiKey,
+        Firebase.ai(backend = GenerativeBackend.googleAI()).generativeModel(
+            modelName = "gemini-3.1-flash-lite",
+            generationConfig = generationConfig {
+                candidateCount = 1
+                maxOutputTokens = 250
+                temperature = 0.3f
+            },
             systemInstruction = content {
-                text("""
-                    Eres el Asistente AuthCares. Tu propósito es ayudar a los padres y cuidadores a interpretar los datos de los relojes inteligentes de los niños a su cuidado, especialmente niños con tendencia a la ansiedad o neurodivergencia.
-                    Sé empático, claro y ofrece recomendaciones prácticas basadas en los datos que se te proporcionen.
-                    Si los datos indican estrés, adviértelo amablemente y sugiere estrategias de calma.
-                """.trimIndent())
+                text(
+                    """
+                    Eres el Asistente AuthCares. Ayudas a padres y cuidadores a entender
+                    información de un smartwatch de un niño con autismo o ansiedad.
+
+                    Responde en español, con empatía y palabras sencillas.
+                    Contesta únicamente lo que la persona preguntó.
+                    Da primero una respuesta directa y, solo si ayuda, uno o dos pasos prácticos.
+                    No enumeres todos los datos disponibles ni repitas el contexto recibido.
+                    Usa solamente los datos relacionados con la pregunta.
+                    Mantén la respuesta breve: máximo 100 palabras.
+                    No diagnostiques ni reemplaces a un profesional de salud.
+                    Si hay señales que podrían ser urgentes, recomienda buscar ayuda médica.
+                    Si falta información esencial, haz una sola pregunta breve.
+                    """.trimIndent()
+                )
             }
         )
     }
@@ -41,26 +58,44 @@ class AsistenteViewModel(application: Application) : AndroidViewModel(applicatio
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
     init {
-        addMessage("¡Hola! Estoy analizando los datos en tiempo real. ¿En qué puedo ayudarte hoy?", isFromUser = false)
+        addMessage(
+            "¡Hola! Puedo ayudarte a entender los datos del reloj. ¿Qué quieres saber?",
+            isFromUser = false
+        )
     }
 
-    private fun getChildContext(sensorState: SensorUiState?): String {
-        if (sensorState == null) return "No hay datos de sensores disponibles en este momento."
+    private fun getRelevantChildContext(userText: String, sensorState: SensorUiState?): String {
+        if (sensorState == null) return "No hay datos del reloj disponibles."
+
+        val question = userText.lowercase()
+        val asksHeartRate = listOf(
+            "ritmo", "corazón", "corazon", "pulso", "bpm", "latido"
+        ).any(question::contains)
+        val asksMovement = listOf(
+            "movimiento", "actividad", "moviendo", "quieto", "quieta", "camina"
+        ).any(question::contains)
+        val asksGeneralState = listOf(
+            "cómo está", "como esta", "estado", "datos", "reloj", "sensor", "todo"
+        ).any(question::contains)
+
+        val relevantData = buildList {
+            if (asksHeartRate || asksGeneralState) {
+                add("Ritmo cardíaco: ${sensorState.heartRate?.let { "$it bpm" } ?: "sin datos"}")
+            }
+            if (asksMovement || asksGeneralState) {
+                add("Movimiento: ${sensorState.movement}")
+            }
+            if (asksGeneralState) {
+                add("Estado del reloj: ${sensorState.status}")
+            }
+        }
+
+        if (relevantData.isEmpty()) {
+            return "No se necesitan datos del reloj para responder esta pregunta."
+        }
 
         val childName = sensorState.childName.ifBlank { "el niño" }
-        val ritmoCardiaco = sensorState.heartRate
-        val movimiento = sensorState.movement
-        val status = sensorState.status
-        val lastSync = sensorState.lastSync
-
-        return """
-            Contexto actual del niño ($childName):
-            - Ritmo cardíaco: ${ritmoCardiaco ?: "No disponible"} lpm
-            - Movimiento: $movimiento
-            - Estado del sistema: $status
-            - Última sincronización: $lastSync
-            (Nota: Si el ritmo es > 100 y el movimiento es 'Lento', podría haber ansiedad)
-        """.trimIndent()
+        return "Datos relevantes de $childName:\n${relevantData.joinToString("\n")}"
     }
 
     fun sendMessage(userText: String, sensorState: SensorUiState? = null) {
@@ -71,34 +106,28 @@ class AsistenteViewModel(application: Application) : AndroidViewModel(applicatio
 
         viewModelScope.launch {
             try {
-                if (apiKey.isBlank() || apiKey == "null") {
-                    addMessage("Error: No se ha configurado la API Key de Google AI. Por favor, revisa local.properties.", isFromUser = false)
-                    return@launch
-                }
+                val context = getRelevantChildContext(userText, sensorState)
 
-                val contextPrompt = "${getChildContext(sensorState)}\n\nPregunta del padre: $userText"
+                val response = generativeModel.generateContent(
+                    content {
+                        text(context)
+                        text("Pregunta del cuidador: $userText")
+                    }
+                )
 
-                val response = generativeModel.generateContent(contextPrompt)
-                val aiResponseText = response.text ?: "Lo siento, no pude procesar la información en este momento."
+                val aiResponseText = response.text?.trim().takeUnless { it.isNullOrBlank() }
+                    ?: "No pude preparar una respuesta. Intenta preguntar de otra forma."
 
-                val showDataCard = aiResponseText.contains("ritmo cardíaco", ignoreCase = true) || 
-                                 aiResponseText.contains("bpm", ignoreCase = true)
+                val showDataCard = aiResponseText.contains("ritmo cardíaco", ignoreCase = true) ||
+                        aiResponseText.contains("bpm", ignoreCase = true)
 
                 addMessage(aiResponseText, isFromUser = false, hasDataCard = showDataCard)
-
             } catch (e: Exception) {
                 e.printStackTrace()
-                val errorMsg = when {
-                    e.message?.contains("API_KEY_INVALID") == true -> 
-                        "La API Key de Google AI no es válida. Por favor verifica tu local.properties."
-                    e.message?.contains("PERMISSION_DENIED") == true ->
-                        "Permiso denegado. Revisa si tu API Key tiene acceso a Gemini API."
-                    e.message?.contains("USER_LOCATION_NOT_SUPPORTED") == true ->
-                        "Lo siento, Gemini no está disponible en tu ubicación actual."
-                    else -> 
-                        "Error: ${e.localizedMessage ?: "Conexión con la IA fallida. Intenta de nuevo."}"
-                }
-                addMessage(errorMsg, isFromUser = false)
+                addMessage(
+                    "No pude conectarme con el asistente en este momento. Revisa tu conexión e inténtalo de nuevo.",
+                    isFromUser = false
+                )
             } finally {
                 _isLoading.value = false
             }
@@ -106,7 +135,7 @@ class AsistenteViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     private fun addMessage(text: String, isFromUser: Boolean, hasDataCard: Boolean = false) {
-        _messages.value = _messages.value + ChatMessage(
+        _messages.value += ChatMessage(
             text = text,
             isFromUser = isFromUser,
             hasDataCard = hasDataCard
