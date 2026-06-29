@@ -101,11 +101,24 @@ object CriticalAlertNotifier {
         title: String = "¡Alerta crítica!",
         message: String = "Se detectó una posible crisis. Revisa al niño inmediatamente."
     ) {
-        if (!hasNotificationPermission(context)) return
-        NotificationManagerCompat.from(context).notify(
-            NOTIFICATION_ID,
-            buildNotification(context, title, message)
-        )
+        if (
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            ContextCompat.checkSelfPermission(
+                context,
+                Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+
+        try {
+            NotificationManagerCompat.from(context).notify(
+                NOTIFICATION_ID,
+                buildNotification(context, title, message)
+            )
+        } catch (_: SecurityException) {
+            // El permiso puede cambiar antes de mostrar la alerta.
+        }
     }
 
     fun dismiss(context: Context) {
