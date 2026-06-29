@@ -1,4 +1,5 @@
 package com.choque.authcares2.features.stats.ui
+import android.widget.Toast
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -30,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -40,6 +42,8 @@ import com.choque.authcares2.features.stats.HeartRateBar
 import com.choque.authcares2.features.stats.StatisticsPeriod
 import com.choque.authcares2.features.stats.StatisticsUiState
 import com.choque.authcares2.features.stats.StatisticsViewModel
+import com.choque.authcares2.features.stats.StatisticsUiEvent
+import com.choque.authcares2.features.stats.share.AndroidSummarySharer
 import com.choque.authcares2.navigation.AuthCaresScreen
 import com.choque.authcares2.ui.theme.AuthCaresOnPrimary
 import com.choque.authcares2.ui.theme.AuthCaresOnSurface
@@ -80,10 +84,22 @@ fun EstadisticasEnVivoScreen(
     statisticsViewModel: StatisticsViewModel = viewModel()
 ) {
     val state by statisticsViewModel.uiState.collectAsState()
+    val context = LocalContext.current
 
     LaunchedEffect(watchId, childName) {
         statisticsViewModel.observeWatch(watchId, childName)
     }
+    LaunchedEffect(statisticsViewModel, context) {
+        statisticsViewModel.events.collect { event ->
+            when (event) {
+                is StatisticsUiEvent.ShareSummary ->
+                    AndroidSummarySharer.share(context, event.text)
+                is StatisticsUiEvent.ShowMessage ->
+                    Toast.makeText(context, event.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 
     Surface(
         modifier = modifier.fillMaxSize(),
@@ -110,7 +126,8 @@ fun EstadisticasEnVivoScreen(
                 MetricsGrid(state)
                 AutomaticSummary(
                     summary = state.summary,
-                    hasData = state.hasData
+                    hasData = state.hasData,
+                    onShare = statisticsViewModel::shareSummary
                 )
             }
         }
@@ -494,7 +511,11 @@ private fun EmptyMessage(message: String) {
 }
 
 @Composable
-private fun AutomaticSummary(summary: String, hasData: Boolean) {
+private fun AutomaticSummary(
+    summary: String,
+    hasData: Boolean,
+    onShare: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -537,7 +558,7 @@ private fun AutomaticSummary(summary: String, hasData: Boolean) {
         )
         Spacer(modifier = Modifier.height(24.dp))
         Button(
-            onClick = { },
+            onClick = onShare,
             enabled = hasData,
             modifier = Modifier
                 .fillMaxWidth()
@@ -555,7 +576,7 @@ private fun AutomaticSummary(summary: String, hasData: Boolean) {
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "COMPARTIR REPORTE",
+                text = "COMPARTIR RESUMEN",
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold
             )
