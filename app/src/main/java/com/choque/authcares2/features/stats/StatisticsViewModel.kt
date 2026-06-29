@@ -6,10 +6,15 @@ import com.choque.authcares2.features.stats.data.FirebaseStatisticsRepository
 import com.choque.authcares2.features.stats.data.StatisticsRepository
 import com.choque.authcares2.features.stats.model.HistoryMeasurement
 import com.choque.authcares2.features.stats.model.SensorVector
+import com.choque.authcares2.features.stats.report.PlainTextStatisticsReportFormatter
+import com.choque.authcares2.features.stats.report.StatisticsReport
+import com.choque.authcares2.features.stats.report.StatisticsReportFormatter
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -51,14 +56,24 @@ data class StatisticsUiState(
     val hasData: Boolean = false
 )
 
+sealed interface StatisticsUiEvent {
+    data class ShareSummary(val text: String) : StatisticsUiEvent
+    data class ShowMessage(val message: String) : StatisticsUiEvent
+}
+
 class StatisticsViewModel(
-    private val repository: StatisticsRepository = FirebaseStatisticsRepository()
+    private val repository: StatisticsRepository = FirebaseStatisticsRepository(),
+    private val reportFormatter: StatisticsReportFormatter =
+        PlainTextStatisticsReportFormatter()
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(StatisticsUiState())
     val uiState: StateFlow<StatisticsUiState> = _uiState.asStateFlow()
 
     private var history: List<HistoryMeasurement> = emptyList()
+    private val _events = Channel<StatisticsUiEvent>(Channel.BUFFERED)
+    val events = _events.receiveAsFlow()
+
     private var childName: String = "el niño"
     private var observedWatchId: String? = null
     private var historyJob: Job? = null
@@ -104,6 +119,42 @@ class StatisticsViewModel(
         if (_uiState.value.selectedPeriod == period) return
         _uiState.update { it.copy(selectedPeriod = period, isLoading = true) }
         recalculate()
+    }
+
+    fun shareSummary() {
+        val state = _uiState.value
+        val report = createReport(state)
+        if (report == null) {
+            _events.trySend(
+                StatisticsUiEvent.ShowMessage(
+                    "No hay datos suficientes para generar el resumen."
+                )
+            )
+            return
+        }
+        _events.trySend(
+            StatisticsUiEvent.ShareSummary(reportFormatter.format(report))
+        )
+    }
+
+    private fun createReport(state: StatisticsUiState): StatisticsReport? {
+        val average = state.averageHeartRate ?: return null
+        val maximum = state.maximumHeartRate ?: return null
+        val minimum = state.minimumHeartRate ?: return null
+        val activity = state.activityLevel ?: return null
+        if (!state.hasData || state.measurementCount == 0) return null
+
+        return StatisticsReport(
+            period = state.selectedPeriod,
+            childName = childName,
+            generatedAt = System.currentTimeMillis(),
+            averageHeartRate = average,
+            maximumHeartRate = maximum,
+            minimumHeartRate = minimum,
+            activityLevel = activity,
+            measurementCount = state.measurementCount,
+            automaticSummary = state.summary
+        )
     }
 
     private fun recalculate() {
