@@ -65,6 +65,7 @@ fun NavGraphBuilder.authCaresGraph(
             composable(AuthCaresScreen.Stats.name) {
                 EstadisticasAuthCaresScreen(
                     childName = sensorState.childName.ifBlank { "tu niño" },
+                    watchId = sensorState.relojId,
                     onNavigateTo = { screen -> navController.navigate(screen.name) }
                 )
             }
