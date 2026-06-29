@@ -264,7 +264,7 @@ class StatisticsViewModel(
             val bucketStart = start + index * DAY
             val bucketEnd = bucketStart + DAY
             HeartRateBar(
-                label = SimpleDateFormat("EEE", Locale("es"))
+                label = SimpleDateFormat("EEE", Locale.forLanguageTag("es"))
                     .format(Date(bucketStart))
                     .take(2)
                     .replaceFirstChar { it.uppercase() },
