@@ -1,15 +1,20 @@
 package com.choque.authcares2.features.alerts.model
 
-import androidx.compose.ui.graphics.Color
+enum class AlertType {
+    HEART_RATE,
+    INTENSE_MOVEMENT,
+    COMBINED
+}
 
 data class AlertItem(
+    val id: String,
     val childName: String,
-    val alertType: String,
+    val type: AlertType,
+    val title: String,
     val description: String,
-    val time: String,
-    val iconRes: Int,
-    val iconTint: Color,
-    val iconBg: Color,
-    val priorityColor: Color,
-    val borderColor: Color
+    val startedAt: Long,
+    val endedAt: Long,
+    val maximumHeartRate: Int?,
+    val maximumMovement: Double?,
+    val measurementCount: Int
 )
