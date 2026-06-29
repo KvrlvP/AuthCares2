@@ -5,9 +5,7 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,24 +38,30 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.choque.authcares2.R
+import com.choque.authcares2.features.alerts.model.AlertItem
+import com.choque.authcares2.features.alerts.model.AlertType
+import com.choque.authcares2.ui.theme.AlertBlue
+import com.choque.authcares2.ui.theme.AlertOrange
 import com.choque.authcares2.ui.theme.AlertRed
-import com.choque.authcares2.ui.theme.AuthCares2Theme
 import com.choque.authcares2.ui.theme.AuthCaresErrorContainer
 import com.choque.authcares2.ui.theme.AuthCaresOnPrimary
 import com.choque.authcares2.ui.theme.AuthCaresOnSurface
 import com.choque.authcares2.ui.theme.AuthCaresOnSurfaceVariant
 import com.choque.authcares2.ui.theme.AuthCaresOutlineVariant
 import com.choque.authcares2.ui.theme.AuthCaresPrimary
-import com.choque.authcares2.ui.theme.AuthCaresPrimaryContainer
 import com.choque.authcares2.ui.theme.AuthCaresSecondary
-import com.choque.authcares2.ui.theme.AuthCaresSecondaryContainer
 import com.choque.authcares2.ui.theme.AuthCaresSecondaryFixed
 import com.choque.authcares2.ui.theme.AuthCaresSurface
-import com.choque.authcares2.ui.theme.AuthCaresSurfaceContainer
+import com.choque.authcares2.ui.theme.AuthCaresTertiaryFixed
 import com.choque.authcares2.ui.theme.AuthCaresWhiteSurface
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import kotlin.math.max
 
 @Composable
 fun DetalleAlertaScreen(
+    alert: AlertItem?,
     onBackClick: () -> Unit = {},
     onMarkRevisedClick: () -> Unit = {},
     onSharePsychologistClick: () -> Unit = {},
@@ -69,30 +73,11 @@ fun DetalleAlertaScreen(
         color = AuthCaresSurface
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
-            // TopBar con flecha atrás
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(72.dp)
-                    .padding(horizontal = 16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                IconButton(onClick = onBackClick) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_authcares_arrow_back),
-                        contentDescription = "Volver",
-                        tint = AuthCaresOnSurface,
-                        modifier = Modifier.size(28.dp)
-                    )
-                }
-                Text(
-                    text = "Detalle de Alerta",
-                    color = AuthCaresOnSurface,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.SemiBold
-                )
-                Spacer(modifier = Modifier.width(48.dp)) // Para centrar el título
+            DetailTopBar(onBackClick = onBackClick)
+
+            if (alert == null) {
+                EmptyDetailState()
+                return@Column
             }
 
             Column(
@@ -102,17 +87,14 @@ fun DetalleAlertaScreen(
                     .padding(bottom = 32.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // HERO SECTION: Corazón pulsante y título
-                AlertHero()
+                AlertHero(alert = alert)
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                // Tarjeta de Explicación
-                ExplanationCard()
+                ExplanationCard(alert = alert)
 
                 Spacer(modifier = Modifier.weight(1f))
 
-                // Botones de Acción
                 ActionButtons(
                     onMarkRevisedClick = onMarkRevisedClick,
                     onSharePsychologistClick = onSharePsychologistClick,
@@ -124,7 +106,61 @@ fun DetalleAlertaScreen(
 }
 
 @Composable
-private fun AlertHero() {
+private fun DetailTopBar(onBackClick: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(72.dp)
+            .padding(horizontal = 16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        IconButton(onClick = onBackClick) {
+            Icon(
+                painter = painterResource(R.drawable.ic_authcares_arrow_back),
+                contentDescription = "Volver",
+                tint = AuthCaresOnSurface,
+                modifier = Modifier.size(28.dp)
+            )
+        }
+        Text(
+            text = "Detalle de Alerta",
+            color = AuthCaresOnSurface,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.SemiBold
+        )
+        Spacer(modifier = Modifier.width(48.dp))
+    }
+}
+
+@Composable
+private fun EmptyDetailState() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = "No hay una alerta seleccionada.",
+            fontSize = 18.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = AuthCaresOnSurface
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(
+            text = "Vuelve al centro de notificaciones para revisar las alertas reales del historial.",
+            fontSize = 15.sp,
+            lineHeight = 22.sp,
+            color = AuthCaresOnSurfaceVariant
+        )
+    }
+}
+
+@Composable
+private fun AlertHero(alert: AlertItem) {
+    val style = detailStyle(alert.type)
     val infiniteTransition = rememberInfiniteTransition(label = "pulse")
     val scale by infiniteTransition.animateFloat(
         initialValue = 1f,
@@ -159,27 +195,27 @@ private fun AlertHero() {
                     .fillMaxSize()
                     .scale(scale)
                     .clip(CircleShape)
-                    .background(AuthCaresErrorContainer.copy(alpha = alpha))
+                    .background(style.background.copy(alpha = alpha))
             )
 
             Box(
                 modifier = Modifier
                     .size(80.dp)
                     .clip(CircleShape)
-                    .background(AuthCaresErrorContainer),
+                    .background(style.background),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
-                    painter = painterResource(R.drawable.ic_authcares_heart),
+                    painter = painterResource(style.iconRes),
                     contentDescription = null,
-                    tint = AlertRed, // Usamos el color del tema
+                    tint = style.tint,
                     modifier = Modifier.size(48.dp)
                 )
             }
         }
 
         Text(
-            text = "Ritmo cardíaco elevado",
+            text = alert.title,
             fontSize = 28.sp,
             fontWeight = FontWeight.ExtraBold,
             letterSpacing = (-0.02).sp,
@@ -191,15 +227,15 @@ private fun AlertHero() {
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Icon(painter = painterResource(R.drawable.ic_authcares_watch), contentDescription = null, tint = AuthCaresOnSurfaceVariant, modifier = Modifier.size(18.dp))
-            Text(text = "10:30 AM", fontSize = 16.sp, color = AuthCaresOnSurfaceVariant)
-            Text(text = "•", fontSize = 16.sp, color = AuthCaresOnSurfaceVariant)
-            Text(text = "5 min", fontSize = 16.sp, color = AuthCaresOnSurfaceVariant)
+            Text(text = formatDate(alert.endedAt), fontSize = 16.sp, color = AuthCaresOnSurfaceVariant)
+            Text(text = "�", fontSize = 16.sp, color = AuthCaresOnSurfaceVariant)
+            Text(text = durationText(alert), fontSize = 16.sp, color = AuthCaresOnSurfaceVariant)
         }
     }
 }
 
 @Composable
-private fun ExplanationCard() {
+private fun ExplanationCard(alert: AlertItem) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(24.dp),
@@ -212,7 +248,10 @@ private fun ExplanationCard() {
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Box(
-                modifier = Modifier.size(40.dp).clip(CircleShape).background(AuthCaresSecondaryFixed),
+                modifier = Modifier
+                    .size(40.dp)
+                    .clip(CircleShape)
+                    .background(AuthCaresSecondaryFixed),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
@@ -223,7 +262,7 @@ private fun ExplanationCard() {
                 )
             }
             Text(
-                text = "Se detectó un aumento ligero en el ritmo cardíaco de Lucas durante la clase de educación física. Los niveles volvieron a la normalidad en 5 minutos.",
+                text = buildExplanation(alert),
                 fontSize = 16.sp,
                 lineHeight = 24.sp,
                 color = AuthCaresOnSurface,
@@ -265,7 +304,7 @@ private fun ActionButtons(
         ) {
             Icon(painter = painterResource(R.drawable.ic_authcares_share), contentDescription = null, modifier = Modifier.size(22.dp))
             Spacer(modifier = Modifier.width(10.dp))
-            Text(text = "Compartir con psicólogo", fontSize = 16.sp, fontWeight = FontWeight.Bold)
+            Text(text = "Compartir con psic�logo", fontSize = 16.sp, fontWeight = FontWeight.Bold)
         }
 
         OutlinedButton(
@@ -284,3 +323,43 @@ private fun ActionButtons(
         }
     }
 }
+
+private data class DetailVisualStyle(
+    val iconRes: Int,
+    val tint: Color,
+    val background: Color
+)
+
+private fun detailStyle(type: AlertType): DetailVisualStyle = when (type) {
+    AlertType.HEART_RATE -> DetailVisualStyle(
+        iconRes = R.drawable.ic_authcares_heart,
+        tint = AlertRed,
+        background = AuthCaresErrorContainer
+    )
+    AlertType.INTENSE_MOVEMENT -> DetailVisualStyle(
+        iconRes = R.drawable.ic_authcares_running,
+        tint = AlertBlue,
+        background = AuthCaresSecondaryFixed
+    )
+    AlertType.COMBINED -> DetailVisualStyle(
+        iconRes = R.drawable.ic_authcares_notifications_active,
+        tint = AlertOrange,
+        background = AuthCaresTertiaryFixed
+    )
+}
+
+private fun buildExplanation(alert: AlertItem): String {
+    val heartRate = alert.maximumHeartRate?.let { " Ritmo m�ximo: $it BPM." }.orEmpty()
+    val movement = alert.maximumMovement?.let { " Movimiento m�ximo: ${String.format(Locale.US, "%.1f", it)}." }.orEmpty()
+    return "${alert.description} Se detect� en ${alert.measurementCount} medici�n(es) del historial real.$heartRate$movement"
+}
+
+private fun durationText(alert: AlertItem): String {
+    val minutes = max(1L, (alert.endedAt - alert.startedAt) / 60_000L)
+    return "$minutes min"
+}
+
+private fun formatDate(timestamp: Long): String = SimpleDateFormat(
+    "dd MMM, HH:mm",
+    Locale.forLanguageTag("es")
+).format(Date(timestamp))

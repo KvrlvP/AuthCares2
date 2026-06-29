@@ -16,6 +16,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.choque.authcares2.R
+import com.choque.authcares2.features.alerts.AlertsViewModel
 import com.choque.authcares2.features.auth.AuthViewModel
 import com.choque.authcares2.features.monitoring.SensorViewModel
 import com.choque.authcares2.navigation.AuthCaresScreen
@@ -30,6 +31,7 @@ import com.google.android.gms.common.api.ApiException
 fun AuthCaresApp() {
     val authViewModel: AuthViewModel = viewModel()
     val sensorViewModel: SensorViewModel = viewModel()
+    val alertsViewModel: AlertsViewModel = viewModel()
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
@@ -41,7 +43,7 @@ fun AuthCaresApp() {
     val userFullName by authViewModel.userFullName.collectAsState()
     val userEmail by authViewModel.userEmail.collectAsState()
 
-    // Configuración de Google Sign-In
+    // ConfiguraciÃƒÂ³n de Google Sign-In
     val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
         .requestIdToken(stringResource(id = R.string.default_web_client_id))
         .requestEmail()
@@ -172,6 +174,7 @@ fun AuthCaresApp() {
                 userEmail = userEmail,
                 authViewModel = authViewModel,
                 sensorViewModel = sensorViewModel,
+                alertsViewModel = alertsViewModel,
                 onGoogleLogin = {
                     authViewModel.setLoading(true)
                     googleLauncher.launch(googleSignInClient.signInIntent)
@@ -179,4 +182,3 @@ fun AuthCaresApp() {
             )        }
     }
 }
-
