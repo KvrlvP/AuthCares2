@@ -6,7 +6,6 @@ enum class AuthCaresScreen {
     Login,
     Splash,
     Home,
-    HomeCentralized,
     Alerts,
     AI,
     Kids,

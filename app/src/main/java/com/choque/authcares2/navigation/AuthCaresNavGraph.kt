@@ -12,7 +12,6 @@ import com.choque.authcares2.features.auth.LoginState
 import com.choque.authcares2.features.auth.ui.AuthOnboardingPagerScreen
 import com.choque.authcares2.features.auth.ui.SplashVerificacionScreen
 import com.choque.authcares2.features.home.ui.InicioAuthCaresScreen
-import com.choque.authcares2.features.home.ui.InicioCentralizadoScreen
 import com.choque.authcares2.features.home.ui.NinosRegistradosScreen
 import com.choque.authcares2.features.monitoring.SensorViewModel
 import com.choque.authcares2.features.profile.ui.PerfilAuthCaresScreen
@@ -136,12 +135,5 @@ fun NavGraphBuilder.authCaresGraph(
             }
             composable(AuthCaresScreen.Share.name) {
                 CompartirAuthCaresScreen(onBackClick = { navController.popBackStack() })
-            }
-            composable(AuthCaresScreen.HomeCentralized.name) {
-                InicioCentralizadoScreen(
-                    userName = userName,
-                    childName = sensorState.childName.ifBlank { "tu niño" },
-                    onNavigateTo = { screen -> navController.navigate(screen.name) }
-                )
             }
 }
