@@ -112,11 +112,12 @@ class SensorViewModel : ViewModel() {
     }
 
     private suspend fun findAllChildrenForUser(uid: String): List<DocumentSnapshot> {
-        val querySnapshot = firestore.collection("ninos")
-            .whereEqualTo("padreId", uid)
+        val querySnapshot = firestore.collection("usuarios")
+            .document(uid)
+            .collection("ninos")
             .get()
             .await()
-        
+
         return querySnapshot.documents
     }
 
@@ -227,29 +228,32 @@ class SensorViewModel : ViewModel() {
         viewModelScope.launch {
             _sensorState.update { it.copy(isConnecting = true, errorMessage = null) }
             try {
-                val query = firestore.collection("ninos")
-                    .whereEqualTo("relojId", code)
-                    .limit(1)
-                    .get()
+                val userRef = firestore.collection("usuarios").document(uid)
+                val childrenDocs = findAllChildrenForUser(uid)
+                val selectedChildId = _sensorState.value.selectedChild?.id
+                val childDoc = childrenDocs.firstOrNull { it.id == selectedChildId }
+                    ?: childrenDocs.firstOrNull()
+
+                userRef.collection("relojes")
+                    .document(code)
+                    .set(
+                        mapOf(
+                            "relojId" to code,
+                            "codigo" to code,
+                            "vinculadoEn" to System.currentTimeMillis()
+                        )
+                    )
                     .await()
 
-                val childDoc = query.documents.firstOrNull()
-
                 if (childDoc != null) {
-                    firestore.collection("ninos").document(childDoc.id)
-                        .update("padreId", uid)
+                    userRef.collection("ninos")
+                        .document(childDoc.id)
+                        .update("relojId", code)
                         .await()
-
-                    _sensorState.update { it.copy(isConnecting = false, watchCodeInput = "") }
-                    loadChildAndWatch()
-                } else {
-                    _sensorState.update {
-                        it.copy(
-                            isConnecting = false,
-                            errorMessage = "No encontramos un reloj con ese código."
-                        )
-                    }
                 }
+
+                _sensorState.update { it.copy(isConnecting = false, watchCodeInput = "") }
+                loadChildAndWatch()
             } catch (e: Exception) {
                 e.printStackTrace() // Esto imprimirá el error real en el Logcat
                 _sensorState.update {
