@@ -1,0 +1,264 @@
+{"kind":"deck","id":"pr/8owbe8","name":"Deck"}
+{"kind":"layout","layoutId":"fc4bebde-fcbb-46cf-8ea1-2a008c655f26","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"3c478221-8ebb-41a3-b4d8-406c6539ff34","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/e95fs7","slide":1,"title":"PROYECTO UNIVERSITARIO","textShapes":7}
+{"kind":"shape","id":"sh/vahoza1g","slide":1,"bbox":[910,-190,520,520]}
+{"kind":"shape","id":"sh/ovahoza1","slide":1,"bbox":[-180,500,420,420]}
+{"kind":"shape","id":"sh/6hcrmhk3","slide":1,"bbox":[80,82,220,38]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":1,"text":"PROYECTO UNIVERSITARIO","textPreview":"PROYECTO UNIVERSITARIO","textChars":22,"textLines":1,"bbox":[96,90,188,22]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":1,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[80,188,610,92]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":1,"text":"Monitoreo inteligente para acompañar a niños con TEA en tiempo real","textPreview":"Monitoreo inteligente para acompañar a niños con TEA en tiempo real","textChars":67,"textLines":1,"bbox":[84,286,610,86]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":1,"text":"Galaxy Watch · Firebase · IA · Android","textPreview":"Galaxy Watch · Firebase · IA · Android","textChars":38,"textLines":1,"bbox":[86,404,520,34]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":1,"text":"Convierte datos en cuidado.","textPreview":"Convierte datos en cuidado.","textChars":27,"textLines":1,"bbox":[86,560,520,40]}
+{"kind":"textbox","id":"sh/nuxc3ylc","slide":1,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[76,676,160,24]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1172,676,40,24]}
+{"kind":"image","id":"im/87ed8bat","slide":1,"name":"","geometry":"roundRect","alt":"Imagen principal de AuthCares","bbox":[720,86,420,420]}
+{"kind":"notes","id":"nt/e95fs7","slide":1,"text":"OBJETIVO: Abrir como producto, no como tarea universitaria.\nDECIR: Buenos días. Somos el equipo de AuthCares. Hoy no queremos mostrar solo pantallas; queremos contar la historia de Bennett y cómo la tecnología puede ayudar a sus cuidadores a acompañarlo mejor.\nEVITAR: Empezar hablando de código o librerías.\nIMÁGENES: Banner/logo de AuthCares, mockup de app y reloj.\nICONOS: corazón, reloj, escudo.\nANIMACIÓN: logo con fade, subtítulo después.\nTRANSICIÓN: Para entender por qué existe AuthCares, primero veamos el problema.\nTIEMPO: 30 segundos."}
+{"kind":"slide","id":"sl/ow8vfz","slide":2,"title":"El problema","textShapes":9}
+{"kind":"shape","id":"sh/2lszqtcj","slide":2,"bbox":[910,-190,520,520]}
+{"kind":"shape","id":"sh/d8bat47y","slide":2,"bbox":[-180,500,420,420]}
+{"kind":"textbox","id":"sh/knih4byh","slide":2,"text":"El problema","textPreview":"El problema","textChars":11,"textLines":1,"bbox":[76,66,760,58]}
+{"kind":"textbox","id":"sh/vu9knih4","slide":2,"text":"El acompañamiento no siempre ocurre en tiempo real.","textPreview":"El acompañamiento no siempre ocurre en tiempo real.","textChars":51,"textLines":1,"bbox":[78,128,680,60]}
+{"kind":"textbox","id":"sh/d0z61032","slide":2,"text":"Padres y cuidadores necesitan información clara cuando el niño no está cerca.","textPreview":"Padres y cuidadores necesitan información clara cuando el niño no está cerca.","textChars":77,"textLines":1,"bbox":[82,222,595,94]}
+{"kind":"shape","id":"sh/kf6dcbul","slide":2,"bbox":[86,392,150,38]}
+{"kind":"textbox","id":"sh/vixczed8","slide":2,"text":"Distancia","textPreview":"Distancia","textChars":9,"textLines":1,"bbox":[102,400,118,22]}
+{"kind":"shape","id":"sh/2x4nap4r","slide":2,"bbox":[258,392,210,38]}
+{"kind":"textbox","id":"sh/gfmlkjm1","slide":2,"text":"Poca información","textPreview":"Poca información","textChars":16,"textLines":1,"bbox":[274,400,178,22]}
+{"kind":"shape","id":"sh/90je9cvi","slide":2,"bbox":[492,392,210,38]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":2,"text":"Respuesta tardía","textPreview":"Respuesta tardía","textChars":16,"textLines":1,"bbox":[508,400,178,22]}
+{"kind":"textbox","id":"sh/rytsvu9k","slide":2,"text":"No se trata de vigilar más. Se trata de acompañar mejor.","textPreview":"No se trata de vigilar más. Se trata de acompañar mejor.","textChars":56,"textLines":1,"bbox":[86,518,620,38]}
+{"kind":"textbox","id":"sh/g7adsji5","slide":2,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[76,676,160,24]}
+{"kind":"textbox","id":"sh/9s36hcrm","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1172,676,40,24]}
+{"kind":"image","id":"im/bulwval8","slide":2,"name":"","geometry":"roundRect","alt":"Acompañamiento","bbox":[760,108,360,360]}
+{"kind":"notes","id":"nt/ow8vfz","slide":2,"text":"OBJETIVO: Mostrar una necesidad humana.\nDECIR: Muchos padres de niños con TEA no siempre pueden estar presentes durante el día. El niño puede estar en el colegio, terapia o con otro cuidador. En esos momentos, cualquier cambio importante puede pasar desapercibido o llegar tarde.\nEVITAR: Decir que todos los niños con TEA tienen crisis o que la app diagnostica.\nIMÁGENES: cuidador mirando el celular, niño en ambiente escolar.\nICONOS: familia, alerta, reloj.\nANIMACIÓN: aparecen Distancia, Poca información y Respuesta tardía uno por uno.\nTRANSICIÓN: Con ese problema en mente, diseñamos una solución conectada.\nTIEMPO: 35 segundos."}
+{"kind":"slide","id":"sl/75m24q","slide":3,"title":"Nuestra solución","textShapes":13}
+{"kind":"shape","id":"sh/i5sneloj","slide":3,"bbox":[910,-190,520,520]}
+{"kind":"shape","id":"sh/pwb2hwfy","slide":3,"bbox":[-180,500,420,420]}
+{"kind":"textbox","id":"sh/0bi9s36h","slide":3,"text":"Nuestra solución","textPreview":"Nuestra solución","textChars":16,"textLines":1,"bbox":[76,66,760,58]}
+{"kind":"textbox","id":"sh/7y1kre1w","slide":3,"text":"AuthCares conecta al niño, el reloj y el cuidador.","textPreview":"AuthCares conecta al niño, el reloj y el cuidador.","textChars":50,"textLines":1,"bbox":[78,128,680,60]}
+{"kind":"shape","id":"sh/ed8v6psf","slide":3,"bbox":[112,285,190,88]}
+{"kind":"textbox","id":"sh/p4r65wju","slide":3,"text":"👦","textPreview":"👦","textChars":2,"textLines":1,"bbox":[130,302,44,44]}
+{"kind":"textbox","id":"sh/wjudg7ad","slide":3,"text":"Bennett","textPreview":"Bennett","textChars":7,"textLines":1,"bbox":[180,313,110,34]}
+{"kind":"shape","id":"sh/72x4nap4","slide":3,"bbox":[384,285,190,88]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":3,"text":"⌚","textPreview":"⌚","textChars":1,"textLines":1,"bbox":[402,302,44,44]}
+{"kind":"textbox","id":"sh/032lszqt","slide":3,"text":"Reloj","textPreview":"Reloj","textChars":5,"textLines":1,"bbox":[452,313,110,34]}
+{"kind":"shape","id":"sh/tovahoza","slide":3,"bbox":[656,285,190,88]}
+{"kind":"textbox","id":"sh/ixczed8v","slide":3,"text":"☁","textPreview":"☁","textChars":1,"textLines":1,"bbox":[674,302,44,44]}
+{"kind":"textbox","id":"sh/bi9s36hc","slide":3,"text":"Firebase","textPreview":"Firebase","textChars":8,"textLines":1,"bbox":[724,313,110,34]}
+{"kind":"shape","id":"sh/0fepkzup","slide":3,"bbox":[928,285,190,88]}
+{"kind":"textbox","id":"sh/p0bi9s36","slide":3,"text":"📱","textPreview":"📱","textChars":2,"textLines":1,"bbox":[946,302,44,44]}
+{"kind":"textbox","id":"sh/i9s36hcr","slide":3,"text":"Cuidador","textPreview":"Cuidador","textChars":8,"textLines":1,"bbox":[996,313,110,34]}
+{"kind":"shape","id":"sh/bulwval8","slide":3,"bbox":[302,329,78,0]}
+{"kind":"shape","id":"sh/0je9cvix","slide":3,"bbox":[574,329,78,0]}
+{"kind":"shape","id":"sh/t47y1kre","slide":3,"bbox":[846,329,78,0]}
+{"kind":"textbox","id":"sh/xobm58z2","slide":3,"text":"Una plataforma que transforma datos del reloj en información útil para actuar mejor.","textPreview":"Una plataforma que transforma datos del reloj en información útil para actuar mejor.","textChars":84,"textLines":1,"bbox":[174,474,930,70]}
+{"kind":"textbox","id":"sh/83itgfml","slide":3,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[76,676,160,24]}
+{"kind":"textbox","id":"sh/fil0rqd4","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1172,676,40,24]}
+{"kind":"notes","id":"nt/75m24q","slide":3,"text":"OBJETIVO: Presentar la solución como un flujo completo.\nDECIR: AuthCares utiliza un Galaxy Watch para capturar señales como ritmo cardíaco y movimiento. Esa información viaja a Firebase y se muestra en la app móvil para que el cuidador pueda monitorear, recibir alertas, consultar estadísticas y apoyarse en inteligencia artificial.\nEVITAR: Enumerar todas las pantallas todavía.\nIMÁGENES: reloj, nube, celular conectados.\nICONOS: niño, watch, cloud, smartphone.\nANIMACIÓN: cada bloque aparece en orden.\nTRANSICIÓN: Ahora veamos cómo fluye la información dentro del sistema.\nTIEMPO: 35 segundos."}
+{"kind":"slide","id":"sl/cf6wmh","slide":4,"title":"Arquitectura completa","textShapes":15}
+{"kind":"shape","id":"sh/val87ed8","slide":4,"bbox":[910,-190,520,520]}
+{"kind":"shape","id":"sh/kre1w7mp","slide":4,"bbox":[-180,500,420,420]}
+{"kind":"textbox","id":"sh/dcbulwva","slide":4,"text":"Arquitectura completa","textPreview":"Arquitectura completa","textChars":21,"textLines":1,"bbox":[76,66,760,58]}
+{"kind":"textbox","id":"sh/2x4nap4r","slide":4,"text":"Galaxy Watch → Firebase → App móvil → App web → IA","textPreview":"Galaxy Watch → Firebase → App móvil → App web → IA","textChars":50,"textLines":1,"bbox":[78,128,680,60]}
+{"kind":"shape","id":"sh/vixczed8","slide":4,"bbox":[76,278,174,112]}
+{"kind":"textbox","id":"sh/k3q5o7qp","slide":4,"text":"⌚","textPreview":"⌚","textChars":1,"textLines":1,"bbox":[76,292,174,44]}
+{"kind":"textbox","id":"sh/donyd0z6","slide":4,"text":"Galaxy Watch","textPreview":"Galaxy Watch","textChars":12,"textLines":1,"bbox":[86,342,154,28]}
+{"kind":"shape","id":"sh/29gr2p8n","slide":4,"bbox":[250,334,46,0]}
+{"kind":"shape","id":"sh/vu9knih4","slide":4,"bbox":[304,278,174,112]}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":4,"text":"🔥","textPreview":"🔥","textChars":2,"textLines":1,"bbox":[304,292,174,44]}
+{"kind":"textbox","id":"sh/adsji5sn","slide":4,"text":"Firebase","textPreview":"Firebase","textChars":8,"textLines":1,"bbox":[314,342,154,28]}
+{"kind":"shape","id":"sh/h4byhgn2","slide":4,"bbox":[478,334,46,0]}
+{"kind":"shape","id":"sh/sji5snel","slide":4,"bbox":[532,278,174,112]}
+{"kind":"textbox","id":"sh/3m94fu18","slide":4,"text":"📱","textPreview":"📱","textChars":2,"textLines":1,"bbox":[532,292,174,44]}
+{"kind":"textbox","id":"sh/a5gbq1or","slide":4,"text":"App móvil","textPreview":"App móvil","textChars":9,"textLines":1,"bbox":[542,342,154,28]}
+{"kind":"shape","id":"sh/lszqtcj6","slide":4,"bbox":[706,334,46,0]}
+{"kind":"shape","id":"sh/s72x4nap","slide":4,"bbox":[760,278,174,112]}
+{"kind":"textbox","id":"sh/zidonyd0","slide":4,"text":"💻","textPreview":"💻","textChars":2,"textLines":1,"bbox":[760,292,174,44]}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":4,"text":"App web","textPreview":"App web","textChars":7,"textLines":1,"bbox":[770,342,154,28]}
+{"kind":"shape","id":"sh/ylc7u54z","slide":4,"bbox":[934,334,46,0]}
+{"kind":"shape","id":"sh/r65wjudg","slide":4,"bbox":[988,278,174,112]}
+{"kind":"textbox","id":"sh/gr2p8nqx","slide":4,"text":"✦","textPreview":"✦","textChars":1,"textLines":1,"bbox":[988,292,174,44]}
+{"kind":"textbox","id":"sh/9cvixcze","slide":4,"text":"IA","textPreview":"IA","textChars":2,"textLines":1,"bbox":[998,342,154,28]}
+{"kind":"textbox","id":"sh/yxobm58z","slide":4,"text":"Firebase funciona como el puente central: autentica, guarda datos y actualiza la información en tiempo real.","textPreview":"Firebase funciona como el puente central: autentica, guarda datos y actualiza la información en tiempo real.","textChars":108,"textLines":1,"bbox":[150,472,980,58]}
+{"kind":"textbox","id":"sh/nih4byhg","slide":4,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[76,676,160,24]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1172,676,40,24]}
+{"kind":"notes","id":"nt/cf6wmh","slide":4,"text":"OBJETIVO: Explicar el sistema completo sin saturar.\nDECIR: El flujo inicia en el Galaxy Watch. El reloj envía datos a Firebase. Firebase conecta la información. La app móvil permite monitorear. La app web complementa la administración. La IA ayuda a interpretar y orientar.\nEVITAR: Explicar código, clases o paquetes.\nIMÁGENES: diagrama de flujo.\nICONOS: reloj, Firebase, celular, laptop, cerebro.\nANIMACIÓN: bloques aparecen de izquierda a derecha.\nTRANSICIÓN: Para construir esto usamos tecnologías modernas.\nTIEMPO: 45 segundos."}
+{"kind":"slide","id":"sl/k1fxth","slide":5,"title":"Tecnologías utilizadas","textShapes":22}
+{"kind":"shape","id":"sh/4zidonyd","slide":5,"bbox":[910,-190,520,520]}
+{"kind":"shape","id":"sh/fepkzupw","slide":5,"bbox":[-180,500,420,420]}
+{"kind":"textbox","id":"sh/mtwra5gb","slide":5,"text":"Tecnologías utilizadas","textPreview":"Tecnologías utilizadas","textChars":22,"textLines":1,"bbox":[76,66,760,58]}
+{"kind":"textbox","id":"sh/xc3ylc7u","slide":5,"text":"Una base moderna para un producto real.","textPreview":"Una base moderna para un producto real.","textChars":39,"textLines":1,"bbox":[78,128,680,60]}
+{"kind":"shape","id":"sh/4r65wjud","slide":5,"bbox":[86,210,318,82]}
+{"kind":"textbox","id":"sh/f6dcbulw","slide":5,"text":"Kotlin","textPreview":"Kotlin","textChars":6,"textLines":1,"bbox":[110,226,260,26]}
+{"kind":"textbox","id":"sh/mlkjm1cf","slide":5,"text":"Lenguaje móvil","textPreview":"Lenguaje móvil","textChars":14,"textLines":1,"bbox":[110,258,260,22]}
+{"kind":"shape","id":"sh/x0nuxc3y","slide":5,"bbox":[460,210,318,82]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":5,"text":"Jetpack Compose","textPreview":"Jetpack Compose","textChars":15,"textLines":1,"bbox":[484,226,260,26]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":5,"text":"Interfaz moderna","textPreview":"Interfaz moderna","textChars":16,"textLines":1,"bbox":[484,258,260,22]}
+{"kind":"shape","id":"sh/vy90je9c","slide":5,"bbox":[834,210,318,82]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":5,"text":"MVVM","textPreview":"MVVM","textChars":4,"textLines":1,"bbox":[858,226,260,26]}
+{"kind":"textbox","id":"sh/d4vmtwra","slide":5,"text":"Orden y separación","textPreview":"Orden y separación","textChars":18,"textLines":1,"bbox":[858,258,260,22]}
+{"kind":"shape","id":"sh/61032lsz","slide":5,"bbox":[86,328,318,82]}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":5,"text":"Firebase Auth","textPreview":"Firebase Auth","textChars":13,"textLines":1,"bbox":[110,344,260,26]}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":5,"text":"Inicio seguro","textPreview":"Inicio seguro","textChars":13,"textLines":1,"bbox":[110,376,260,22]}
+{"kind":"shape","id":"sh/dsji5sne","slide":5,"bbox":[460,328,318,82]}
+{"kind":"textbox","id":"sh/6tovahoz","slide":5,"text":"Firestore","textPreview":"Firestore","textChars":9,"textLines":1,"bbox":[484,344,260,26]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":5,"text":"Datos de usuarios","textPreview":"Datos de usuarios","textChars":17,"textLines":1,"bbox":[484,376,260,22]}
+{"kind":"shape","id":"sh/r65wjudg","slide":5,"bbox":[834,328,318,82]}
+{"kind":"textbox","id":"sh/ylc7u54z","slide":5,"text":"Realtime DB","textPreview":"Realtime DB","textChars":11,"textLines":1,"bbox":[858,344,260,26]}
+{"kind":"textbox","id":"sh/9cvixcze","slide":5,"text":"Datos del reloj","textPreview":"Datos del reloj","textChars":15,"textLines":1,"bbox":[858,376,260,22]}
+{"kind":"shape","id":"sh/gr2p8nqx","slide":5,"bbox":[86,446,318,82]}
+{"kind":"textbox","id":"sh/nih4byhg","slide":5,"text":"FCM","textPreview":"FCM","textChars":3,"textLines":1,"bbox":[110,462,260,26]}
+{"kind":"textbox","id":"sh/yxobm58z","slide":5,"text":"Notificaciones","textPreview":"Notificaciones","textChars":14,"textLines":1,"bbox":[110,494,260,22]}
+{"kind":"shape","id":"sh/5o7qpg3e","slide":5,"bbox":[460,446,318,82]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":5,"text":"Wear OS","textPreview":"Wear OS","textChars":7,"textLines":1,"bbox":[484,462,260,26]}
+{"kind":"textbox","id":"sh/rmhk3q5o","slide":5,"text":"Galaxy Watch","textPreview":"Galaxy Watch","textChars":12,"textLines":1,"bbox":[484,494,260,22]}
+{"kind":"shape","id":"sh/y1kre1w7","slide":5,"bbox":[834,446,318,82]}
+{"kind":"textbox","id":"sh/sji5snel","slide":5,"text":"Gemini API","textPreview":"Gemini API","textChars":10,"textLines":1,"bbox":[858,462,260,26]}
+{"kind":"textbox","id":"sh/h4byhgn2","slide":5,"text":"Asistente IA","textPreview":"Asistente IA","textChars":12,"textLines":1,"bbox":[858,494,260,22]}
+{"kind":"textbox","id":"sh/adsji5sn","slide":5,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[76,676,160,24]}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1172,676,40,24]}
+{"kind":"notes","id":"nt/k1fxth","slide":5,"text":"OBJETIVO: Mostrar profesionalismo técnico sin abrumar.\nDECIR: AuthCares fue desarrollado con Kotlin y Jetpack Compose. Usamos Firebase para autenticación, datos en tiempo real, historial y notificaciones. También integramos Wear OS y Gemini API.\nEVITAR: Leer dependencias una por una.\nIMÁGENES: logos de Kotlin, Firebase, Android, Wear OS y Gemini.\nICONOS: código, nube, IA, reloj.\nANIMACIÓN: tarjetas aparecen en grupos.\nTRANSICIÓN: Ahora pasemos de la arquitectura a la historia de Bennett.\nTIEMPO: 35 segundos."}
+{"kind":"slide","id":"sl/8qhy8x","slide":6,"title":"Demostración del reloj","textShapes":9}
+{"kind":"shape","id":"sh/2hwfyxob","slide":6,"bbox":[910,-190,520,520]}
+{"kind":"shape","id":"sh/94fu18jq","slide":6,"bbox":[-180,500,420,420]}
+{"kind":"textbox","id":"sh/kjm1cfa9","slide":6,"text":"Demostración del reloj","textPreview":"Demostración del reloj","textChars":22,"textLines":1,"bbox":[76,66,760,58]}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":6,"text":"El monitoreo inicia en el Galaxy Watch.","textPreview":"El monitoreo inicia en el Galaxy Watch.","textChars":39,"textLines":1,"bbox":[78,128,680,60]}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":6,"text":"El reloj captura señales y las envía en tiempo real.","textPreview":"El reloj captura señales y las envía en tiempo real.","textChars":52,"textLines":1,"bbox":[626,190,510,86]}
+{"kind":"shape","id":"sh/gvy90je9","slide":6,"bbox":[632,330,210,38]}
+{"kind":"textbox","id":"sh/re1w7mp0","slide":6,"text":"Ritmo cardíaco","textPreview":"Ritmo cardíaco","textChars":14,"textLines":1,"bbox":[648,338,178,22]}
+{"kind":"shape","id":"sh/2t83itgf","slide":6,"bbox":[866,330,170,38]}
+{"kind":"textbox","id":"sh/sneloj2t","slide":6,"text":"Movimiento","textPreview":"Movimiento","textChars":10,"textLines":1,"bbox":[882,338,138,22]}
+{"kind":"shape","id":"sh/l87ed8ba","slide":6,"bbox":[632,390,220,38]}
+{"kind":"textbox","id":"sh/ahoza1gv","slide":6,"text":"Sincronización","textPreview":"Sincronización","textChars":14,"textLines":1,"bbox":[648,398,188,22]}
+{"kind":"textbox","id":"sh/32lszqtc","slide":6,"text":"Bennett usa el reloj durante el día. AuthCares escucha los datos importantes.","textPreview":"Bennett usa el reloj durante el día. AuthCares escucha los datos importantes.","textChars":77,"textLines":1,"bbox":[632,478,500,72]}
+{"kind":"textbox","id":"sh/szqtcj6t","slide":6,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[76,676,160,24]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1172,676,40,24]}
+{"kind":"image","id":"im/b2hwfyxo","slide":6,"name":"","geometry":"roundRect","alt":"Interfaz del reloj","bbox":[118,146,398,398]}
+{"kind":"notes","id":"nt/8qhy8x","slide":6,"text":"OBJETIVO: Mostrar que la información nace desde el wearable.\nDECIR: En nuestra historia, Bennett lleva el Galaxy Watch. El reloj registra ritmo cardíaco y movimiento. Esos datos no se quedan en el dispositivo, viajan al sistema para que el cuidador los vea.\nEVITAR: Prometer GPS, batería o temperatura si aún están como mejoras futuras.\nIMÁGENES: Galaxy Watch o captura del reloj.\nICONOS: pulso, movimiento, sincronización.\nANIMACIÓN: datos salen del reloj hacia una nube.\nTRANSICIÓN: Esos datos llegan al cuidador a través de la aplicación móvil.\nTIEMPO: 35 segundos."}
+{"kind":"slide","id":"sl/6el4tf","slide":7,"title":"Aplicación móvil","textShapes":11}
+{"kind":"shape","id":"sh/zed8v6ps","slide":7,"bbox":[910,-190,520,520]}
+{"kind":"shape","id":"sh/oza1gvy9","slide":7,"bbox":[-180,500,420,420]}
+{"kind":"textbox","id":"sh/hk3q5o7q","slide":7,"text":"Aplicación móvil","textPreview":"Aplicación móvil","textChars":16,"textLines":1,"bbox":[76,66,760,58]}
+{"kind":"textbox","id":"sh/65wjudg7","slide":7,"text":"La app convierte datos en tranquilidad.","textPreview":"La app convierte datos en tranquilidad.","textChars":39,"textLines":1,"bbox":[78,128,680,60]}
+{"kind":"textbox","id":"sh/obm58z25","slide":7,"text":"Monitoreo claro, alertas y seguimiento desde el celular.","textPreview":"Monitoreo claro, alertas y seguimiento desde el celular.","textChars":56,"textLines":1,"bbox":[84,220,610,90]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":7,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[94,380,240,68]}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":7,"text":"Inicia sesión","textPreview":"Inicia sesión","textChars":13,"textLines":1,"bbox":[94,446,260,36]}
+{"kind":"textbox","id":"sh/zupwb2hw","slide":7,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[318,380,240,68]}
+{"kind":"textbox","id":"sh/7y1kre1w","slide":7,"text":"Monitorea","textPreview":"Monitorea","textChars":9,"textLines":1,"bbox":[318,446,260,36]}
+{"kind":"textbox","id":"sh/ed8v6psf","slide":7,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[542,380,240,68]}
+{"kind":"textbox","id":"sh/p4r65wju","slide":7,"text":"Actúa","textPreview":"Actúa","textChars":5,"textLines":1,"bbox":[542,446,260,36]}
+{"kind":"textbox","id":"sh/wjudg7ad","slide":7,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[76,676,160,24]}
+{"kind":"textbox","id":"sh/7qpg3ex0","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1172,676,40,24]}
+{"kind":"image","id":"im/6hcrmhk3","slide":7,"name":"","geometry":"roundRect","alt":"Mockup de la app móvil","bbox":[812,108,270,500]}
+{"kind":"notes","id":"nt/6el4tf","slide":7,"text":"OBJETIVO: Mostrar el valor principal para padres y cuidadores.\nDECIR: En la app móvil, el cuidador puede ver el estado del niño, revisar el reloj conectado, entrar a estadísticas y acceder a alertas. La idea no es mostrar números sin contexto, sino información clara.\nEVITAR: Abrir demasiadas pantallas.\nIMÁGENES: login, dashboard y conexión del reloj.\nICONOS: smartphone, dashboard, corazón, campana.\nANIMACIÓN: carrusel suave de pantallas.\nTRANSICIÓN: Además de la app móvil, AuthCares contempla una experiencia web.\nTIEMPO: 45 segundos."}
+{"kind":"slide","id":"sl/bsp25b","slide":8,"title":"Aplicación web","textShapes":8}
+{"kind":"shape","id":"sh/8bat47y1","slide":8,"bbox":[910,-190,520,520]}
+{"kind":"shape","id":"sh/jqh0fepk","slide":8,"bbox":[-180,500,420,420]}
+{"kind":"textbox","id":"sh/q5o7qpg3","slide":8,"text":"Aplicación web","textPreview":"Aplicación web","textChars":14,"textLines":1,"bbox":[76,66,760,58]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":8,"text":"Una vista amplia para complementar el seguimiento.","textPreview":"Una vista amplia para complementar el seguimiento.","textChars":50,"textLines":1,"bbox":[78,128,680,60]}
+{"kind":"shape","id":"sh/8nqxs72x","slide":8,"bbox":[140,178,1000,360]}
+{"kind":"textbox","id":"sh/j2t83itg","slide":8,"text":"💻","textPreview":"💻","textChars":2,"textLines":1,"bbox":[140,304,1000,60]}
+{"kind":"textbox","id":"sh/qh0fepkz","slide":8,"text":"Panel web","textPreview":"Panel web","textChars":9,"textLines":1,"bbox":[168,372,944,34]}
+{"kind":"textbox","id":"sh/1cfa9w3m","slide":8,"text":"Reemplazar por captura real","textPreview":"Reemplazar por captura real","textChars":27,"textLines":1,"bbox":[168,414,944,26]}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":8,"text":"La web complementa la gestión, administración y revisión de información desde escritorio.","textPreview":"La web complementa la gestión, administración y revisión de información desde escritorio.","textChars":89,"textLines":1,"bbox":[182,574,916,44]}
+{"kind":"textbox","id":"sh/2t83itgf","slide":8,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[76,676,160,24]}
+{"kind":"textbox","id":"sh/re1w7mp0","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1172,676,40,24]}
+{"kind":"notes","id":"nt/bsp25b","slide":8,"text":"OBJETIVO: Mostrar que el sistema no es solo una app móvil.\nDECIR: La aplicación web complementa la experiencia móvil. Puede usarse para administrar información, revisar datos desde una pantalla más amplia y apoyar el seguimiento.\nEVITAR: Prometer funciones web que no estén listas.\nIMÁGENES: captura real de la web en una laptop.\nICONOS: laptop, usuario, gráfico.\nANIMACIÓN: laptop aparece detrás del celular.\nTRANSICIÓN: AuthCares no solo muestra datos; también ayuda a entenderlos.\nTIEMPO: 35 segundos."}
+{"kind":"slide","id":"sl/f9y712","slide":9,"title":"Inteligencia Artificial","textShapes":9}
+{"kind":"shape","id":"sh/8nqxs72x","slide":9,"bbox":[910,-190,520,520]}
+{"kind":"shape","id":"sh/j2t83itg","slide":9,"bbox":[-180,500,420,420]}
+{"kind":"textbox","id":"sh/qh0fepkz","slide":9,"text":"Inteligencia Artificial","textPreview":"Inteligencia Artificial","textChars":23,"textLines":1,"bbox":[76,66,760,58]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":9,"text":"IA como apoyo, no como reemplazo.","textPreview":"IA como apoyo, no como reemplazo.","textChars":33,"textLines":1,"bbox":[78,128,680,60]}
+{"kind":"shape","id":"sh/jqh0fepk","slide":9,"bbox":[110,222,650,276]}
+{"kind":"textbox","id":"sh/q5o7qpg3","slide":9,"text":"Cuidador","textPreview":"Cuidador","textChars":8,"textLines":1,"bbox":[144,256,160,28]}
+{"kind":"textbox","id":"sh/1kre1w7m","slide":9,"text":"¿Qué puedo hacer si Bennett parece inquieto?","textPreview":"¿Qué puedo hacer si Bennett parece inquieto?","textChars":44,"textLines":1,"bbox":[144,292,530,42]}
+{"kind":"textbox","id":"sh/c3ylc7u5","slide":9,"text":"AuthCares IA","textPreview":"AuthCares IA","textChars":12,"textLines":1,"bbox":[144,374,190,28]}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":9,"text":"Ofrece estrategias de calma y orientación contextual basada en el monitoreo.","textPreview":"Ofrece estrategias de calma y orientación contextual basada en el monitoreo.","textChars":76,"textLines":1,"bbox":[144,410,540,54]}
+{"kind":"textbox","id":"sh/zidonyd0","slide":9,"text":"Gemini ayuda a generar orientación contextual para el cuidador.","textPreview":"Gemini ayuda a generar orientación contextual para el cuidador.","textChars":63,"textLines":1,"bbox":[806,364,330,92]}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":9,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[76,676,160,24]}
+{"kind":"textbox","id":"sh/hoza1gvy","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1172,676,40,24]}
+{"kind":"image","id":"im/t83itgfm","slide":9,"name":"","geometry":"roundRect","alt":"Botón de asistente IA","bbox":[912,118,180,180]}
+{"kind":"notes","id":"nt/f9y712","slide":9,"text":"OBJETIVO: Explicar la IA responsablemente.\nDECIR: La inteligencia artificial en AuthCares está pensada como apoyo. Puede orientar al cuidador con información general y contextual, pero no reemplaza a un profesional.\nEVITAR: Decir que la IA diagnostica o predice crisis.\nIMÁGENES: chat con IA.\nICONOS: cerebro, chat, brillo.\nANIMACIÓN: mensajes aparecen uno por uno.\nTRANSICIÓN: Después del monitoreo, también es importante analizar lo que ocurrió.\nTIEMPO: 40 segundos."}
+{"kind":"slide","id":"sl/69fyak","slide":10,"title":"Estadísticas en tiempo real","textShapes":13}
+{"kind":"shape","id":"sh/u9knih4b","slide":10,"bbox":[910,-190,520,520]}
+{"kind":"shape","id":"sh/1032lszq","slide":10,"bbox":[-180,500,420,420]}
+{"kind":"textbox","id":"sh/cfa9w3m9","slide":10,"text":"Estadísticas en tiempo real","textPreview":"Estadísticas en tiempo real","textChars":27,"textLines":1,"bbox":[76,66,760,58]}
+{"kind":"textbox","id":"sh/jm1cfa9w","slide":10,"text":"Datos reales convertidos en información útil.","textPreview":"Datos reales convertidos en información útil.","textChars":45,"textLines":1,"bbox":[78,128,680,60]}
+{"kind":"shape","id":"sh/u18jqh0f","slide":10,"bbox":[90,190,520,340]}
+{"kind":"textbox","id":"sh/c7u54zid","slide":10,"text":"82","textPreview":"82","textChars":2,"textLines":1,"bbox":[704,198,240,68]}
+{"kind":"textbox","id":"sh/nap4r65w","slide":10,"text":"FC promedio","textPreview":"FC promedio","textChars":11,"textLines":1,"bbox":[704,264,260,36]}
+{"kind":"textbox","id":"sh/upwb2hwf","slide":10,"text":"104","textPreview":"104","textChars":3,"textLines":1,"bbox":[944,198,240,68]}
+{"kind":"textbox","id":"sh/orytsvu9","slide":10,"text":"FC máxima","textPreview":"FC máxima","textChars":9,"textLines":1,"bbox":[944,264,260,36]}
+{"kind":"textbox","id":"sh/hcrmhk3q","slide":10,"text":"71","textPreview":"71","textChars":2,"textLines":1,"bbox":[704,350,240,68]}
+{"kind":"textbox","id":"sh/al87ed8b","slide":10,"text":"FC mínima","textPreview":"FC mínima","textChars":9,"textLines":1,"bbox":[704,416,260,36]}
+{"kind":"textbox","id":"sh/z61032ls","slide":10,"text":"145","textPreview":"145","textChars":3,"textLines":1,"bbox":[944,350,240,68]}
+{"kind":"textbox","id":"sh/sfil0rqd","slide":10,"text":"Mediciones","textPreview":"Mediciones","textChars":10,"textLines":1,"bbox":[944,416,260,36]}
+{"kind":"textbox","id":"sh/h0fepkzu","slide":10,"text":"Si no hay datos suficientes, AuthCares no inventa valores.","textPreview":"Si no hay datos suficientes, AuthCares no inventa valores.","textChars":58,"textLines":1,"bbox":[704,538,470,36]}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":10,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[76,676,160,24]}
+{"kind":"textbox","id":"sh/zupwb2hw","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1172,676,40,24]}
+{"kind":"chart","id":"ch/dsji5sne","slide":10,"name":"","chartType":"bar","bbox":[130,244,440,220]}
+{"kind":"notes","id":"nt/69fyak","slide":10,"text":"OBJETIVO: Mostrar que AuthCares interpreta historial real.\nDECIR: Las estadísticas permiten revisar lo ocurrido durante un periodo. La app calcula frecuencia promedio, máxima, mínima, cantidad de mediciones y nivel de actividad desde el historial del reloj.\nEVITAR: Inventar números en vivo. Si no hay datos, decir que la app muestra estado vacío.\nIMÁGENES: captura de estadísticas, gráfico de barras.\nICONOS: gráfico, corazón, calendario.\nANIMACIÓN: barras suben y tarjetas aparecen.\nTRANSICIÓN: Cuando algo requiere atención, el sistema lo comunica mediante alertas.\nTIEMPO: 40 segundos."}
+{"kind":"slide","id":"sl/h2rgia","slide":11,"title":"Notificaciones inteligentes","textShapes":9}
+{"kind":"shape","id":"sh/n29gr2p8","slide":11,"bbox":[910,-190,520,520]}
+{"kind":"shape","id":"sh/gn29gr2p","slide":11,"bbox":[-180,500,420,420]}
+{"kind":"textbox","id":"sh/58z25kb6","slide":11,"text":"Notificaciones inteligentes","textPreview":"Notificaciones inteligentes","textChars":27,"textLines":1,"bbox":[76,66,760,58]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":11,"text":"Alertas cuando los datos requieren atención.","textPreview":"Alertas cuando los datos requieren atención.","textChars":44,"textLines":1,"bbox":[78,128,680,60]}
+{"kind":"shape","id":"sh/nuxc3ylc","slide":11,"bbox":[304,166,672,114]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":11,"text":"🔔 AuthCares","textPreview":"🔔 AuthCares","textChars":12,"textLines":1,"bbox":[336,190,260,26]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":11,"text":"Se detectó una señal que requiere revisión.","textPreview":"Se detectó una señal que requiere revisión.","textChars":43,"textLines":1,"bbox":[336,226,560,30]}
+{"kind":"shape","id":"sh/u54zidon","slide":11,"bbox":[246,350,790,136]}
+{"kind":"textbox","id":"sh/nqxs72x4","slide":11,"text":"Ritmo cardíaco elevado","textPreview":"Ritmo cardíaco elevado","textChars":22,"textLines":1,"bbox":[286,382,420,34]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":11,"text":"El cuidador revisa el detalle antes de tomar una decisión.","textPreview":"El cuidador revisa el detalle antes de tomar una decisión.","textChars":58,"textLines":1,"bbox":[286,430,660,32]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":11,"text":"Detectar señales no es diagnosticar. Es avisar a tiempo.","textPreview":"Detectar señales no es diagnosticar. Es avisar a tiempo.","textChars":56,"textLines":1,"bbox":[254,558,772,36]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":11,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[76,676,160,24]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1172,676,40,24]}
+{"kind":"notes","id":"nt/h2rgia","slide":11,"text":"OBJETIVO: Mostrar alertas sin sonar alarmista.\nDECIR: AuthCares puede detectar situaciones relevantes usando datos reales, como ritmo cardíaco elevado o movimiento intenso. Cuando aparece una señal importante, el cuidador recibe una alerta y revisa el detalle.\nEVITAR: Decir que detecta crisis médicas con precisión.\nIMÁGENES: notificación en celular y detalle de alerta.\nICONOS: campana, advertencia, corazón.\nANIMACIÓN: notificación entra desde arriba y luego zoom al detalle.\nTRANSICIÓN: Todo esto tiene sentido por el impacto que genera en quienes cuidan.\nTIEMPO: 40 segundos."}
+{"kind":"slide","id":"sl/3sa3yx","slide":12,"title":"Impacto","textShapes":8}
+{"kind":"shape","id":"sh/v6psfil0","slide":12,"bbox":[910,-190,520,520]}
+{"kind":"shape","id":"sh/knih4byh","slide":12,"bbox":[-180,500,420,420]}
+{"kind":"textbox","id":"sh/d8bat47y","slide":12,"text":"Impacto","textPreview":"Impacto","textChars":7,"textLines":1,"bbox":[76,66,760,58]}
+{"kind":"textbox","id":"sh/29gr2p8n","slide":12,"text":"Más información. Mejor acompañamiento.","textPreview":"Más información. Mejor acompañamiento.","textChars":38,"textLines":1,"bbox":[78,128,680,60]}
+{"kind":"textbox","id":"sh/vu9knih4","slide":12,"text":"AuthCares ayuda a actuar con mayor calma, contexto y rapidez.","textPreview":"AuthCares ayuda a actuar con mayor calma, contexto y rapidez.","textChars":61,"textLines":1,"bbox":[124,206,1030,82]}
+{"kind":"shape","id":"sh/kf6dcbul","slide":12,"bbox":[176,368,256,112]}
+{"kind":"textbox","id":"sh/d0z61032","slide":12,"text":"Calma","textPreview":"Calma","textChars":5,"textLines":1,"bbox":[176,405,256,44]}
+{"kind":"shape","id":"sh/2x4nap4r","slide":12,"bbox":[496,368,256,112]}
+{"kind":"textbox","id":"sh/vixczed8","slide":12,"text":"Contexto","textPreview":"Contexto","textChars":8,"textLines":1,"bbox":[496,405,256,44]}
+{"kind":"shape","id":"sh/vmtwra5g","slide":12,"bbox":[816,368,256,112]}
+{"kind":"textbox","id":"sh/61032lsz","slide":12,"text":"Acción","textPreview":"Acción","textChars":6,"textLines":1,"bbox":[816,405,256,44]}
+{"kind":"textbox","id":"sh/dsji5sne","slide":12,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[76,676,160,24]}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1172,676,40,24]}
+{"kind":"notes","id":"nt/3sa3yx","slide":12,"text":"OBJETIVO: Conectar con el valor humano.\nDECIR: El impacto principal de AuthCares está en reducir la incertidumbre. El cuidador puede revisar información, entender el contexto y compartir un resumen con otras personas involucradas en el cuidado.\nEVITAR: Prometer eliminar todas las preocupaciones.\nIMÁGENES: cuidador revisando celular, familia tranquila.\nICONOS: familia, escudo, corazón.\nANIMACIÓN: aparecen Calma, Contexto y Acción.\nTRANSICIÓN: Aunque ya tenemos una base funcional, AuthCares puede crecer más.\nTIEMPO: 35 segundos."}
+{"kind":"slide","id":"sl/25m21a","slide":13,"title":"Futuras mejoras","textShapes":15}
+{"kind":"shape","id":"sh/ytsvu9kn","slide":13,"bbox":[910,-190,520,520]}
+{"kind":"shape","id":"sh/5kb6xkf6","slide":13,"bbox":[-180,500,420,420]}
+{"kind":"textbox","id":"sh/czed8v6p","slide":13,"text":"Futuras mejoras","textPreview":"Futuras mejoras","textChars":15,"textLines":1,"bbox":[76,66,760,58]}
+{"kind":"textbox","id":"sh/nqxs72x4","slide":13,"text":"El siguiente paso para hacer AuthCares más completo.","textPreview":"El siguiente paso para hacer AuthCares más completo.","textChars":52,"textLines":1,"bbox":[78,128,680,60]}
+{"kind":"shape","id":"sh/u54zidon","slide":13,"bbox":[80,250,190,158]}
+{"kind":"textbox","id":"sh/5sneloj2","slide":13,"text":"GPS","textPreview":"GPS","textChars":3,"textLines":1,"bbox":[98,292,154,34]}
+{"kind":"textbox","id":"sh/cbulwval","slide":13,"text":"Ubicación segura","textPreview":"Ubicación segura","textChars":16,"textLines":1,"bbox":[98,342,154,46]}
+{"kind":"shape","id":"sh/nuxc3ylc","slide":13,"bbox":[314,250,190,158]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":13,"text":"Batería","textPreview":"Batería","textChars":7,"textLines":1,"bbox":[332,292,154,34]}
+{"kind":"textbox","id":"sh/oza1gvy9","slide":13,"text":"Estado del reloj","textPreview":"Estado del reloj","textChars":16,"textLines":1,"bbox":[332,342,154,46]}
+{"kind":"shape","id":"sh/hk3q5o7q","slide":13,"bbox":[548,250,190,158]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":13,"text":"Temperatura","textPreview":"Temperatura","textChars":11,"textLines":1,"bbox":[566,292,154,34]}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":13,"text":"Nueva señal","textPreview":"Nueva señal","textChars":11,"textLines":1,"bbox":[566,342,154,46]}
+{"kind":"shape","id":"sh/obm58z25","slide":13,"bbox":[782,250,190,158]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":13,"text":"PDF","textPreview":"PDF","textChars":3,"textLines":1,"bbox":[800,292,154,34]}
+{"kind":"textbox","id":"sh/65wjudg7","slide":13,"text":"Reportes claros","textPreview":"Reportes claros","textChars":15,"textLines":1,"bbox":[800,342,154,46]}
+{"kind":"shape","id":"sh/zqtcj6to","slide":13,"bbox":[1016,250,190,158]}
+{"kind":"textbox","id":"sh/sfil0rqd","slide":13,"text":"IA contextual","textPreview":"IA contextual","textChars":13,"textLines":1,"bbox":[1034,292,154,34]}
+{"kind":"textbox","id":"sh/h0fepkzu","slide":13,"text":"Más personalización","textPreview":"Más personalización","textChars":19,"textLines":1,"bbox":[1034,342,154,46]}
+{"kind":"textbox","id":"sh/54zidony","slide":13,"text":"Mejoras realistas, alineadas con el uso diario de padres, cuidadores y especialistas.","textPreview":"Mejoras realistas, alineadas con el uso diario de padres, cuidadores y especialistas.","textChars":85,"textLines":1,"bbox":[168,512,944,40]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":13,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[76,676,160,24]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1172,676,40,24]}
+{"kind":"notes","id":"nt/25m21a","slide":13,"text":"OBJETIVO: Mostrar visión futura realista.\nDECIR: Como futuras mejoras proponemos integrar GPS, estado de batería del reloj, temperatura, reportes PDF e inteligencia artificial más contextual.\nEVITAR: Decir que todo esto ya está implementado.\nIMÁGENES: roadmap horizontal.\nICONOS: GPS, batería, termómetro, PDF, cerebro.\nANIMACIÓN: roadmap aparece de izquierda a derecha.\nTRANSICIÓN: Para cerrar, volvamos a la idea principal.\nTIEMPO: 35 segundos."}
+{"kind":"slide","id":"sl/3to7f9","slide":14,"title":"AuthCares","textShapes":6}
+{"kind":"shape","id":"sh/idonyd0z","slide":14,"bbox":[910,-190,520,520]}
+{"kind":"shape","id":"sh/t47y1kre","slide":14,"bbox":[-180,500,420,420]}
+{"kind":"textbox","id":"sh/0je9cvix","slide":14,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[80,120,1120,90]}
+{"kind":"textbox","id":"sh/b6xkf6dc","slide":14,"text":"Transforma monitoreo en acompañamiento.","textPreview":"Transforma monitoreo en acompañamiento.","textChars":39,"textLines":1,"bbox":[220,250,840,62]}
+{"kind":"textbox","id":"sh/il0rqd4v","slide":14,"text":"Tecnología al servicio del cuidado, la calma y la toma de decisiones.","textPreview":"Tecnología al servicio del cuidado, la calma y la toma de decisiones.","textChars":69,"textLines":1,"bbox":[250,354,780,54]}
+{"kind":"textbox","id":"sh/tcj6tova","slide":14,"text":"AuthCares convierte datos en cuidado.","textPreview":"AuthCares convierte datos en cuidado.","textChars":37,"textLines":1,"bbox":[250,500,780,50]}
+{"kind":"textbox","id":"sh/0rqd4vmt","slide":14,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[76,676,160,24]}
+{"kind":"textbox","id":"sh/bi9s36hc","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1172,676,40,24]}
+{"kind":"notes","id":"nt/3to7f9","slide":14,"text":"OBJETIVO: Cerrar con emoción y profesionalismo.\nDECIR: AuthCares no busca ser solo una aplicación. Busca ser una herramienta de acompañamiento. Conecta un reloj, Firebase, una app móvil, una web y la inteligencia artificial para entregar información útil en el momento adecuado.\nEVITAR: Cerrar con 'eso sería todo'.\nFRASE FINAL: AuthCares convierte datos en cuidado.\nIMÁGENES: logo, app, reloj y nube.\nICONOS: corazón, escudo, brillo.\nANIMACIÓN: fade final del logo y frase.\nTIEMPO: 40 segundos."}

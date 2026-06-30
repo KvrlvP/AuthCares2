@@ -25,6 +25,8 @@ import com.choque.authcares2.features.settings.ui.ConfiguracionRelojScreen
 import com.choque.authcares2.features.settings.ui.NingunRelojConectadoScreen
 import com.choque.authcares2.features.share.ui.CompartirAuthCaresScreen
 import com.choque.authcares2.features.stats.ui.EstadisticasAuthCaresScreen
+import androidx.compose.ui.platform.LocalContext
+import com.choque.authcares2.features.alerts.service.SensorMonitoringService
 
 fun NavGraphBuilder.authCaresGraph(
     navController: NavHostController,
@@ -69,7 +71,7 @@ fun NavGraphBuilder.authCaresGraph(
     }
     composable(AuthCaresScreen.Stats.name) {
         EstadisticasAuthCaresScreen(
-            childName = sensorState.childName.ifBlank { "tu niño" },
+            childName = sensorState.childName.ifBlank { "tu niï¿½o" },
             watchId = sensorState.relojId,
             onNavigateTo = { screen -> navController.navigate(screen.name) }
         )
@@ -104,7 +106,7 @@ fun NavGraphBuilder.authCaresGraph(
         LaunchedEffect(sensorState.relojId, sensorState.childName) {
             alertsViewModel.observeWatch(
                 watchId = sensorState.relojId,
-                childName = sensorState.childName.ifBlank { "tu niño" }
+                childName = sensorState.childName.ifBlank { "tu niï¿½o" }
             )
         }
 
@@ -150,6 +152,33 @@ fun NavGraphBuilder.authCaresGraph(
         ConfiguracionRelojScreen(onBackClick = { navController.popBackStack() })
     }
     composable(AuthCaresScreen.NoWatchConnected.name) {
+        val context = LocalContext.current
+
+        LaunchedEffect(
+            sensorState.watchConnected,
+            sensorState.connectedWatchId
+        ) {
+            if (sensorState.watchConnected) {
+                val watchId = sensorState.connectedWatchId
+
+                if (!watchId.isNullOrBlank()) {
+                    SensorMonitoringService.start(
+                        context = context,
+                        watchId = watchId
+                    )
+
+                    sensorViewModel.loadChildAndWatch()
+                    sensorViewModel.onWatchConnectionHandled()
+
+                    navController.navigate(AuthCaresScreen.Home.name) {
+                        popUpTo(AuthCaresScreen.NoWatchConnected.name) {
+                            inclusive = true
+                        }
+                    }
+                }
+            }
+        }
+
         NingunRelojConectadoScreen(
             watchCode = sensorState.watchCodeInput,
             errorMessage = sensorState.errorMessage,

@@ -101,7 +101,7 @@ class StatisticsViewModel(
         historyJob?.cancel()
         _uiState.update { it.copy(isLoading = true, errorMessage = null) }
         historyJob = viewModelScope.launch {
-            repository.observeHistory(watchId).collect { result ->
+            repository.loadHistory(watchId).collect { result ->
                 result.onSuccess { measurements ->
                     history = measurements
                     recalculate()

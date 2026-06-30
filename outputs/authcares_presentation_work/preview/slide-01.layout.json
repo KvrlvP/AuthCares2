@@ -1,0 +1,686 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/rjgvdb",
+    "id": "rjgvdb",
+    "slide": 1,
+    "layoutId": "3ea936ce-9cbf-40d3-8491-d384430d4f22",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "d76276d7-784e-48db-9f4f-872ee19e5c00",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#0E1527",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "3ea936ce-9cbf-40d3-8491-d384430d4f22",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "d76276d7-784e-48db-9f4f-872ee19e5c00",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "d76276d7-784e-48db-9f4f-872ee19e5c00",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bm58z25k",
+      "id": "1",
+      "bbox": [
+        982,
+        -150,
+        430,
+        430
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#30245F",
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/47y1kre1",
+      "id": "2",
+      "bbox": [
+        -140,
+        530,
+        330,
+        330
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#2B2456",
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tsvu9kni",
+      "id": "3",
+      "bbox": [
+        58,
+        42,
+        398,
+        48
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#7C3AED",
+      "lineColor": "#9F7AEA",
+      "lineWidth": 1
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/mp0bi9s3",
+      "id": "4",
+      "bbox": [
+        82,
+        58,
+        350,
+        20
+      ],
+      "geometry": "rect",
+      "text": "PROG. MOVILES 2026  Â·  TECSUP AREQUIPA",
+      "textPreview": "PROG. MOVILES 2026  Â·  TECSUP AREQUIPA",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#D7CCFF",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "PROG. MOVILES 2026  Â·  TECSUP AREQUIPA"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "PROG. MOVILES 2026  Â·  TECSUP AREQUIPA",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#D7CCFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "PROG. MOVILES 2026  Â·  TECSUP AREQUIPA",
+              "fontSize": 13,
+              "color": "#D7CCFF",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bat47y1k",
+      "id": "5",
+      "bbox": [
+        58,
+        142,
+        650,
+        92
+      ],
+      "geometry": "rect",
+      "text": "AuthCares",
+      "textPreview": "AuthCares",
+      "resolvedFontSize": 72,
+      "resolvedTextStyle": {
+        "fontSize": 72,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "AuthCares"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "AuthCares",
+          "resolvedTextStyle": {
+            "fontSize": 72,
+            "color": "#FFFFFF",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "AuthCares",
+              "fontSize": 72,
+              "color": "#FFFFFF",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4vmtwra5",
+      "id": "6",
+      "bbox": [
+        62,
+        250,
+        720,
+        72
+      ],
+      "geometry": "rect",
+      "text": "Monitoreo inteligente para acompaÃ±ar a niÃ±os con TEA en tiempo real.",
+      "textPreview": "Monitoreo inteligente para acompaÃ±ar a niÃ±os con TEA en tiempo real.",
+      "resolvedFontSize": 29,
+      "resolvedTextStyle": {
+        "fontSize": 29,
+        "typeface": "+mn-lt",
+        "color": "#C9B9FF",
+        "italic": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Monitoreo inteligente para acompaÃ±ar a niÃ±os con TEA"
+          },
+          {
+            "index": 2,
+            "text": "en tiempo real."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Monitoreo inteligente para acompaÃ±ar a niÃ±os con TEA en tiempo real.",
+          "resolvedTextStyle": {
+            "fontSize": 29,
+            "color": "#C9B9FF",
+            "italic": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Monitoreo inteligente para acompaÃ±ar a niÃ±os con TEA en tiempo real.",
+              "fontSize": 29,
+              "color": "#C9B9FF",
+              "italic": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tgfmlkjm",
+      "id": "7",
+      "bbox": [
+        58,
+        363,
+        820,
+        2
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#536079",
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/mhk3q5o7",
+      "id": "8",
+      "bbox": [
+        58,
+        392,
+        760,
+        32
+      ],
+      "geometry": "rect",
+      "text": "Equipo: Karla Choque  Â·  [Integrante 2]  Â·  [Integrante 3]  Â·  [Integrante 4]",
+      "textPreview": "Equipo: Karla Choque  Â·  [Integrante 2]  Â·  [Integrante 3]  Â·  [Integrante 4]",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#CAD3E7",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Equipo: Karla Choque  Â·  [Integrante 2]  Â·  [Integrante 3]  Â·  [Integrante 4]"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Equipo: Karla Choque  Â·  [Integrante 2]  Â·  [Integrante 3]  Â·  [Integrante 4]",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#CAD3E7"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Equipo: Karla Choque  Â·  [Integrante 2]  Â·  [Integrante 3]  Â·  [Integrante 4]",
+              "fontSize": 18,
+              "color": "#CAD3E7"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/b2hwfyxo",
+      "id": "9",
+      "bbox": [
+        58,
+        504,
+        250,
+        58
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#25B99A",
+      "lineColor": "#55D0B4",
+      "lineWidth": 1
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/f6dcbulw",
+      "id": "10",
+      "bbox": [
+        100,
+        520,
+        160,
+        24
+      ],
+      "geometry": "rect",
+      "text": "5 - 10 MINUTOS",
+      "textPreview": "5 - 10 MINUTOS",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "5 - 10 MINUTOS"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "5 - 10 MINUTOS",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "5 - 10 MINUTOS",
+              "fontSize": 17,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/9cvixcze",
+      "id": "11",
+      "bbox": [
+        802,
+        128,
+        350,
+        350
+      ],
+      "geometry": "roundRect",
+      "alt": "Imagen principal de AuthCares",
+      "contentType": "image/png",
+      "imageFit": "cover",
+      "imageMask": {
+        "geometry": "roundRect",
+        "adjustmentList": [
+          {
+            "name": "adj",
+            "formula": "val 3429"
+          }
+        ]
+      },
+      "asset": {
+        "assetId": "7ee69a9b-c27d-42dc-b370-81ff5e6de2cc",
+        "contentType": "image/png",
+        "byteLength": 248455
+      }
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xc3ylc7u",
+      "id": "12",
+      "bbox": [
+        930,
+        506,
+        222,
+        100
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#20293B",
+      "lineColor": "#6B7280",
+      "lineWidth": 1
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4r65wjud",
+      "id": "13",
+      "bbox": [
+        958,
+        545,
+        166,
+        28
+      ],
+      "geometry": "rect",
+      "text": "QR GitHub / Demo",
+      "textPreview": "QR GitHub / Demo",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#DDE3F0",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "QR GitHub / Demo"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "QR GitHub / Demo",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#DDE3F0",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "QR GitHub / Demo",
+              "fontSize": 18,
+              "color": "#DDE3F0",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fepkzupw",
+      "id": "14",
+      "bbox": [
+        58,
+        680,
+        160,
+        24
+      ],
+      "geometry": "rect",
+      "text": "AuthCares",
+      "textPreview": "AuthCares",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#B9C3D8",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "AuthCares"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "AuthCares",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#B9C3D8",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "AuthCares",
+              "fontSize": 13,
+              "color": "#B9C3D8",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/mtwra5gb",
+      "id": "15",
+      "bbox": [
+        604,
+        680,
+        72,
+        24
+      ],
+      "geometry": "rect",
+      "text": "1 / 7",
+      "textPreview": "1 / 7",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#8591AA",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "1 / 7"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "1 / 7",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#8591AA",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "1 / 7",
+              "fontSize": 13,
+              "color": "#8591AA",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

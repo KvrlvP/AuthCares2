@@ -55,6 +55,17 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <service
+            android:name=".features.alerts.service.SensorMonitoringService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Monitoreo continuo de datos biométricos enviados por un smartwatch" />
+        </service>
+
     </application>
 
 </manifest>

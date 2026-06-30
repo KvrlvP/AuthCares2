@@ -11,6 +11,8 @@ data class SensorUiState(
     val errorMessage: String? = null,
     val watchCodeInput: String = "",
     val isConnecting: Boolean = false,
+    val watchConnected: Boolean = false,
+    val connectedWatchId: String? = null,
     val registeredChildren: List<ChildInfo> = emptyList(),
     val selectedChild: ChildInfo? = null
 )

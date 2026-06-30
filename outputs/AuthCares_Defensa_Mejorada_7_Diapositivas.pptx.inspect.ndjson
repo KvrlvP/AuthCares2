@@ -1,0 +1,159 @@
+{"kind":"deck","id":"pr/cyxise","name":"Deck"}
+{"kind":"layout","layoutId":"d76276d7-784e-48db-9f4f-872ee19e5c00","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"3ea936ce-9cbf-40d3-8491-d384430d4f22","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/rjgvdb","slide":1,"title":"PROG. MOVILES 2026  Â·  TECSUP AREQUIPA","textShapes":8}
+{"kind":"shape","id":"sh/bm58z25k","slide":1,"bbox":[982,-150,430,430]}
+{"kind":"shape","id":"sh/47y1kre1","slide":1,"bbox":[-140,530,330,330]}
+{"kind":"shape","id":"sh/tsvu9kni","slide":1,"bbox":[58,42,398,48]}
+{"kind":"textbox","id":"sh/mp0bi9s3","slide":1,"text":"PROG. MOVILES 2026  Â·  TECSUP AREQUIPA","textPreview":"PROG. MOVILES 2026  Â·  TECSUP AREQUIPA","textChars":39,"textLines":1,"bbox":[82,58,350,20]}
+{"kind":"textbox","id":"sh/bat47y1k","slide":1,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[58,142,650,92]}
+{"kind":"textbox","id":"sh/4vmtwra5","slide":1,"text":"Monitoreo inteligente para acompaÃ±ar a niÃ±os con TEA en tiempo real.","textPreview":"Monitoreo inteligente para acompaÃ±ar a niÃ±os con TEA en tiempo real.","textChars":70,"textLines":1,"bbox":[62,250,720,72]}
+{"kind":"shape","id":"sh/tgfmlkjm","slide":1,"bbox":[58,363,820,2]}
+{"kind":"textbox","id":"sh/mhk3q5o7","slide":1,"text":"Equipo: Karla Choque  Â·  [Integrante 2]  Â·  [Integrante 3]  Â·  [Integrante 4]","textPreview":"Equipo: Karla Choque  Â·  [Integrante 2]  Â·  [Integrante 3]  Â·  [Integrante 4]","textChars":80,"textLines":1,"bbox":[58,392,760,32]}
+{"kind":"shape","id":"sh/b2hwfyxo","slide":1,"bbox":[58,504,250,58]}
+{"kind":"textbox","id":"sh/f6dcbulw","slide":1,"text":"5 - 10 MINUTOS","textPreview":"5 - 10 MINUTOS","textChars":14,"textLines":1,"bbox":[100,520,160,24]}
+{"kind":"shape","id":"sh/xc3ylc7u","slide":1,"bbox":[930,506,222,100]}
+{"kind":"textbox","id":"sh/4r65wjud","slide":1,"text":"QR GitHub / Demo","textPreview":"QR GitHub / Demo","textChars":16,"textLines":1,"bbox":[958,545,166,28]}
+{"kind":"textbox","id":"sh/fepkzupw","slide":1,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[58,680,160,24]}
+{"kind":"textbox","id":"sh/mtwra5gb","slide":1,"text":"1 / 7","textPreview":"1 / 7","textChars":5,"textLines":1,"bbox":[604,680,72,24]}
+{"kind":"image","id":"im/9cvixcze","slide":1,"name":"","geometry":"roundRect","alt":"Imagen principal de AuthCares","bbox":[802,128,350,350]}
+{"kind":"notes","id":"nt/rjgvdb","slide":1,"text":"Abrir con una frase clara: AuthCares convierte datos del reloj en informacion util para cuidar mejor.\nPresentarse y decir que la demo mostrara el flujo principal."}
+{"kind":"slide","id":"sl/0cyvsx","slide":2,"title":"01 / EL PROBLEMA","textShapes":12}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":2,"text":"01 / EL PROBLEMA","textPreview":"01 / EL PROBLEMA","textChars":16,"textLines":1,"bbox":[58,34,280,28]}
+{"kind":"shape","id":"sh/2p8nqxs7","slide":2,"bbox":[1088,18,124,46]}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":2,"text":"~1 min","textPreview":"~1 min","textChars":6,"textLines":1,"bbox":[1112,30,82,24]}
+{"kind":"textbox","id":"sh/kjm1cfa9","slide":2,"text":"Â¿A quiÃ©n le duele?","textPreview":"Â¿A quiÃ©n le duele?","textChars":20,"textLines":1,"bbox":[58,96,720,72]}
+{"kind":"shape","id":"sh/94fu18jq","slide":2,"bbox":[58,196,710,300]}
+{"kind":"textbox","id":"sh/2hwfyxob","slide":2,"text":"El problema real:","textPreview":"El problema real:","textChars":17,"textLines":1,"bbox":[88,222,260,34]}
+{"kind":"textbox","id":"sh/r2p8nqxs","slide":2,"text":"Una madre no siempre puede estar cerca de su hijo durante clases, terapia o actividades diarias. Si ocurre un cambio importante, muchas veces se entera tarde o sin datos claros.","textPreview":"Una madre no siempre puede estar cerca de su hijo durante clases, terapia o actividades diarias. Si ocurre un cambio importante, muchas v...","textChars":177,"textLines":1,"bbox":[88,282,610,92]}
+{"kind":"textbox","id":"sh/kb6xkf6d","slide":2,"text":"No se trata de vigilar mÃ¡s. Se trata de acompaÃ±ar mejor, con calma y contexto.","textPreview":"No se trata de vigilar mÃ¡s. Se trata de acompaÃ±ar mejor, con calma y contexto.","textChars":80,"textLines":1,"bbox":[88,406,610,54]}
+{"kind":"shape","id":"sh/9w3m94fu","slide":2,"bbox":[862,176,330,330]}
+{"kind":"textbox","id":"sh/xczed8v6","slide":2,"text":"!","textPreview":"!","textChars":1,"textLines":1,"bbox":[982,248,90,92]}
+{"kind":"textbox","id":"sh/8v6psfil","slide":2,"text":"Distancia","textPreview":"Distancia","textChars":9,"textLines":1,"bbox":[842,392,370,28]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":2,"text":"Poca informaciÃ³n","textPreview":"Poca informaciÃ³n","textChars":17,"textLines":1,"bbox":[842,426,370,28]}
+{"kind":"shape","id":"sh/qpg3ex0n","slide":2,"bbox":[58,560,1164,54]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":2,"text":"TIP: empieza con esta historia antes de enseÃ±ar pantallas. El jurado debe sentir por quÃ© existe AuthCares.","textPreview":"TIP: empieza con esta historia antes de enseÃ±ar pantallas. El jurado debe sentir por quÃ© existe AuthCares.","textChars":108,"textLines":1,"bbox":[84,575,1090,24]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":2,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[58,680,160,24]}
+{"kind":"textbox","id":"sh/fyxobm58","slide":2,"text":"2 / 7","textPreview":"2 / 7","textChars":5,"textLines":1,"bbox":[604,680,72,24]}
+{"kind":"notes","id":"nt/0cyvsx","slide":2,"text":"Contar una historia sencilla de una mama o cuidador que necesita saber que paso durante el dia.\nEvitar sonar medico o alarmista."}
+{"kind":"slide","id":"sl/z6gx3f","slide":3,"title":"02 / LA SOLUCION","textShapes":17}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":3,"text":"02 / LA SOLUCION","textPreview":"02 / LA SOLUCION","textChars":16,"textLines":1,"bbox":[58,34,280,28]}
+{"kind":"shape","id":"sh/j6tovaho","slide":3,"bbox":[1088,18,124,46]}
+{"kind":"textbox","id":"sh/ulwval87","slide":3,"text":"~1 min","textPreview":"~1 min","textChars":6,"textLines":1,"bbox":[1112,30,82,24]}
+{"kind":"textbox","id":"sh/1kre1w7m","slide":3,"text":"Tu app en una sola oraciÃ³n.","textPreview":"Tu app en una sola oraciÃ³n.","textChars":28,"textLines":1,"bbox":[58,96,780,66]}
+{"kind":"shape","id":"sh/c3ylc7u5","slide":3,"bbox":[58,180,1164,126]}
+{"kind":"textbox","id":"sh/ji5snelo","slide":3,"text":"AuthCares permite a padres y cuidadores monitorear seÃ±ales del niÃ±o desde un Galaxy Watch para actuar con mÃ¡s calma, contexto y rapidez.","textPreview":"AuthCares permite a padres y cuidadores monitorear seÃ±ales del niÃ±o desde un Galaxy Watch para actuar con mÃ¡s calma, contexto y rapidez.","textChars":139,"textLines":1,"bbox":[92,222,1096,46]}
+{"kind":"shape","id":"sh/uxc3ylc7","slide":3,"bbox":[70,338,330,206]}
+{"kind":"shape","id":"sh/1w7mp0bi","slide":3,"bbox":[96,366,54,54]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":3,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[96,375,54,28]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":3,"text":"1. El reloj escucha","textPreview":"1. El reloj escucha","textChars":19,"textLines":1,"bbox":[166,368,208,32]}
+{"kind":"textbox","id":"sh/neloj2t8","slide":3,"text":"Registra ritmo cardÃ­aco y movimiento durante el dÃ­a.","textPreview":"Registra ritmo cardÃ­aco y movimiento durante el dÃ­a.","textChars":54,"textLines":1,"bbox":[166,406,208,130]}
+{"kind":"textbox","id":"sh/czed8v6p","slide":3,"text":"â†’","textPreview":"â†’","textChars":3,"textLines":1,"bbox":[418,410,60,44]}
+{"kind":"shape","id":"sh/5kb6xkf6","slide":3,"bbox":[476,338,330,206]}
+{"kind":"shape","id":"sh/u54zidon","slide":3,"bbox":[502,366,54,54]}
+{"kind":"textbox","id":"sh/nqxs72x4","slide":3,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[502,375,54,28]}
+{"kind":"textbox","id":"sh/cbulwval","slide":3,"text":"2. La app ordena","textPreview":"2. La app ordena","textChars":16,"textLines":1,"bbox":[572,368,208,32]}
+{"kind":"textbox","id":"sh/5sneloj2","slide":3,"text":"Firebase actualiza la informaciÃ³n y la muestra clara.","textPreview":"Firebase actualiza la informaciÃ³n y la muestra clara.","textChars":54,"textLines":1,"bbox":[572,406,208,130]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":3,"text":"â†’","textPreview":"â†’","textChars":3,"textLines":1,"bbox":[824,410,60,44]}
+{"kind":"shape","id":"sh/nuxc3ylc","slide":3,"bbox":[882,338,330,206]}
+{"kind":"shape","id":"sh/fmlkjm1c","slide":3,"bbox":[908,366,54,54]}
+{"kind":"textbox","id":"sh/q1orytsv","slide":3,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[908,375,54,28]}
+{"kind":"textbox","id":"sh/xs72x4na","slide":3,"text":"3. El cuidador actÃºa","textPreview":"3. El cuidador actÃºa","textChars":21,"textLines":1,"bbox":[978,368,208,32]}
+{"kind":"textbox","id":"sh/87ed8bat","slide":3,"text":"Recibe alertas, consulta IA y revisa estadÃ­sticas.","textPreview":"Recibe alertas, consulta IA y revisa estadÃ­sticas.","textChars":51,"textLines":1,"bbox":[978,406,208,130]}
+{"kind":"textbox","id":"sh/je9cvixc","slide":3,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[58,680,160,24]}
+{"kind":"textbox","id":"sh/qtcj6tov","slide":3,"text":"3 / 7","textPreview":"3 / 7","textChars":5,"textLines":1,"bbox":[604,680,72,24]}
+{"kind":"notes","id":"nt/z6gx3f","slide":3,"text":"Decir la frase completa sin entrar a codigo.\nLuego explicar los 3 pasos: reloj, app, cuidador."}
+{"kind":"slide","id":"sl/0i1q3i","slide":4,"title":"4 - 5 MIN","textShapes":17}
+{"kind":"shape","id":"sh/18jqh0fe","slide":4,"bbox":[186,24,640,640]}
+{"kind":"shape","id":"sh/qh0fepkz","slide":4,"bbox":[58,22,258,58]}
+{"kind":"textbox","id":"sh/j2t83itg","slide":4,"text":"4 - 5 MIN","textPreview":"4 - 5 MIN","textChars":9,"textLines":1,"bbox":[120,40,120,24]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":4,"text":"DEMO","textPreview":"DEMO","textChars":4,"textLines":1,"bbox":[132,146,530,142]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":4,"text":"EN VIVO","textPreview":"EN VIVO","textChars":7,"textLines":1,"bbox":[314,372,220,48]}
+{"kind":"shape","id":"sh/q5o7qpg3","slide":4,"bbox":[782,18,430,536]}
+{"kind":"textbox","id":"sh/jqh0fepk","slide":4,"text":"Checklist de demo","textPreview":"Checklist de demo","textChars":17,"textLines":1,"bbox":[868,48,258,28]}
+{"kind":"shape","id":"sh/c3ylc7u5","slide":4,"bbox":[812,104,38,38]}
+{"kind":"textbox","id":"sh/1kre1w7m","slide":4,"text":"âœ“","textPreview":"âœ“","textChars":3,"textLines":1,"bbox":[812,111,38,18]}
+{"kind":"textbox","id":"sh/5o7qpg3e","slide":4,"text":"Inicio desde cero","textPreview":"Inicio desde cero","textChars":17,"textLines":1,"bbox":[862,106,300,30]}
+{"kind":"shape","id":"sh/g3ex0nux","slide":4,"bbox":[812,184,38,38]}
+{"kind":"textbox","id":"sh/nih4byhg","slide":4,"text":"âœ“","textPreview":"âœ“","textChars":3,"textLines":1,"bbox":[812,191,38,18]}
+{"kind":"textbox","id":"sh/yxobm58z","slide":4,"text":"Login o registro","textPreview":"Login o registro","textChars":16,"textLines":1,"bbox":[862,186,300,30]}
+{"kind":"shape","id":"sh/9cvixcze","slide":4,"bbox":[812,264,38,38]}
+{"kind":"textbox","id":"sh/gr2p8nqx","slide":4,"text":"âœ“","textPreview":"âœ“","textChars":3,"textLines":1,"bbox":[812,271,38,18]}
+{"kind":"textbox","id":"sh/r65wjudg","slide":4,"text":"Flujo principal completo","textPreview":"Flujo principal completo","textChars":24,"textLines":1,"bbox":[862,266,300,30]}
+{"kind":"shape","id":"sh/ylc7u54z","slide":4,"bbox":[812,344,38,38]}
+{"kind":"textbox","id":"sh/90je9cvi","slide":4,"text":"âœ“","textPreview":"âœ“","textChars":3,"textLines":1,"bbox":[812,351,38,18]}
+{"kind":"textbox","id":"sh/gfmlkjm1","slide":4,"text":"IA con datos reales","textPreview":"IA con datos reales","textChars":19,"textLines":1,"bbox":[862,346,300,30]}
+{"kind":"shape","id":"sh/gn29gr2p","slide":4,"bbox":[812,424,38,38]}
+{"kind":"textbox","id":"sh/58z25kb6","slide":4,"text":"âœ“","textPreview":"âœ“","textChars":3,"textLines":1,"bbox":[812,431,38,18]}
+{"kind":"textbox","id":"sh/yhgn29gr","slide":4,"text":"Estado de carga o error visible","textPreview":"Estado de carga o error visible","textChars":31,"textLines":1,"bbox":[862,426,300,30]}
+{"kind":"shape","id":"sh/n29gr2p8","slide":4,"bbox":[790,570,410,70]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":4,"text":"Si algo falla: calma. Mostrar video de respaldo y explicar quÃ© estaba cargando.","textPreview":"Si algo falla: calma. Mostrar video de respaldo y explicar quÃ© estaba cargando.","textChars":80,"textLines":1,"bbox":[816,588,350,36]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":4,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[58,680,160,24]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":4,"text":"4 / 7","textPreview":"4 / 7","textChars":5,"textLines":1,"bbox":[604,680,72,24]}
+{"kind":"notes","id":"nt/0i1q3i","slide":4,"text":"En la demo ir directo: abrir app, mostrar monitoreo, estadisticas, alerta o IA.\nSi no carga, usar video de respaldo."}
+{"kind":"slide","id":"sl/w3pf1t","slide":5,"title":"03 / IA EN ACCION","textShapes":15}
+{"kind":"textbox","id":"sh/dsji5sne","slide":5,"text":"03 / IA EN ACCION","textPreview":"03 / IA EN ACCION","textChars":17,"textLines":1,"bbox":[58,34,280,28]}
+{"kind":"shape","id":"sh/61032lsz","slide":5,"bbox":[1088,18,124,46]}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":5,"text":"~1 min","textPreview":"~1 min","textChars":6,"textLines":1,"bbox":[1112,30,82,24]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":5,"text":"Â¿QuÃ© hace la IA por el usuario?","textPreview":"Â¿QuÃ© hace la IA por el usuario?","textChars":33,"textLines":1,"bbox":[58,92,920,72]}
+{"kind":"shape","id":"sh/d4vmtwra","slide":5,"bbox":[58,190,520,314]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":5,"text":"SIN la IA","textPreview":"SIN la IA","textChars":9,"textLines":1,"bbox":[92,220,220,32]}
+{"kind":"shape","id":"sh/vy90je9c","slide":5,"bbox":[92,293,10,10]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":5,"text":"El cuidador revisa datos sueltos.","textPreview":"El cuidador revisa datos sueltos.","textChars":33,"textLines":1,"bbox":[114,286,470,34]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":5,"bbox":[92,345,10,10]}
+{"kind":"textbox","id":"sh/twra5gbq","slide":5,"text":"Tiene que interpretar todo solo.","textPreview":"Tiene que interpretar todo solo.","textChars":32,"textLines":1,"bbox":[114,338,470,34]}
+{"kind":"shape","id":"sh/4byhgn29","slide":5,"bbox":[92,397,10,10]}
+{"kind":"textbox","id":"sh/bq1oryts","slide":5,"text":"Puede tardar en decidir quÃ© hacer.","textPreview":"Puede tardar en decidir quÃ© hacer.","textChars":35,"textLines":1,"bbox":[114,390,470,34]}
+{"kind":"textbox","id":"sh/m58z25kb","slide":5,"text":"â†’","textPreview":"â†’","textChars":3,"textLines":1,"bbox":[604,326,72,54]}
+{"kind":"shape","id":"sh/t83itgfm","slide":5,"bbox":[704,190,520,314]}
+{"kind":"textbox","id":"sh/4nap4r65","slide":5,"text":"CON la IA","textPreview":"CON la IA","textChars":9,"textLines":1,"bbox":[738,220,220,32]}
+{"kind":"shape","id":"sh/b2hwfyxo","slide":5,"bbox":[738,293,10,10]}
+{"kind":"textbox","id":"sh/mhk3q5o7","slide":5,"text":"Resume lo importante.","textPreview":"Resume lo importante.","textChars":21,"textLines":1,"bbox":[760,286,470,34]}
+{"kind":"shape","id":"sh/tgfmlkjm","slide":5,"bbox":[738,345,10,10]}
+{"kind":"textbox","id":"sh/4vmtwra5","slide":5,"text":"Sugiere pasos de calma y revisiÃ³n.","textPreview":"Sugiere pasos de calma y revisiÃ³n.","textChars":35,"textLines":1,"bbox":[760,338,470,34]}
+{"kind":"shape","id":"sh/gr2p8nqx","slide":5,"bbox":[738,397,10,10]}
+{"kind":"textbox","id":"sh/9cvixcze","slide":5,"text":"Da orientaciÃ³n sin reemplazar al profesional.","textPreview":"Da orientaciÃ³n sin reemplazar al profesional.","textChars":46,"textLines":1,"bbox":[760,390,470,34]}
+{"kind":"shape","id":"sh/ylc7u54z","slide":5,"bbox":[430,558,420,58]}
+{"kind":"textbox","id":"sh/r65wjudg","slide":5,"text":"TecnologÃ­a usada: Gemini API + Firebase","textPreview":"TecnologÃ­a usada: Gemini API + Firebase","textChars":40,"textLines":1,"bbox":[458,576,365,24]}
+{"kind":"textbox","id":"sh/5o7qpg3e","slide":5,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[58,680,160,24]}
+{"kind":"textbox","id":"sh/yxobm58z","slide":5,"text":"5 / 7","textPreview":"5 / 7","textChars":5,"textLines":1,"bbox":[604,680,72,24]}
+{"kind":"image","id":"im/3ylc7u54","slide":5,"name":"","geometry":"roundRect","alt":"BotÃ³n del asistente IA","bbox":[1070,98,90,90]}
+{"kind":"notes","id":"nt/w3pf1t","slide":5,"text":"Explicar que la IA ayuda a entender y orientar.\nImportante: no diagnostica ni reemplaza a especialistas."}
+{"kind":"slide","id":"sl/l5yryk","slide":6,"title":"04 / APRENDIZAJES DEL EQUIPO","textShapes":14}
+{"kind":"textbox","id":"sh/al87ed8b","slide":6,"text":"04 / APRENDIZAJES DEL EQUIPO","textPreview":"04 / APRENDIZAJES DEL EQUIPO","textChars":28,"textLines":1,"bbox":[58,34,280,28]}
+{"kind":"shape","id":"sh/hcrmhk3q","slide":6,"bbox":[1088,18,124,46]}
+{"kind":"textbox","id":"sh/orytsvu9","slide":6,"text":"~1 min","textPreview":"~1 min","textChars":6,"textLines":1,"bbox":[1112,30,82,24]}
+{"kind":"textbox","id":"sh/zupwb2hw","slide":6,"text":"Â¿QuÃ© se llevaron del proyecto?","textPreview":"Â¿QuÃ© se llevaron del proyecto?","textChars":32,"textLines":1,"bbox":[58,94,900,70]}
+{"kind":"shape","id":"sh/a9w3m94f","slide":6,"bbox":[58,184,1164,110]}
+{"kind":"shape","id":"sh/h0fepkzu","slide":6,"bbox":[84,212,54,54]}
+{"kind":"textbox","id":"sh/sfil0rqd","slide":6,"text":"R","textPreview":"R","textChars":1,"textLines":1,"bbox":[84,221,54,28]}
+{"kind":"textbox","id":"sh/zqtcj6to","slide":6,"text":"El mayor reto","textPreview":"El mayor reto","textChars":13,"textLines":1,"bbox":[154,214,1042,32]}
+{"kind":"textbox","id":"sh/65wjudg7","slide":6,"text":"Unir datos del reloj, Firebase y pantallas de la app sin perder claridad para el usuario.","textPreview":"Unir datos del reloj, Firebase y pantallas de la app sin perder claridad para el usuario.","textChars":89,"textLines":1,"bbox":[154,252,1042,34]}
+{"kind":"shape","id":"sh/g3ex0nux","slide":6,"bbox":[58,320,1164,110]}
+{"kind":"shape","id":"sh/5o7qpg3e","slide":6,"bbox":[84,348,54,54]}
+{"kind":"textbox","id":"sh/yxobm58z","slide":6,"text":"S","textPreview":"S","textChars":1,"textLines":1,"bbox":[84,357,54,28]}
+{"kind":"textbox","id":"sh/nih4byhg","slide":6,"text":"CÃ³mo lo resolvimos","textPreview":"CÃ³mo lo resolvimos","textChars":19,"textLines":1,"bbox":[154,350,1042,32]}
+{"kind":"textbox","id":"sh/gr2p8nqx","slide":6,"text":"Probamos el flujo por partes: primero datos, luego monitoreo, despuÃ©s estadÃ­sticas, alertas e IA.","textPreview":"Probamos el flujo por partes: primero datos, luego monitoreo, despuÃ©s estadÃ­sticas, alertas e IA.","textChars":99,"textLines":1,"bbox":[154,388,1042,34]}
+{"kind":"shape","id":"sh/9cvixcze","slide":6,"bbox":[58,456,1164,110]}
+{"kind":"shape","id":"sh/ylc7u54z","slide":6,"bbox":[84,484,54,54]}
+{"kind":"textbox","id":"sh/r65wjudg","slide":6,"text":"M","textPreview":"M","textChars":1,"textLines":1,"bbox":[84,493,54,28]}
+{"kind":"textbox","id":"sh/gfmlkjm1","slide":6,"text":"Lo harÃ­amos diferente","textPreview":"Lo harÃ­amos diferente","textChars":22,"textLines":1,"bbox":[154,486,1042,32]}
+{"kind":"textbox","id":"sh/90je9cvi","slide":6,"text":"Preparar antes el video de demo, completar links y cerrar nombres del equipo para que todo se vea listo.","textPreview":"Preparar antes el video de demo, completar links y cerrar nombres del equipo para que todo se vea listo.","textChars":104,"textLines":1,"bbox":[154,524,1042,34]}
+{"kind":"textbox","id":"sh/t83itgfm","slide":6,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[58,680,160,24]}
+{"kind":"textbox","id":"sh/4nap4r65","slide":6,"text":"6 / 7","textPreview":"6 / 7","textChars":5,"textLines":1,"bbox":[604,680,72,24]}
+{"kind":"notes","id":"nt/l5yryk","slide":6,"text":"Ser honestos: el aprendizaje principal fue construir un producto conectado.\nNo presentar AuthCares como pantallas aisladas, sino como un flujo de cuidado."}
+{"kind":"slide","id":"sl/x3wl8n","slide":7,"title":"Gracias.","textShapes":9}
+{"kind":"shape","id":"sh/29gr2p8n","slide":7,"bbox":[982,-130,410,410]}
+{"kind":"shape","id":"sh/d0z61032","slide":7,"bbox":[-160,548,360,360]}
+{"kind":"textbox","id":"sh/kf6dcbul","slide":7,"text":"Gracias.","textPreview":"Gracias.","textChars":8,"textLines":1,"bbox":[58,104,540,86]}
+{"kind":"textbox","id":"sh/v6psfil0","slide":7,"text":"Â¿Preguntas?","textPreview":"Â¿Preguntas?","textChars":12,"textLines":1,"bbox":[62,244,430,50]}
+{"kind":"shape","id":"sh/2lszqtcj","slide":7,"bbox":[58,330,680,218]}
+{"kind":"textbox","id":"sh/d8bat47y","slide":7,"text":"GitHub: github.com/KvrlvP/AuthCares2","textPreview":"GitHub: github.com/KvrlvP/AuthCares2","textChars":36,"textLines":1,"bbox":[94,398,580,28]}
+{"kind":"textbox","id":"sh/knih4byh","slide":7,"text":"Demo: [pegar link del video]","textPreview":"Demo: [pegar link del video]","textChars":28,"textLines":1,"bbox":[94,448,520,28]}
+{"kind":"textbox","id":"sh/val87ed8","slide":7,"text":"Equipo: Karla Choque  Â·  [Integrante 2]  Â·  [Integrante 3]  Â·  [Integrante 4]","textPreview":"Equipo: Karla Choque  Â·  [Integrante 2]  Â·  [Integrante 3]  Â·  [Integrante 4]","textChars":80,"textLines":1,"bbox":[94,498,600,28]}
+{"kind":"shape","id":"sh/6psfil0r","slide":7,"bbox":[910,300,242,242]}
+{"kind":"textbox","id":"sh/4r65wjud","slide":7,"text":"QR GitHub o video","textPreview":"QR GitHub o video","textChars":17,"textLines":1,"bbox":[950,402,162,28]}
+{"kind":"textbox","id":"sh/xc3ylc7u","slide":7,"text":"AuthCares convierte datos en cuidado.","textPreview":"AuthCares convierte datos en cuidado.","textChars":37,"textLines":1,"bbox":[58,604,760,36]}
+{"kind":"textbox","id":"sh/mlkjm1cf","slide":7,"text":"AuthCares","textPreview":"AuthCares","textChars":9,"textLines":1,"bbox":[58,680,160,24]}
+{"kind":"textbox","id":"sh/f6dcbulw","slide":7,"text":"7 / 7","textPreview":"7 / 7","textChars":5,"textLines":1,"bbox":[604,680,72,24]}
+{"kind":"notes","id":"nt/x3wl8n","slide":7,"text":"Cerrar con la frase final: AuthCares convierte datos en cuidado.\nAgradecer y dejar abierto a preguntas."}

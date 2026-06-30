@@ -1,0 +1,673 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/x3wl8n",
+    "id": "x3wl8n",
+    "slide": 7,
+    "layoutId": "3ea936ce-9cbf-40d3-8491-d384430d4f22",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "d76276d7-784e-48db-9f4f-872ee19e5c00",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#0E1527",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "3ea936ce-9cbf-40d3-8491-d384430d4f22",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "d76276d7-784e-48db-9f4f-872ee19e5c00",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "d76276d7-784e-48db-9f4f-872ee19e5c00",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/29gr2p8n",
+      "id": "1",
+      "bbox": [
+        982,
+        -130,
+        410,
+        410
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#2B2C50",
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/d0z61032",
+      "id": "2",
+      "bbox": [
+        -160,
+        548,
+        360,
+        360
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#2B2456",
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kf6dcbul",
+      "id": "3",
+      "bbox": [
+        58,
+        104,
+        540,
+        86
+      ],
+      "geometry": "rect",
+      "text": "Gracias.",
+      "textPreview": "Gracias.",
+      "resolvedFontSize": 78,
+      "resolvedTextStyle": {
+        "fontSize": 78,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Gracias."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Gracias.",
+          "resolvedTextStyle": {
+            "fontSize": 78,
+            "color": "#FFFFFF",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Gracias.",
+              "fontSize": 78,
+              "color": "#FFFFFF",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/v6psfil0",
+      "id": "4",
+      "bbox": [
+        62,
+        244,
+        430,
+        50
+      ],
+      "geometry": "rect",
+      "text": "Â¿Preguntas?",
+      "textPreview": "Â¿Preguntas?",
+      "resolvedFontSize": 34,
+      "resolvedTextStyle": {
+        "fontSize": 34,
+        "typeface": "+mn-lt",
+        "color": "#B99DFF",
+        "italic": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Â¿Preguntas?"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Â¿Preguntas?",
+          "resolvedTextStyle": {
+            "fontSize": 34,
+            "color": "#B99DFF",
+            "italic": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Â¿Preguntas?",
+              "fontSize": 34,
+              "color": "#B99DFF",
+              "italic": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2lszqtcj",
+      "id": "5",
+      "bbox": [
+        58,
+        330,
+        680,
+        218
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#222B3E",
+      "lineColor": "#48546A",
+      "lineWidth": 1
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/d8bat47y",
+      "id": "6",
+      "bbox": [
+        94,
+        398,
+        580,
+        28
+      ],
+      "geometry": "rect",
+      "text": "GitHub: github.com/KvrlvP/AuthCares2",
+      "textPreview": "GitHub: github.com/KvrlvP/AuthCares2",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "+mn-lt",
+        "color": "#E8EEF8",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "GitHub: github.com/KvrlvP/AuthCares2"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "GitHub: github.com/KvrlvP/AuthCares2",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "color": "#E8EEF8"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "GitHub: github.com/KvrlvP/AuthCares2",
+              "fontSize": 22,
+              "color": "#E8EEF8"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/knih4byh",
+      "id": "7",
+      "bbox": [
+        94,
+        448,
+        520,
+        28
+      ],
+      "geometry": "rect",
+      "text": "Demo: [pegar link del video]",
+      "textPreview": "Demo: [pegar link del video]",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "+mn-lt",
+        "color": "#E8EEF8",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Demo: [pegar link del video]"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Demo: [pegar link del video]",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "color": "#E8EEF8"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Demo: [pegar link del video]",
+              "fontSize": 22,
+              "color": "#E8EEF8"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/val87ed8",
+      "id": "8",
+      "bbox": [
+        94,
+        498,
+        600,
+        28
+      ],
+      "geometry": "rect",
+      "text": "Equipo: Karla Choque  Â·  [Integrante 2]  Â·  [Integrante 3]  Â·  [Integrante 4]",
+      "textPreview": "Equipo: Karla Choque  Â·  [Integrante 2]  Â·  [Integrante 3]  Â·  [Integrante 4]",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#B8C2D8",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Equipo: Karla Choque  Â·  [Integrante 2]  Â·  [Integrante 3]  Â·  [Integrante 4]"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Equipo: Karla Choque  Â·  [Integrante 2]  Â·  [Integrante 3]  Â·  [Integrante 4]",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#B8C2D8"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Equipo: Karla Choque  Â·  [Integrante 2]  Â·  [Integrante 3]  Â·  [Integrante 4]",
+              "fontSize": 19,
+              "color": "#B8C2D8"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6psfil0r",
+      "id": "9",
+      "bbox": [
+        910,
+        300,
+        242,
+        242
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#222B3E",
+      "lineColor": "#697386",
+      "lineWidth": 1
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4r65wjud",
+      "id": "10",
+      "bbox": [
+        950,
+        402,
+        162,
+        28
+      ],
+      "geometry": "rect",
+      "text": "QR GitHub o video",
+      "textPreview": "QR GitHub o video",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#DDE3F0",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "QR GitHub o"
+          },
+          {
+            "index": 2,
+            "text": "video"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "QR GitHub o video",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#DDE3F0",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "QR GitHub o video",
+              "fontSize": 20,
+              "color": "#DDE3F0",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xc3ylc7u",
+      "id": "11",
+      "bbox": [
+        58,
+        604,
+        760,
+        36
+      ],
+      "geometry": "rect",
+      "text": "AuthCares convierte datos en cuidado.",
+      "textPreview": "AuthCares convierte datos en cuidado.",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "AuthCares convierte datos en cuidado."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "AuthCares convierte datos en cuidado.",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "color": "#FFFFFF",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "AuthCares convierte datos en cuidado.",
+              "fontSize": 24,
+              "color": "#FFFFFF",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/mlkjm1cf",
+      "id": "12",
+      "bbox": [
+        58,
+        680,
+        160,
+        24
+      ],
+      "geometry": "rect",
+      "text": "AuthCares",
+      "textPreview": "AuthCares",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#B9C3D8",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "AuthCares"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "AuthCares",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#B9C3D8",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "AuthCares",
+              "fontSize": 13,
+              "color": "#B9C3D8",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/f6dcbulw",
+      "id": "13",
+      "bbox": [
+        604,
+        680,
+        72,
+        24
+      ],
+      "geometry": "rect",
+      "text": "7 / 7",
+      "textPreview": "7 / 7",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#8591AA",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "7 / 7"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "7 / 7",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#8591AA",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "7 / 7",
+              "fontSize": 13,
+              "color": "#8591AA",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

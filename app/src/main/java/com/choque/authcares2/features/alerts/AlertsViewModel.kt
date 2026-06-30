@@ -47,7 +47,7 @@ class AlertsViewModel(
         historyJob?.cancel()
         _uiState.update { it.copy(isLoading = true, errorMessage = null) }
         historyJob = viewModelScope.launch {
-            repository.observeHistory(watchId).collect { result ->
+            repository.loadHistory(watchId).collect { result ->
                 result.onSuccess { samples ->
                     val alerts = detector.detect(
                         samples = samples,
@@ -68,7 +68,7 @@ class AlertsViewModel(
                         current.copy(
                             alerts = emptyList(),
                             isLoading = false,
-                            errorMessage = "No pudimos leer el historial del reloj."
+                            errorMessage = "No pudimos leer el historial: ${it.localizedMessage}"
                         )
                     }
                 }

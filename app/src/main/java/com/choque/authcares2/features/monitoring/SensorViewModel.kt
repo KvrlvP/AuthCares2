@@ -221,18 +221,33 @@ class SensorViewModel : ViewModel() {
         val code = _sensorState.value.watchCodeInput.trim()
 
         if (code.isBlank()) {
-            _sensorState.update { it.copy(errorMessage = "Por favor, ingresa el código del reloj.") }
+            _sensorState.update {
+                it.copy(
+                    errorMessage = "Por favor, ingresa el código del reloj."
+                )
+            }
             return
         }
 
         viewModelScope.launch {
-            _sensorState.update { it.copy(isConnecting = true, errorMessage = null) }
+            _sensorState.update {
+                it.copy(
+                    isConnecting = true,
+                    errorMessage = null
+                )
+            }
+
             try {
-                val userRef = firestore.collection("usuarios").document(uid)
+                val userRef = firestore
+                    .collection("usuarios")
+                    .document(uid)
+
                 val childrenDocs = findAllChildrenForUser(uid)
                 val selectedChildId = _sensorState.value.selectedChild?.id
-                val childDoc = childrenDocs.firstOrNull { it.id == selectedChildId }
-                    ?: childrenDocs.firstOrNull()
+
+                val childDoc = childrenDocs.firstOrNull {
+                    it.id == selectedChildId
+                } ?: childrenDocs.firstOrNull()
 
                 userRef.collection("relojes")
                     .document(code)
@@ -252,17 +267,39 @@ class SensorViewModel : ViewModel() {
                         .await()
                 }
 
-                _sensorState.update { it.copy(isConnecting = false, watchCodeInput = "") }
-                loadChildAndWatch()
-            } catch (e: Exception) {
-                e.printStackTrace() // Esto imprimirá el error real en el Logcat
+                // ÉXITO: el reloj se conectó correctamente
                 _sensorState.update {
                     it.copy(
                         isConnecting = false,
-                        errorMessage = "Error al conectar: ${e.localizedMessage}. Inténtalo de nuevo."
+                        watchCodeInput = "",
+                        watchConnected = true,
+                        connectedWatchId = code,
+                        errorMessage = null
+                    )
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+
+                // ERROR: no se conectó
+                _sensorState.update {
+                    it.copy(
+                        isConnecting = false,
+                        watchConnected = false,
+                        errorMessage = "Error al conectar: ${
+                            e.localizedMessage ?: "error desconocido"
+                        }. Inténtalo de nuevo."
                     )
                 }
             }
+        }
+    }
+
+    fun onWatchConnectionHandled() {
+        _sensorState.update {
+            it.copy(
+                watchConnected = false
+            )
         }
     }
 

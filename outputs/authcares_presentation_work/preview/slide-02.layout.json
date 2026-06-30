@@ -1,0 +1,874 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/0cyvsx",
+    "id": "0cyvsx",
+    "slide": 2,
+    "layoutId": "3ea936ce-9cbf-40d3-8491-d384430d4f22",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "d76276d7-784e-48db-9f4f-872ee19e5c00",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F7F8FC",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "3ea936ce-9cbf-40d3-8491-d384430d4f22",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "d76276d7-784e-48db-9f4f-872ee19e5c00",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "d76276d7-784e-48db-9f4f-872ee19e5c00",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9gr2p8nq",
+      "id": "1",
+      "bbox": [
+        58,
+        34,
+        280,
+        28
+      ],
+      "geometry": "rect",
+      "text": "01 / EL PROBLEMA",
+      "textPreview": "01 / EL PROBLEMA",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#4A5568",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "01 / EL PROBLEMA"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "01 / EL PROBLEMA",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#4A5568",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "01 / EL PROBLEMA",
+              "fontSize": 13,
+              "color": "#4A5568",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2p8nqxs7",
+      "id": "2",
+      "bbox": [
+        1088,
+        18,
+        124,
+        46
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#F4B942",
+      "lineColor": "#E9A92F",
+      "lineWidth": 1
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ra5gbq1o",
+      "id": "3",
+      "bbox": [
+        1112,
+        30,
+        82,
+        24
+      ],
+      "geometry": "rect",
+      "text": "~1 min",
+      "textPreview": "~1 min",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#2D2410",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "~1 min"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "~1 min",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#2D2410",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "~1 min",
+              "fontSize": 17,
+              "color": "#2D2410",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kjm1cfa9",
+      "id": "4",
+      "bbox": [
+        58,
+        96,
+        720,
+        72
+      ],
+      "geometry": "rect",
+      "text": "Â¿A quiÃ©n le duele?",
+      "textPreview": "Â¿A quiÃ©n le duele?",
+      "resolvedFontSize": 54,
+      "resolvedTextStyle": {
+        "fontSize": 54,
+        "typeface": "+mn-lt",
+        "color": "#17202E",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Â¿A quiÃ©n le duele?"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Â¿A quiÃ©n le duele?",
+          "resolvedTextStyle": {
+            "fontSize": 54,
+            "color": "#17202E",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Â¿A quiÃ©n le duele?",
+              "fontSize": 54,
+              "color": "#17202E",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/94fu18jq",
+      "id": "5",
+      "bbox": [
+        58,
+        196,
+        710,
+        300
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#D9DDEA",
+      "lineWidth": 1
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2hwfyxob",
+      "id": "6",
+      "bbox": [
+        88,
+        222,
+        260,
+        34
+      ],
+      "geometry": "rect",
+      "text": "El problema real:",
+      "textPreview": "El problema real:",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "color": "#17202E",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "El problema real:"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "El problema real:",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "color": "#17202E",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "El problema real:",
+              "fontSize": 24,
+              "color": "#17202E",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/r2p8nqxs",
+      "id": "7",
+      "bbox": [
+        88,
+        282,
+        610,
+        92
+      ],
+      "geometry": "rect",
+      "text": "Una madre no siempre puede estar cerca de su hijo durante clases, terapia o actividades diarias. Si ocurre un cambio importante, muchas veces se entera tarde o sin datos claros.",
+      "textPreview": "Una madre no siempre puede estar cerca de su hijo durante clases, terapia o actividades diarias. Si ocurre un cambio importante, muchas v...",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "color": "#495060",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Una madre no siempre puede estar cerca de su hijo durante"
+          },
+          {
+            "index": 2,
+            "text": "clases, terapia o actividades diarias. Si ocurre un cambio"
+          },
+          {
+            "index": 3,
+            "text": "importante, muchas veces se entera tarde o sin datos claros."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Una madre no siempre puede estar cerca de su hijo durante clases, terapia o actividades diarias. Si ocurre un cambio importante, muchas veces se entera tarde o sin datos claros.",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "color": "#495060"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Una madre no siempre puede estar cerca de su hijo durante clases, terapia o actividades diarias. Si ocurre un cambio importante, muchas veces se entera tarde o sin datos claros.",
+              "fontSize": 24,
+              "color": "#495060"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kb6xkf6d",
+      "id": "8",
+      "bbox": [
+        88,
+        406,
+        610,
+        54
+      ],
+      "geometry": "rect",
+      "text": "No se trata de vigilar mÃ¡s. Se trata de acompaÃ±ar mejor, con calma y contexto.",
+      "textPreview": "No se trata de vigilar mÃ¡s. Se trata de acompaÃ±ar mejor, con calma y contexto.",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "+mn-lt",
+        "color": "#7C3AED",
+        "italic": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "No se trata de vigilar mÃ¡s. Se trata de acompaÃ±ar mejor, con"
+          },
+          {
+            "index": 2,
+            "text": "calma y contexto."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "No se trata de vigilar mÃ¡s. Se trata de acompaÃ±ar mejor, con calma y contexto.",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "color": "#7C3AED",
+            "italic": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "No se trata de vigilar mÃ¡s. Se trata de acompaÃ±ar mejor, con calma y contexto.",
+              "fontSize": 22,
+              "color": "#7C3AED",
+              "italic": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9w3m94fu",
+      "id": "9",
+      "bbox": [
+        862,
+        176,
+        330,
+        330
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#EDE7FF",
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xczed8v6",
+      "id": "10",
+      "bbox": [
+        982,
+        248,
+        90,
+        92
+      ],
+      "geometry": "rect",
+      "text": "!",
+      "textPreview": "!",
+      "resolvedFontSize": 72,
+      "resolvedTextStyle": {
+        "fontSize": 72,
+        "typeface": "+mn-lt",
+        "color": "#E5484D",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "!"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "!",
+          "resolvedTextStyle": {
+            "fontSize": 72,
+            "color": "#E5484D",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "!",
+              "fontSize": 72,
+              "color": "#E5484D",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8v6psfil",
+      "id": "11",
+      "bbox": [
+        842,
+        392,
+        370,
+        28
+      ],
+      "geometry": "rect",
+      "text": "Distancia",
+      "textPreview": "Distancia",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "+mn-lt",
+        "color": "#17202E",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Distancia"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Distancia",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "color": "#17202E",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Distancia",
+              "fontSize": 22,
+              "color": "#17202E",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fa9w3m94",
+      "id": "12",
+      "bbox": [
+        842,
+        426,
+        370,
+        28
+      ],
+      "geometry": "rect",
+      "text": "Poca informaciÃ³n",
+      "textPreview": "Poca informaciÃ³n",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#667085",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Poca informaciÃ³n"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Poca informaciÃ³n",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#667085",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Poca informaciÃ³n",
+              "fontSize": 19,
+              "color": "#667085",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qpg3ex0n",
+      "id": "13",
+      "bbox": [
+        58,
+        560,
+        1164,
+        54
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFF8DB",
+      "lineColor": "#F2D36D",
+      "lineWidth": 1
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/x4nap4r6",
+      "id": "14",
+      "bbox": [
+        84,
+        575,
+        1090,
+        24
+      ],
+      "geometry": "rect",
+      "text": "TIP: empieza con esta historia antes de enseÃ±ar pantallas. El jurado debe sentir por quÃ© existe AuthCares.",
+      "textPreview": "TIP: empieza con esta historia antes de enseÃ±ar pantallas. El jurado debe sentir por quÃ© existe AuthCares.",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#5B4B13",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "TIP: empieza con esta historia antes de enseÃ±ar pantallas. El jurado debe sentir por quÃ© existe AuthCares."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "TIP: empieza con esta historia antes de enseÃ±ar pantallas. El jurado debe sentir por quÃ© existe AuthCares.",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#5B4B13"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "TIP: empieza con esta historia antes de enseÃ±ar pantallas. El jurado debe sentir por quÃ© existe AuthCares.",
+              "fontSize": 18,
+              "color": "#5B4B13"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8jqh0fep",
+      "id": "15",
+      "bbox": [
+        58,
+        680,
+        160,
+        24
+      ],
+      "geometry": "rect",
+      "text": "AuthCares",
+      "textPreview": "AuthCares",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#7B8497",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "AuthCares"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "AuthCares",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#7B8497",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "AuthCares",
+              "fontSize": 13,
+              "color": "#7B8497",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fyxobm58",
+      "id": "16",
+      "bbox": [
+        604,
+        680,
+        72,
+        24
+      ],
+      "geometry": "rect",
+      "text": "2 / 7",
+      "textPreview": "2 / 7",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#9AA3B2",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "2 / 7"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "2 / 7",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#9AA3B2",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "2 / 7",
+              "fontSize": 13,
+              "color": "#9AA3B2",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

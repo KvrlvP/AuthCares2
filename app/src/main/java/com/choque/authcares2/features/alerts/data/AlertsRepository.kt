@@ -1,9 +1,7 @@
 package com.choque.authcares2.features.alerts.data
 
 import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -17,35 +15,37 @@ data class AlertSensorSample(
 )
 
 interface AlertsRepository {
-    fun observeHistory(watchId: String): Flow<Result<List<AlertSensorSample>>>
+    fun loadHistory(watchId: String): Flow<Result<List<AlertSensorSample>>>
 }
 
 class FirebaseAlertsRepository(
     private val database: FirebaseDatabase = FirebaseDatabase.getInstance()
 ) : AlertsRepository {
 
-    override fun observeHistory(
+    override fun loadHistory(
         watchId: String
     ): Flow<Result<List<AlertSensorSample>>> = callbackFlow {
+
         val reference = database.getReference("pending_wearables")
             .child(watchId)
             .child("history")
+            .limitToLast(100)
 
-        val listener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
+        reference.get()
+            .addOnSuccessListener { snapshot ->
                 val samples = snapshot.children
                     .mapNotNull(::toSample)
                     .sortedBy { it.timestamp }
+
                 trySend(Result.success(samples))
+                close()
+            }
+            .addOnFailureListener { error ->
+                trySend(Result.failure(error))
+                close()
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                trySend(Result.failure(error.toException()))
-            }
-        }
-
-        reference.addValueEventListener(listener)
-        awaitClose { reference.removeEventListener(listener) }
+        awaitClose()
     }
 
     private fun toSample(snapshot: DataSnapshot): AlertSensorSample? {

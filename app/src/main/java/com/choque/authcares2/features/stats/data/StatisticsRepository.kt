@@ -3,42 +3,42 @@ package com.choque.authcares2.features.stats.data
 import com.choque.authcares2.features.stats.model.HistoryMeasurement
 import com.choque.authcares2.features.stats.model.SensorVector
 import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
 interface StatisticsRepository {
-    fun observeHistory(watchId: String): Flow<Result<List<HistoryMeasurement>>>
+    fun loadHistory(watchId: String): Flow<Result<List<HistoryMeasurement>>>
 }
 
 class FirebaseStatisticsRepository(
     private val database: FirebaseDatabase = FirebaseDatabase.getInstance()
 ) : StatisticsRepository {
 
-    override fun observeHistory(
+    override fun loadHistory(
         watchId: String
     ): Flow<Result<List<HistoryMeasurement>>> = callbackFlow {
+
         val reference = database.getReference("pending_wearables")
             .child(watchId)
             .child("history")
 
-        val listener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val measurements = snapshot.children.mapNotNull(::toMeasurement)
+        reference.get()
+            .addOnSuccessListener { snapshot ->
+                val measurements = snapshot.children
+                    .mapNotNull(::toMeasurement)
                     .sortedBy { it.timestamp }
+
                 trySend(Result.success(measurements))
+                close()
+            }
+            .addOnFailureListener { error ->
+                trySend(Result.failure(error))
+                close()
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                trySend(Result.failure(error.toException()))
-            }
-        }
-
-        reference.addValueEventListener(listener)
-        awaitClose { reference.removeEventListener(listener) }
+        awaitClose()
     }
 
     private fun toMeasurement(snapshot: DataSnapshot): HistoryMeasurement? {

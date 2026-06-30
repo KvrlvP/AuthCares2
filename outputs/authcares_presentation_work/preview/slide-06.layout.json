@@ -1,0 +1,1033 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/l5yryk",
+    "id": "l5yryk",
+    "slide": 6,
+    "layoutId": "3ea936ce-9cbf-40d3-8491-d384430d4f22",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "d76276d7-784e-48db-9f4f-872ee19e5c00",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F7F8FC",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "3ea936ce-9cbf-40d3-8491-d384430d4f22",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "d76276d7-784e-48db-9f4f-872ee19e5c00",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "d76276d7-784e-48db-9f4f-872ee19e5c00",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/al87ed8b",
+      "id": "1",
+      "bbox": [
+        58,
+        34,
+        280,
+        28
+      ],
+      "geometry": "rect",
+      "text": "04 / APRENDIZAJES DEL EQUIPO",
+      "textPreview": "04 / APRENDIZAJES DEL EQUIPO",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#4A5568",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "04 / APRENDIZAJES DEL EQUIPO"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "04 / APRENDIZAJES DEL EQUIPO",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#4A5568",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "04 / APRENDIZAJES DEL EQUIPO",
+              "fontSize": 13,
+              "color": "#4A5568",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hcrmhk3q",
+      "id": "2",
+      "bbox": [
+        1088,
+        18,
+        124,
+        46
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#F4B942",
+      "lineColor": "#E9A92F",
+      "lineWidth": 1
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/orytsvu9",
+      "id": "3",
+      "bbox": [
+        1112,
+        30,
+        82,
+        24
+      ],
+      "geometry": "rect",
+      "text": "~1 min",
+      "textPreview": "~1 min",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#2D2410",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "~1 min"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "~1 min",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#2D2410",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "~1 min",
+              "fontSize": 17,
+              "color": "#2D2410",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zupwb2hw",
+      "id": "4",
+      "bbox": [
+        58,
+        94,
+        900,
+        70
+      ],
+      "geometry": "rect",
+      "text": "Â¿QuÃ© se llevaron del proyecto?",
+      "textPreview": "Â¿QuÃ© se llevaron del proyecto?",
+      "resolvedFontSize": 50,
+      "resolvedTextStyle": {
+        "fontSize": 50,
+        "typeface": "+mn-lt",
+        "color": "#17202E",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Â¿QuÃ© se llevaron del proyecto?"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Â¿QuÃ© se llevaron del proyecto?",
+          "resolvedTextStyle": {
+            "fontSize": 50,
+            "color": "#17202E",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Â¿QuÃ© se llevaron del proyecto?",
+              "fontSize": 50,
+              "color": "#17202E",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a9w3m94f",
+      "id": "5",
+      "bbox": [
+        58,
+        184,
+        1164,
+        110
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#D9DDEA",
+      "lineWidth": 1
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/h0fepkzu",
+      "id": "6",
+      "bbox": [
+        84,
+        212,
+        54,
+        54
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#4F7BFF",
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/sfil0rqd",
+      "id": "7",
+      "bbox": [
+        84,
+        221,
+        54,
+        28
+      ],
+      "geometry": "rect",
+      "text": "R",
+      "textPreview": "R",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "R"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "R",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "R",
+              "fontSize": 24,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zqtcj6to",
+      "id": "8",
+      "bbox": [
+        154,
+        214,
+        1042,
+        32
+      ],
+      "geometry": "rect",
+      "text": "El mayor reto",
+      "textPreview": "El mayor reto",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "fontSize": 25,
+        "typeface": "+mn-lt",
+        "color": "#17202E",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "El mayor reto"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "El mayor reto",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "color": "#17202E",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "El mayor reto",
+              "fontSize": 25,
+              "color": "#17202E",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/65wjudg7",
+      "id": "9",
+      "bbox": [
+        154,
+        252,
+        1042,
+        34
+      ],
+      "geometry": "rect",
+      "text": "Unir datos del reloj, Firebase y pantallas de la app sin perder claridad para el usuario.",
+      "textPreview": "Unir datos del reloj, Firebase y pantallas de la app sin perder claridad para el usuario.",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#667085",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Unir datos del reloj, Firebase y pantallas de la app sin perder claridad para el usuario."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Unir datos del reloj, Firebase y pantallas de la app sin perder claridad para el usuario.",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#667085"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Unir datos del reloj, Firebase y pantallas de la app sin perder claridad para el usuario.",
+              "fontSize": 20,
+              "color": "#667085"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/g3ex0nux",
+      "id": "10",
+      "bbox": [
+        58,
+        320,
+        1164,
+        110
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#D9DDEA",
+      "lineWidth": 1
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5o7qpg3e",
+      "id": "11",
+      "bbox": [
+        84,
+        348,
+        54,
+        54
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#25B99A",
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/yxobm58z",
+      "id": "12",
+      "bbox": [
+        84,
+        357,
+        54,
+        28
+      ],
+      "geometry": "rect",
+      "text": "S",
+      "textPreview": "S",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "S"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "S",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "S",
+              "fontSize": 24,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nih4byhg",
+      "id": "13",
+      "bbox": [
+        154,
+        350,
+        1042,
+        32
+      ],
+      "geometry": "rect",
+      "text": "CÃ³mo lo resolvimos",
+      "textPreview": "CÃ³mo lo resolvimos",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "fontSize": 25,
+        "typeface": "+mn-lt",
+        "color": "#17202E",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "CÃ³mo lo resolvimos"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "CÃ³mo lo resolvimos",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "color": "#17202E",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "CÃ³mo lo resolvimos",
+              "fontSize": 25,
+              "color": "#17202E",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gr2p8nqx",
+      "id": "14",
+      "bbox": [
+        154,
+        388,
+        1042,
+        34
+      ],
+      "geometry": "rect",
+      "text": "Probamos el flujo por partes: primero datos, luego monitoreo, despuÃ©s estadÃ­sticas, alertas e IA.",
+      "textPreview": "Probamos el flujo por partes: primero datos, luego monitoreo, despuÃ©s estadÃ­sticas, alertas e IA.",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#667085",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Probamos el flujo por partes: primero datos, luego monitoreo, despuÃ©s estadÃ­sticas, alertas e IA."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Probamos el flujo por partes: primero datos, luego monitoreo, despuÃ©s estadÃ­sticas, alertas e IA.",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#667085"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Probamos el flujo por partes: primero datos, luego monitoreo, despuÃ©s estadÃ­sticas, alertas e IA.",
+              "fontSize": 20,
+              "color": "#667085"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9cvixcze",
+      "id": "15",
+      "bbox": [
+        58,
+        456,
+        1164,
+        110
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#D9DDEA",
+      "lineWidth": 1
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ylc7u54z",
+      "id": "16",
+      "bbox": [
+        84,
+        484,
+        54,
+        54
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#7C3AED",
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/r65wjudg",
+      "id": "17",
+      "bbox": [
+        84,
+        493,
+        54,
+        28
+      ],
+      "geometry": "rect",
+      "text": "M",
+      "textPreview": "M",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "M"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "M",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "M",
+              "fontSize": 24,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gfmlkjm1",
+      "id": "18",
+      "bbox": [
+        154,
+        486,
+        1042,
+        32
+      ],
+      "geometry": "rect",
+      "text": "Lo harÃ­amos diferente",
+      "textPreview": "Lo harÃ­amos diferente",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "fontSize": 25,
+        "typeface": "+mn-lt",
+        "color": "#17202E",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Lo harÃ­amos diferente"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Lo harÃ­amos diferente",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "color": "#17202E",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Lo harÃ­amos diferente",
+              "fontSize": 25,
+              "color": "#17202E",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/90je9cvi",
+      "id": "19",
+      "bbox": [
+        154,
+        524,
+        1042,
+        34
+      ],
+      "geometry": "rect",
+      "text": "Preparar antes el video de demo, completar links y cerrar nombres del equipo para que todo se vea listo.",
+      "textPreview": "Preparar antes el video de demo, completar links y cerrar nombres del equipo para que todo se vea listo.",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#667085",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Preparar antes el video de demo, completar links y cerrar nombres del equipo para que todo se vea listo."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Preparar antes el video de demo, completar links y cerrar nombres del equipo para que todo se vea listo.",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#667085"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Preparar antes el video de demo, completar links y cerrar nombres del equipo para que todo se vea listo.",
+              "fontSize": 20,
+              "color": "#667085"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/t83itgfm",
+      "id": "20",
+      "bbox": [
+        58,
+        680,
+        160,
+        24
+      ],
+      "geometry": "rect",
+      "text": "AuthCares",
+      "textPreview": "AuthCares",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#7B8497",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "AuthCares"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "AuthCares",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#7B8497",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "AuthCares",
+              "fontSize": 13,
+              "color": "#7B8497",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4nap4r65",
+      "id": "21",
+      "bbox": [
+        604,
+        680,
+        72,
+        24
+      ],
+      "geometry": "rect",
+      "text": "6 / 7",
+      "textPreview": "6 / 7",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#9AA3B2",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "6 / 7"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "6 / 7",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#9AA3B2",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "6 / 7",
+              "fontSize": 13,
+              "color": "#9AA3B2",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}
