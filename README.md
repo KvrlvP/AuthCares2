@@ -283,10 +283,10 @@ app/src/main/java/com/choque/authcares2
 
 | Nombre | Rol | Responsabilidad |
 |---|---|---|
-| Karla Choque | Desarrolladora Android | Aplicación móvil, Firebase, UI y arquitectura |
-| Integrante 2 | Por completar | Por completar |
-| Integrante 3 | Por completar | Por completar |
-| Integrante 4 | Por completar | Por completar |
+| Karla Choque | Desarrolladora Android | Desarrollo de la aplicación móvil, integración con Firebase, diseño de la interfaz y arquitectura del sistema. |
+| Ayelen Soto | Desarrolladora de integración IoT | Desarrollo del sistema del smartwatch, configuración de sensores y transmisión de datos hacia la aplicación móvil. |
+| Willy Torres | Desarrollador backend y base de datos | Apoyo en la estructura de Firebase, almacenamiento de datos, validación de registros y pruebas de comunicación entre los dispositivos. |
+| Johs Cori | Desarrollador y responsable de pruebas | Apoyo en la implementación de funcionalidades, pruebas del sistema, identificación de errores y documentación técnica del proyecto. |
 
 ---
 
